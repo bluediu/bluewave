@@ -40,7 +40,6 @@ export const AuthProvider: TProviderChildren = ({ children }) => {
       }
     } catch (error) {
       console.error("Error decoding token:", error);
-
       // Treat invalid token as expired, logout the user
       logoutAuthUser();
     }
