@@ -1,14 +1,20 @@
+/* Hooks */
 import { DefaultError } from "@tanstack/query-core";
-import { useQuery } from "@tanstack/react-query";
 
-import { IAuthForm } from "../../interfaces";
+/* Interfaces */
+import { IForm } from "../../interfaces";
+
+/* Services */
 import { adminActions } from "../../services";
+
+/* Types */
+import { useQuery } from "@tanstack/react-query";
 
 interface IOutputProps {
   isLoading: boolean;
   isError: boolean;
   error: DefaultError | null;
-  form?: IAuthForm;
+  form?: IForm;
 }
 
 export const useAuthForm = (): IOutputProps => {
@@ -19,7 +25,7 @@ export const useAuthForm = (): IOutputProps => {
     data: form,
   } = useQuery({
     queryKey: ["authFormSchema"],
-    queryFn: adminActions.getAuthForm,
+    queryFn: adminActions.forms.getAuthForm,
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 5,
   });

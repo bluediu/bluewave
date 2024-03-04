@@ -1,0 +1,1 @@
+export { ModalBasic } from "./ModalBasic";

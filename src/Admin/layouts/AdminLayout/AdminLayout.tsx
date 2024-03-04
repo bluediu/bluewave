@@ -1,11 +1,16 @@
 import { ReactElement, useContext } from "react";
 
-import { AuthContext } from "../context";
-import { LoginAdmin } from "../pages";
-import { SideMenu } from "../components/SideMenu";
+/* Context */
+import { AuthContext } from "../../context";
+
+/* Pages */
+import { LoginAdmin } from "../../pages";
+
+/* Components */
+import { SideMenu } from "../../components/SideMenu";
+import { TopMenu } from "../../components/TopMenu";
 
 import "./AdminLayout.scss";
-import { TopMenu } from "../components/TopMenu";
 
 interface IProps {
   children: ReactElement | ReactElement[];

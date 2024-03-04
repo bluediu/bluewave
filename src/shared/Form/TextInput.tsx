@@ -1,14 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useField } from "formik";
+/* Libs components */
 import { FormField, Input } from "semantic-ui-react";
 
+/* Hooks */
+import { useField } from "formik";
+
 interface IProps {
-  type: string;
-  name: string;
-  label: string;
   disabled: boolean;
   helpText?: string;
+  label: string;
+  name: string;
   required: boolean;
+  type: string;
   [x: string]: any;
 }
 
@@ -19,10 +22,14 @@ export const TextInput = ({ label, helpText, required, ...props }: IProps) => {
     <>
       <FormField
         control={Input}
+        className={helpText ? "mb-0" : ""}
         label={label}
         error={
           meta.touched &&
-          meta.error && { content: meta.error, pointing: "below" }
+          meta.error && {
+            content: meta.error.replace(/_/g, " "),
+            pointing: "below",
+          }
         }
         {...field}
         {...props}

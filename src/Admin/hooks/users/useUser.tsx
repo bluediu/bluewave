@@ -1,5 +1,10 @@
+/* Hooks */
 import { useQuery } from "@tanstack/react-query";
+
+/* Interfaces */
 import { IUser } from "../../interfaces";
+
+/* Services */
 import { adminActions } from "../../services";
 
 interface IOutputProps {
@@ -17,7 +22,7 @@ export const useUser = (id: number): IOutputProps => {
     data: user,
   } = useQuery({
     queryKey: ["user", id],
-    queryFn: () => adminActions.getUser(id),
+    queryFn: () => adminActions.users.getUser(id),
     refetchOnWindowFocus: false,
   });
 

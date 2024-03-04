@@ -1,19 +1,24 @@
 import { createContext, useEffect, useState } from "react";
+
+/* Hooks */
 import { toast } from "react-toastify";
 
-import { TOKEN } from "../constants";
+/* Utils */
 import { fn } from "../utils";
+
+/* Constants */
+import { TOKEN } from "../constants";
 
 interface IAuthContextType {
   isAuthenticated: boolean;
-  userId: number | null;
+  userId: number;
   handleAuthUser: ({ userAuthId }: { userAuthId: number }) => void;
   logoutAuthUser: () => void;
 }
 
 export const AuthContext = createContext<IAuthContextType>({
   isAuthenticated: false,
-  userId: null,
+  userId: 0,
   handleAuthUser() {},
   logoutAuthUser() {},
 });
@@ -23,7 +28,7 @@ export const AuthProvider: TProviderChildren = ({ children }) => {
   const token: string | null = localStorage.getItem(TOKEN);
 
   const [isAuthenticated, setAuthenticated] = useState<boolean>(!!token);
-  const [userId, setUserId] = useState<number | null>(null);
+  const [userId, setUserId] = useState<number>(0);
 
   useEffect(() => {
     try {
@@ -45,13 +50,13 @@ export const AuthProvider: TProviderChildren = ({ children }) => {
     }
   }, [token]);
 
-  const handleAuthUser = ({ userAuthId }: { userAuthId: number }) => {
+  const handleAuthUser = async ({ userAuthId }: { userAuthId: number }) => {
     setUserId(userAuthId);
     setAuthenticated(true);
   };
 
   const logoutAuthUser = () => {
-    setUserId(null);
+    setUserId(0);
     setAuthenticated(false);
 
     localStorage.removeItem(TOKEN);
