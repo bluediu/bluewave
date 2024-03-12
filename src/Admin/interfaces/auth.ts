@@ -6,4 +6,5 @@ export interface IAuthLogin {
 export interface IAuthLoginResponse {
   refresh: string;
   access: string;
+  user_id: number;
 }

@@ -1,0 +1,1 @@
+export { useDynamicPageTitle } from "./useDynamicPageTitle";

@@ -1,33 +1,36 @@
+/* Libs components */
 import { Button } from "semantic-ui-react";
 
-import { useAuthForm } from "../../hooks/forms";
-import { useUserMutation } from "../../hooks/users";
+/* Components */
+import { DynamicForm } from "../../../shared";
+
+/* Hooks */
+import { useAuthMutation, useAuthForm } from "../../hooks";
+
+/* Interfaces */
 import { IAuthLogin } from "../../interfaces";
-import { DynamicForm } from "../../../common/Form";
 
 import "./LoginForm.scss";
 
 export const LoginForm = () => {
   const { isLoading, form } = useAuthForm();
-  const { loginMutation } = useUserMutation();
+  const mutate = useAuthMutation();
 
-  const onLogin = (data: IAuthLogin) => loginMutation.mutate(data);
+  const onLogin = (data: IAuthLogin) => mutate.mutate(data);
 
   return (
-    <>
-      <DynamicForm
-        isLoadingValues={isLoading}
-        fields={form?.fields}
-        onSubmitFunc={onLogin}
-      >
-        <Button
-          type="submit"
-          content="Login"
-          primary
-          fluid
-          loading={loginMutation.isPending}
-        />
-      </DynamicForm>
-    </>
+    <DynamicForm
+      isLoadingValues={isLoading}
+      fields={form?.fields}
+      onSubmitFunc={onLogin}
+    >
+      <Button
+        type="submit"
+        content="Login"
+        primary
+        fluid
+        loading={mutate.isPending}
+      />
+    </DynamicForm>
   );
 };

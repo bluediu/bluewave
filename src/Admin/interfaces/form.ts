@@ -1,24 +1,23 @@
-export interface IAuthForm {
+export interface IForm {
   fields: IField[];
 }
 
-enum FieldType {
-  Text = "text",
-  Password = "password",
-  Email = "email",
-  Select = "select",
-  Checkbox = "checkbox",
-  TextArea = "textarea",
-}
+export type TChoice = {
+  key: string;
+  text: string;
+  value: string;
+};
+
+type TFieldType = "text" | "password" | "email" | "select" | "checkbox";
 
 export interface IField {
-  type: FieldType;
+  type: TFieldType;
   name: string;
   label: string;
   help_text: string;
   disabled: boolean;
   validations: IValidation[];
-  choices: [];
+  choices: TChoice[];
   value: string;
 }
 

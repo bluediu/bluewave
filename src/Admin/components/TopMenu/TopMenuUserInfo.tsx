@@ -2,16 +2,16 @@ import { Icon, Loader, Menu } from "semantic-ui-react";
 import { useUser } from "../../hooks/users";
 
 interface IProps {
-  userId: number | null;
+  userId: number;
 }
 
 export const TopMenuUserInfo = ({ userId }: IProps) => {
-  const { isLoading, user } = useUser(userId ?? 0);
+  const { isLoading, user } = useUser(userId);
 
   const renderName = (): string => {
     if (user?.first_name && user?.last_name)
       return `${user.first_name} ${user.last_name}`;
-    return user!.email;
+    return user!.username;
   };
 
   return (
@@ -21,6 +21,7 @@ export const TopMenuUserInfo = ({ userId }: IProps) => {
       ) : (
         <div>
           <Icon name="user circle" />
+          {/* TODO: Use a dropdown */}
           <span className="ml-4">{renderName()}</span>
         </div>
       )}

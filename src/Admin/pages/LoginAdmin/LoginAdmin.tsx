@@ -1,3 +1,4 @@
+/* Components */
 import { LoginForm } from "../../components/LoginForm";
 
 import "./LoginAdmin.scss";

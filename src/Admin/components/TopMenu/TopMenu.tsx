@@ -6,7 +6,7 @@ import { AuthContext } from "../../context";
 import "./TopMenu.scss";
 import { toast } from "react-toastify";
 
-export const TopMenu = ({ userId }: { userId: number | null }) => {
+export const TopMenu = ({ userId }: { userId: number }) => {
   const { logoutAuthUser } = useContext(AuthContext);
 
   const handleLogout = () => {

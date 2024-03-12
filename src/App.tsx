@@ -1,6 +1,10 @@
-import { AuthProvider } from "./Admin/context";
+/* Components */
 import { ToastContainer } from "react-toastify";
 
+/* Context */
+import { AuthProvider } from "./Admin/context";
+
+/* Routes */
 import { Navigation } from "./routes";
 
 function App() {
