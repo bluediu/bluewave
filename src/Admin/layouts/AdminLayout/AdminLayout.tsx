@@ -1,7 +1,4 @@
-import { ReactElement, useContext } from "react";
-
-/* Context */
-import { AuthContext } from "../../context";
+import { ReactElement, useContext, useLayoutEffect, useState } from "react";
 
 /* Pages */
 import { LoginAdmin } from "../../pages";
@@ -10,6 +7,12 @@ import { LoginAdmin } from "../../pages";
 import { SideMenu } from "../../components/SideMenu";
 import { TopMenu } from "../../components/TopMenu";
 
+/* Hooks */
+import { useDeviceType } from "../../../hooks";
+
+/* Context */
+import { AuthContext } from "../../context";
+
 import "./AdminLayout.scss";
 
 interface IProps {
@@ -17,18 +20,36 @@ interface IProps {
 }
 
 export const AdminLayout = ({ children }: IProps) => {
+  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const isTabletOrMobile = useDeviceType();
+
   const { isAuthenticated, userId } = useContext(AuthContext);
+
+  useLayoutEffect(() => {
+    isTabletOrMobile ? setSidebarVisible(false) : setSidebarVisible(true);
+  }, [isTabletOrMobile]);
 
   if (!isAuthenticated) return <LoginAdmin />;
 
   return (
     <section className="admin-layout">
       <div className="admin-layout__menu">
-        <TopMenu userId={userId} />
+        <TopMenu
+          userId={userId}
+          toggleSidebar={() => setSidebarVisible(!sidebarVisible)}
+        />
       </div>
 
       <div className="admin-layout__main-content">
-        <SideMenu>{children}</SideMenu>
+        <SideMenu visible={sidebarVisible} isTabletOrMobile={isTabletOrMobile}>
+          <div
+            className={`admin-layout__main-content 
+              ${sidebarVisible ? "pushed" : ""}
+            `}
+          >
+            {children}
+          </div>
+        </SideMenu>
       </div>
     </section>
   );

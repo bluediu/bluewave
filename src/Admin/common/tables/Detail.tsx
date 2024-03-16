@@ -9,6 +9,9 @@ import { TableSubtitle } from "./TableSubtitle";
 import { IsActiveCell } from "./IsActiveCell";
 
 /* Interfaces */
+import { useDeviceType } from "../../../hooks";
+
+/* Utils */
 import { fn } from "../../utils";
 
 interface IProps {
@@ -20,16 +23,17 @@ interface IProps {
 }
 
 export const Detail = (props: IProps) => {
+  const isTabletOrMobile = useDeviceType();
   const { data, title, goBackUrl, showAuditTrail = true, fields } = props;
 
   return (
     <>
-      <section>
+      <section className="w-100">
         <TableSubtitle text={title} />
         {data ? (
           <Table
             basic="very"
-            collapsing
+            collapsing={!isTabletOrMobile}
             size="large"
             className="table-borderless"
           >
@@ -44,6 +48,7 @@ export const Detail = (props: IProps) => {
 
               {showAuditTrail && (
                 <BasicTrail
+                  isTabletOrMobile={isTabletOrMobile}
                   created={data.created_at}
                   updated={data.updated_at}
                 />
@@ -54,7 +59,7 @@ export const Detail = (props: IProps) => {
           <Loader active inline="centered" className="mt-5" />
         )}
       </section>
-      <div className="text-end">
+      <div className="text-end mt-4">
         <Button icon labelPosition="left" as={Link} to={goBackUrl}>
           <Icon name="angle left" />
           Go back
@@ -88,16 +93,22 @@ export const NormalRow = (props: {
   );
 };
 
-export const BasicTrail = (props: { created: string; updated: string }) => {
-  const { created, updated } = props;
+export const BasicTrail = (props: {
+  created: string;
+  updated: string;
+  isTabletOrMobile: boolean;
+}) => {
+  const { created, updated, isTabletOrMobile } = props;
 
   return (
     <>
-      <Table.Row className="text-secondary">
-        <Table.Cell colSpan={7}>
-          <Divider fitted />
-        </Table.Cell>
-      </Table.Row>
+      {!isTabletOrMobile && (
+        <Table.Row className="text-secondary">
+          <Table.Cell colSpan={7}>
+            <Divider fitted />
+          </Table.Cell>
+        </Table.Row>
+      )}
       <Table.Row className="text-secondary">
         <Table.Cell>
           <small>Created at</small>

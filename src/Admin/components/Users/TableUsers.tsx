@@ -58,7 +58,7 @@ export const TableUsers = (props: IProps) => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {users?.map((user) => (
+          {users?.map((user: IUser) => (
             <Table.Row key={user.id}>
               <Table.Cell className="fit-to-content">
                 <Link to={`${USER_DETAIL}/${user.id}`}># {user.id}</Link>

@@ -1,32 +1,33 @@
-import { useContext } from "react";
+/* Libs components */
 import { Icon, Menu } from "semantic-ui-react";
+
+/* Components */
 import { TopMenuUserInfo } from "./TopMenuUserInfo";
-import { AuthContext } from "../../context";
 
 import "./TopMenu.scss";
-import { toast } from "react-toastify";
 
-export const TopMenu = ({ userId }: { userId: number }) => {
-  const { logoutAuthUser } = useContext(AuthContext);
+interface IProps {
+  userId: number;
+  toggleSidebar: () => void;
+}
 
-  const handleLogout = () => {
-    logoutAuthUser();
-    toast.success("Logout successful");
-  };
-
+export const TopMenu = ({ userId, toggleSidebar }: IProps) => {
   return (
-    <Menu fixed="top" className="top-menu-admin">
+    <Menu fixed="top" className="top-menu-admin py-1">
       <Menu.Item className="top-admin__logo">
-        <p className="fw-bold">
+        <Icon
+          name="bars"
+          onClick={toggleSidebar}
+          size="large"
+          className="app-title-color cursor-pointer "
+        />
+        <p className="fw-bold ml-2">
           <span className="app-title-color">Blue Wave</span> Admin
         </p>
       </Menu.Item>
 
       <Menu.Menu position="right">
         <TopMenuUserInfo userId={userId} />
-        <Menu.Item onClick={handleLogout}>
-          <Icon name="sign-out" />
-        </Menu.Item>
       </Menu.Menu>
     </Menu>
   );

@@ -1,3 +1,19 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* ====== Fonts ====== */
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ====== Utils ====== */
 .app-title-color {
   background: linear-gradient(135deg, #bdc3c8, #2980b9);
   background-clip: text;
@@ -5,12 +21,8 @@
   -webkit-text-fill-color: transparent;
 }
 
-.text-secondary {
-  color: #95a5a6;
-}
-
-.text-primary-emphasis {
-  color: #052c65;
+.cursor-pointer {
+  cursor: pointer;
 }
 
 /* ====== Tables ====== */
@@ -132,6 +144,14 @@ $inactive: #f00;
 }
 
 /* ====== Font styles & colors ====== */
+.text-secondary {
+  color: #95a5a6;
+}
+
+.text-primary-emphasis {
+  color: #052c65;
+}
+
 .fw-bold {
   font-weight: bold;
 }
@@ -226,15 +246,12 @@ $inactive: #f00;
 .pr-5 {
   padding-right: 1.25rem;
 }
-
 .mb-0 {
   margin-bottom: 0 !important;
 }
-
 .m-0 {
   margin: 0 !important;
 }
-
 .m-1 {
   margin: 0.25rem;
 }
@@ -321,19 +338,19 @@ $inactive: #f00;
   margin-bottom: 1.25rem;
 }
 .ml-1 {
-  margin-left: 0.25rem;
+  margin-left: 0.25rem !important;
 }
 .ml-2 {
-  margin-left: 0.5rem;
+  margin-left: 0.5rem !important;
 }
 .ml-3 {
-  margin-left: 0.75rem;
+  margin-left: 0.75rem !important;
 }
 .ml-4 {
-  margin-left: 1rem;
+  margin-left: 1rem !important;
 }
 .ml-5 {
-  margin-left: 1.25rem;
+  margin-left: 1.25rem !important;
 }
 .mr-1 {
   margin-right: 0.25rem;

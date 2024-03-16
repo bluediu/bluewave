@@ -1,7 +1,7 @@
 .admin-layout {
   width: 100%;
   display: grid;
-  grid: 55px / 1fr;
+  grid: 53px / 1fr;
   grid-template-areas:
     "menu"
     "content";
@@ -13,5 +13,15 @@
 
   &__main-content {
     grid-area: content;
+    transition: margin-left 0.3s ease;
+    &.pushed {
+      margin-left: 17rem;
+    }
+
+    @media screen and (max-width: 990px) {
+      &.pushed {
+        margin-left: 0;
+      }
+    }
   }
 }
