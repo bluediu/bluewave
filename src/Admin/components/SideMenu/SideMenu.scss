@@ -12,10 +12,48 @@
     }
   }
 
+  &__container {
+    width: 12% !important;
+  }
+
   .content {
     position: absolute;
     right: 0;
     padding: 20px;
     width: calc(100% - 250px);
+  }
+}
+
+.sidebar-item {
+  border-left: 3px solid transparent !important;
+  border-radius: 0.3rem;
+  color: #374558 !important;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif, monospace;
+  font-size: 1.1rem !important;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0.4rem;
+  padding: 10px 0;
+  transition: all 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background-color: rgba(55, 69, 88, 0.1) !important;
+}
+
+.admin-active-item {
+  border-color: rgb(86, 101, 115) !important;
+  background-color: rgba(55, 69, 88, 0.1) !important;
+}
+
+.active-item {
+  background-color: rgba(64, 113, 244, 0.1) !important;
+  color: rgb(45, 104, 254) !important;
+}
+
+@media screen and (max-width: 990px) {
+  .ui.vertical.sidebar.menu {
+    width: 100% !important;
   }
 }

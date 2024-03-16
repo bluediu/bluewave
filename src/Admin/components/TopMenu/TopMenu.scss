@@ -8,3 +8,7 @@
     margin: 0 !important;
   }
 }
+
+.ui.fixed.menu .item::before {
+  background: transparent;
+}

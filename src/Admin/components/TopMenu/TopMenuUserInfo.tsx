@@ -1,5 +1,8 @@
+/* Libs components */
 import { Icon, Loader, Menu } from "semantic-ui-react";
-import { useUser } from "../../hooks/users";
+
+/* Hooks */
+import { useUser } from "../../hooks";
 
 interface IProps {
   userId: number;
@@ -21,7 +24,6 @@ export const TopMenuUserInfo = ({ userId }: IProps) => {
       ) : (
         <div>
           <Icon name="user circle" />
-          {/* TODO: Use a dropdown */}
           <span className="ml-4">{renderName()}</span>
         </div>
       )}
