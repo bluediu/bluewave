@@ -1,5 +1,5 @@
 /* Constants */
-import { USERS } from "../../../constants/paths";
+import { USERS, CATEGORIES } from "../../../constants/paths";
 
 interface ISidebarItem {
   name: string;
@@ -26,7 +26,7 @@ export const sidebarItems: ISidebarItem[] = [
   {
     name: "Categories",
     icon: "folder",
-    path: "#",
+    path: CATEGORIES,
   },
   {
     name: "Products",

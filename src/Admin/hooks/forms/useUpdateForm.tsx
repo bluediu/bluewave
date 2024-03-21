@@ -17,6 +17,7 @@ export const useUpdateForm = (props: IProps) => {
     queryKey: [`update${cache}Form`, id],
     queryFn: () => getUpdateForm(id),
     refetchOnWindowFocus: false,
+    staleTime: 86400000, // One day
   });
 
   return updateForm;

@@ -52,3 +52,15 @@ export const formatDate = (dateString: string): string => {
 
   return formattedDate;
 };
+
+/**
+ * Convert a object data to a form data object.
+ */
+export const createFormData = <T>(data: T): FormData => {
+  const formData = new FormData();
+  for (const [key, value] of Object.entries(data as Record<string, Blob>)) {
+    formData.append(key, value);
+  }
+
+  return formData;
+};

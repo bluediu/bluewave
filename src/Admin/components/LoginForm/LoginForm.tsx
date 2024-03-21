@@ -22,7 +22,7 @@ export const LoginForm = () => {
     <DynamicForm
       isLoadingValues={isLoading}
       fields={form?.fields}
-      onSubmitFunc={onLogin}
+      onSubmit={onLogin}
     >
       <Button
         type="submit"
