@@ -5,39 +5,30 @@ import { Button, ButtonGroup, ButtonOr } from "semantic-ui-react";
 /* Components */
 import { DynamicForm } from "../../../shared";
 
-/* Hooks */
-import { useCreateForm } from "../../hooks/";
-
 /* Interfaces */
 import { IForm } from "../../interfaces";
 
+/* Types */
+import { UseQueryResult } from "@tanstack/react-query";
+
 interface IProps {
-  cache: string;
   match?: string[];
   isPending: boolean;
-  getCreateForm: () => Promise<IForm>;
+  createForm: UseQueryResult<IForm, Error>;
   onSubmit: (data: any) => void;
   onCloseModal: () => void;
 }
 
 export const CreateForm = (props: IProps) => {
-  const {
-    cache,
-    match = [],
-    isPending,
-    getCreateForm,
-    onSubmit,
-    onCloseModal,
-  } = props;
-
-  const createForm = useCreateForm({ cache, getCreateForm });
+  const { match = [], isPending, createForm, onSubmit, onCloseModal } = props;
+  const { data, isLoading } = createForm;
 
   return (
     <>
       <DynamicForm
-        isLoadingValues={createForm.isLoading}
-        fields={createForm.data?.fields}
-        onSubmitFunc={onSubmit}
+        isLoadingValues={isLoading}
+        fields={data?.fields}
+        onSubmit={onSubmit}
         match={match}
       >
         <div className="text-end">

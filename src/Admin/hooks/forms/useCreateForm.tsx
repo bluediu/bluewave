@@ -16,6 +16,7 @@ export const useCreateForm = (props: IProps) => {
     queryKey: [`create${cache}Form`],
     queryFn: getCreateForm,
     refetchOnWindowFocus: false,
+    staleTime: 86400000, // One day
   });
 
   return createForm;

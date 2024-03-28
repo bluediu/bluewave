@@ -8,7 +8,13 @@ export type TChoice = {
   value: string;
 };
 
-type TFieldType = "text" | "password" | "email" | "select" | "checkbox";
+type TFieldType =
+  | "text"
+  | "password"
+  | "email"
+  | "select"
+  | "checkbox"
+  | "file";
 
 export interface IField {
   type: TFieldType;

@@ -14,33 +14,26 @@ import {
 import { UseQueryResult } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IUser } from "../../interfaces";
+import { ICategory } from "../../interfaces";
 
 /* Types */
 import { TFilter } from "../../types";
 
 /* Constants */
-import { USER_DETAIL } from "../../constants/paths";
+import { CATEGORY_DETAIL } from "../../constants/paths";
 
-const headers: string[] = [
-  "ID",
-  "Username",
-  "Full name",
-  "E-mail",
-  "Active",
-  "",
-];
+const headers: string[] = ["ID", "Name", "Active", ""];
 
 interface IProps {
   scope: string;
-  query: UseQueryResult<IUser[], Error>;
+  query: UseQueryResult<ICategory[], Error>;
   onFilterChange: (value: TFilter) => void;
-  onUserUpdate: (data: IUser) => void;
+  onCategoryUpdate: (data: ICategory) => void;
 }
 
-export const TableUsers = (props: IProps) => {
-  const { scope, query, onFilterChange, onUserUpdate } = props;
-  const { isLoading, data: users } = query;
+export const TableCategories = (props: IProps) => {
+  const { scope, query, onFilterChange, onCategoryUpdate } = props;
+  const { isLoading, data: categories } = query;
 
   return (
     <>
@@ -50,7 +43,7 @@ export const TableUsers = (props: IProps) => {
       />
       <BasicTable
         isLoadingTable={isLoading}
-        count={users?.length}
+        count={categories?.length}
         scope={scope}
       >
         <Table.Header>
@@ -61,20 +54,16 @@ export const TableUsers = (props: IProps) => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {users?.map((user: IUser) => (
-            <Table.Row key={user.id}>
+          {categories?.map((category: ICategory) => (
+            <Table.Row key={category.id}>
               <Table.Cell className="fit-to-content">
-                <Link to={`${USER_DETAIL}/${user.id}`}># {user.id}</Link>
+                <Link to={`${CATEGORY_DETAIL}/${category.id}`}>
+                  # {category.id}
+                </Link>
               </Table.Cell>
-              <Table.Cell>{user.username}</Table.Cell>
-              <Table.Cell>
-                {user?.first_name || user?.last_name
-                  ? `${user?.first_name} ${user?.last_name}`
-                  : "--------"}
-              </Table.Cell>
-              <Table.Cell>{user.email || "--------"}</Table.Cell>
+              <Table.Cell>{category.name}</Table.Cell>
               <Table.Cell className="status">
-                <IsActiveCell isActive={user.is_active} />
+                <IsActiveCell isActive={category.is_active} />
               </Table.Cell>
               <Table.Cell className="fit-to-content">
                 <Button
@@ -82,7 +71,7 @@ export const TableUsers = (props: IProps) => {
                   className="m-0"
                   size="small"
                   content="Edit"
-                  onClick={() => onUserUpdate(user)}
+                  onClick={() => onCategoryUpdate(category)}
                   basic
                   circular
                 />
@@ -90,7 +79,7 @@ export const TableUsers = (props: IProps) => {
             </Table.Row>
           ))}
 
-          <NoRecords data={users} span={headers.length} />
+          <NoRecords data={categories} span={headers.length} />
         </Table.Body>
       </BasicTable>
     </>

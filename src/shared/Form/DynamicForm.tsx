@@ -7,7 +7,7 @@ import { Formik } from "formik";
 import { Form, Segment } from "semantic-ui-react";
 
 /* Components */
-import { TextInput, SelectInput } from ".";
+import { TextInput, SelectInput, FileInput } from ".";
 
 /* Interfaces */
 import { IField } from "../../Admin/interfaces";
@@ -22,12 +22,12 @@ interface IProps {
   fields?: IField[];
   isLoadingValues: boolean;
   match?: string[];
-  onSubmitFunc: (data: any) => void;
+  onSubmit: (data: any) => void;
   children: JSX.Element | JSX.Element[];
 }
 
 export const DynamicForm = (props: IProps) => {
-  const { isLoadingValues, fields, match, children, onSubmitFunc } = props;
+  const { isLoadingValues, fields, match, children, onSubmit } = props;
 
   if (isLoadingValues) return <Segment loading size="small" />;
 
@@ -71,7 +71,14 @@ export const DynamicForm = (props: IProps) => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       validate={validateMatch}
-      onSubmit={onSubmitFunc}
+      onSubmit={(data) => {
+        if (initialValues.hasOwnProperty("image")) {
+          initialValues.image === (data as TObjectDynamic).image &&
+            delete (data as TObjectDynamic).image;
+        }
+
+        onSubmit(data);
+      }}
     >
       {(formik) => (
         <Form
@@ -91,6 +98,18 @@ export const DynamicForm = (props: IProps) => {
                     choices={choices}
                     disabled={disabled}
                     helptext={help_text}
+                    required={markAsRequiredUI.includes(name)}
+                  />
+                );
+              } else if (type === "file") {
+                return (
+                  <FileInput
+                    key={name}
+                    type={type}
+                    name={name}
+                    label={label}
+                    disabled={disabled}
+                    helpText={help_text}
                     required={markAsRequiredUI.includes(name)}
                   />
                 );

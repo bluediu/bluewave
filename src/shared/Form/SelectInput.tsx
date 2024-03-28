@@ -30,7 +30,7 @@ export const SelectInput = (props: IProps) => {
 
   return (
     <div className="required field">
-      <label htmlFor={label}>{label}</label>
+      <label>{label}</label>
       <Dropdown
         placeholder={`Select a ${label.toLowerCase()}...`}
         fluid
@@ -39,6 +39,7 @@ export const SelectInput = (props: IProps) => {
         error={!!meta.error}
         {...field}
         {...props}
+        id={field.name}
         value={field.value}
         onChange={handleChange}
       />

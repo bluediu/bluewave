@@ -2,7 +2,10 @@
 import { api } from "../../../api";
 
 /* interfaces */
-import { IUser } from "../../interfaces";
+import { IUser, IUserCreate, IUserUpdate } from "../../interfaces";
+
+/* types */
+import { TFilter } from "../../types";
 
 /* utils */
 import { fn } from "../../utils";
@@ -20,8 +23,6 @@ export const getUser = async (id: number): Promise<IUser> => {
   return data;
 };
 
-type TFilter = "all" | "actives" | "inactives";
-
 export const listUsers = async (filterBy: TFilter): Promise<IUser[]> => {
   const { data } = await api.get<IUser[]>(
     `${USERS}/list/?filter_by=${filterBy}`,
@@ -31,39 +32,21 @@ export const listUsers = async (filterBy: TFilter): Promise<IUser[]> => {
   return data;
 };
 
-export const createUser = async (user: IUser): Promise<undefined> => {
+export const createUser = async (user: IUserCreate): Promise<undefined> => {
   await api.post<undefined>(`${USERS}/create/`, user, fn.getSessionToken());
 };
 
-interface IUpdateUser {
+interface IUpdateProps {
   id: number;
-  user: IUser;
+  user: IUserUpdate;
 }
 
-export const updateUser = async (props: IUpdateUser): Promise<undefined> => {
+export const updateUser = async (props: IUpdateProps): Promise<undefined> => {
   const { id, user } = props;
 
   await api.put<undefined>(
     `${USERS}/${id}/update/`,
     user,
-    fn.getSessionToken(),
-  );
-};
-
-export interface IUserInactive {
-  id: number;
-  username?: string;
-  first_name?: string;
-  last_name?: string;
-  email?: string;
-  is_staff?: boolean;
-  is_active: boolean;
-}
-
-export const inactiveUser = async (user: IUserInactive): Promise<undefined> => {
-  await api.put<undefined>(
-    `${USERS}/${user.id}/update/`,
-    { is_active: false },
     fn.getSessionToken(),
   );
 };

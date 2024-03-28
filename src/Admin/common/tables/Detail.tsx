@@ -2,7 +2,7 @@
 
 /* Libs components */
 import { Link } from "react-router-dom";
-import { Button, Divider, Icon, Loader, Table } from "semantic-ui-react";
+import { Button, Divider, Icon, Image, Loader, Table } from "semantic-ui-react";
 
 /* Components */
 import { TableSubtitle } from "./TableSubtitle";
@@ -19,17 +19,35 @@ interface IProps {
   title: string;
   goBackUrl: string;
   showAuditTrail?: boolean;
+  renderImage?: boolean;
   fields: { label: string; value: string }[];
 }
 
 export const Detail = (props: IProps) => {
   const isTabletOrMobile = useDeviceType();
-  const { data, title, goBackUrl, showAuditTrail = true, fields } = props;
+  const {
+    data,
+    title,
+    goBackUrl,
+    showAuditTrail = true,
+    renderImage = false,
+    fields,
+  } = props;
 
   return (
     <>
       <section className="w-100">
         <TableSubtitle text={title} />
+
+        {renderImage && (
+          <Image
+            src={`${import.meta.env.VITE_API_URL}${data?.image}`}
+            rounded
+            size="medium"
+            centered={isTabletOrMobile}
+          />
+        )}
+
         {data ? (
           <Table
             basic="very"

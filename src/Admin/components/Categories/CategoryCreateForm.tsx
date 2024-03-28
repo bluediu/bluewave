@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import { CreateForm } from "../../common";
 
 /* Hooks */
-import { useCreateForm, useUserCreate } from "../../hooks";
+import { useCategoryCreate, useCreateForm } from "../../hooks";
 
 /* Interfaces */
-import { IForm, IUserCreate } from "../../interfaces";
+import { ICategoryCreate, IForm } from "../../interfaces";
 
 interface IProps {
   cache: string;
@@ -17,13 +17,13 @@ interface IProps {
   onClose: () => void;
 }
 
-export const UserCreateForm = (props: IProps) => {
+export const CategoryCreateForm = (props: IProps) => {
   const { cache, getCreateForm, onClose } = props;
 
   const [pending, setPending] = useState(false);
 
-  // User create mutation
-  const mutation = useUserCreate();
+  // Category create mutation
+  const mutation = useCategoryCreate();
   const { isPending, isError, isSuccess } = mutation;
 
   // Get form query
@@ -36,7 +36,7 @@ export const UserCreateForm = (props: IProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, isError]);
 
-  const handleSubmit = (data: IUserCreate) => mutation.mutate(data);
+  const handleSubmit = (data: ICategoryCreate) => mutation.mutate(data);
 
   return (
     <CreateForm

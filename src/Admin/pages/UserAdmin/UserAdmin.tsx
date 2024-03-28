@@ -1,39 +1,42 @@
-import { useState } from "react";
-
 /* Component */
-import { ModalBasic } from "../../shared";
-import { CreateBtn, TableTitle } from "../common";
+import { ModalBasic } from "../../../shared";
+import { CreateBtn, TableTitle } from "../../common";
 import {
   TableUsers,
   UserCreateForm,
   UserUpdateForm,
-} from "../components/Users";
+} from "../../components/Users";
 
 /* Hooks */
-import { useDynamicPageTitle } from "../../hooks";
-import { useModal, useUsers } from "../hooks";
+import { useDynamicPageTitle } from "../../../hooks";
+import { useFilter, useModal, useUsers } from "../../hooks";
 
 /* Services */
-import { adminActions } from "../services";
+import { adminActions } from "../../services";
 
 /* Interfaces */
-import { IUser } from "../interfaces";
-
-/* Types */
-import { TFilter } from "../types";
+import { IUser } from "../../interfaces";
 
 export const UserAdmin = () => {
   const scope = "Users";
   const cache = "User";
 
+  /* Hooks */
   useDynamicPageTitle(scope);
 
-  const { showModal, modalContent, modalTitle, openModal, closeModal } =
-    useModal();
-  const [filterBy, setFilterBy] = useState<TFilter>("actives");
-  const query = useUsers(filterBy);
+  /* prettier-ignore */
+  const { 
+    showModal,
+    modalContent,
+    modalTitle,
+    openModal,
+    closeModal,
+  } = useModal();
 
-  const onFilterChange = (value: TFilter) => setFilterBy(value);
+  const { filterBy, onFilterChange } = useFilter();
+
+  // Get users query
+  const query = useUsers(filterBy);
 
   const onUserCreate = (): void => {
     openModal(
@@ -41,7 +44,7 @@ export const UserAdmin = () => {
       <UserCreateForm
         cache={cache}
         match={["password", "repeat_password"]}
-        onCloseModal={closeModal}
+        onClose={closeModal}
         getCreateForm={adminActions.forms.getCreateUserForm}
       />,
     );
@@ -52,15 +55,15 @@ export const UserAdmin = () => {
       `Update user #${user.id}`,
       <UserUpdateForm
         cache={cache}
-        entityId={user.id}
-        onCloseModal={closeModal}
+        id={user.id}
+        onClose={closeModal}
         getUpdateForm={adminActions.forms.getUpdateUserForm}
       />,
     );
   };
 
   return (
-    <div>
+    <main>
       <TableTitle text={scope} />
       <CreateBtn onClick={onUserCreate} isLoading={query.isLoading} />
       <TableUsers
@@ -75,6 +78,6 @@ export const UserAdmin = () => {
         title={modalTitle}
         children={modalContent ?? <span>No content</span>}
       />
-    </div>
+    </main>
   );
 };
