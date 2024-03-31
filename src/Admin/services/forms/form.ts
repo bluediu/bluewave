@@ -30,9 +30,26 @@ export const getCreateCategoryForm = async (): Promise<IForm> => {
   return data;
 };
 
-export const getUpdateCategoryForm = async (userId: number): Promise<IForm> => {
+export const getUpdateCategoryForm = async (
+  categoryId: number,
+): Promise<IForm> => {
   const { data } = await api.get<IForm>(
-    `${FORMS}/product/${userId}/update_category/`,
+    `${FORMS}/product/${categoryId}/update_category/`,
+  );
+  return data;
+};
+
+/* Products */
+export const getCreateProductForm = async (): Promise<IForm> => {
+  const { data } = await api.get<IForm>(`${FORMS}/product/create_product/`);
+  return data;
+};
+
+export const getUpdateProductForm = async (
+  productId: number,
+): Promise<IForm> => {
+  const { data } = await api.get<IForm>(
+    `${FORMS}/product/${productId}/update_product/`,
   );
   return data;
 };

@@ -8,27 +8,27 @@ import { Errors } from "../../../shared";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 /* Interfaces */
-import { ICategoryUpdate } from "../../interfaces";
+import { IProductUpdate } from "../../interfaces";
 
 /* Services */
 import { adminActions } from "../../services";
 
-export const useCategoryUpdate = (id: number) => {
+export const useProductUpdate = (id: number) => {
   const queryClient = useQueryClient();
 
   const userUpdateMutation = useMutation({
-    mutationKey: ["categoryUpdate", id],
-    mutationFn: (category: ICategoryUpdate) =>
-      adminActions.products.updateCategory({ id, category }),
+    mutationKey: ["productUpdate", id],
+    mutationFn: (product: IProductUpdate) =>
+      adminActions.products.updateProduct({ id, product }),
     onSuccess: () => {
       // Change this is not working, how it should be do it.
       queryClient.invalidateQueries({
-        queryKey: ["categories"],
+        queryKey: ["products"],
         refetchType: "all",
       });
 
       // Show success message.
-      toast.success("Category successfully updated.");
+      toast.success("Product successfully updated.");
     },
     onError: (error) => {
       toast.error(<Errors error={error} />, { autoClose: false });

@@ -2,7 +2,7 @@
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { ICategory } from "../../interfaces";
+import { IProduct } from "../../interfaces";
 
 /* Services */
 import { adminActions } from "../../services";
@@ -10,12 +10,12 @@ import { adminActions } from "../../services";
 /* Types */
 import { TFilter } from "../../types";
 
-export const useCategories = (
+export const useProducts = (
   filterBy: TFilter,
-): UseQueryResult<ICategory[], Error> => {
+): UseQueryResult<IProduct[], Error> => {
   const query = useQuery({
-    queryKey: ["categories", { filterBy }],
-    queryFn: () => adminActions.products.listCategories(filterBy),
+    queryKey: ["products", { filterBy }],
+    queryFn: () => adminActions.products.listProducts(filterBy),
     refetchOnWindowFocus: false,
   });
 

@@ -16,9 +16,11 @@ import { sidebarItems } from "./data";
 interface IProps {
   pathname: string;
   isTabletOrMobile: boolean;
+  handleMenuVisible: (value: boolean) => void;
 }
 
-export const SideMenuItems = ({ pathname, isTabletOrMobile }: IProps) => {
+export const SideMenuItems = (props: IProps) => {
+  const { pathname, isTabletOrMobile, handleMenuVisible } = props;
   const { logoutAuthUser } = useContext(AuthContext);
 
   const handleLogout = () => {
@@ -43,6 +45,7 @@ export const SideMenuItems = ({ pathname, isTabletOrMobile }: IProps) => {
               className={`sidebar-item ${
                 pathname.startsWith(item.path) && "active-item"
               }`}
+              onClick={() => isTabletOrMobile && handleMenuVisible(false)}
             >
               <Icon name={item.icon as SemanticICONS} className="ml-2" />
               <span className="ml-1">{item.name}</span>

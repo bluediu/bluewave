@@ -40,7 +40,7 @@ export const SelectInput = (props: IProps) => {
         {...field}
         {...props}
         id={field.name}
-        value={field.value}
+        value={field.value.toString()}
         onChange={handleChange}
       />
       {helptext && (

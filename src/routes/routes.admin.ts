@@ -8,6 +8,8 @@ import {
   UserDetail,
   CategoryAdmin,
   CategoryDetail,
+  ProductAdmin,
+  ProductDetail,
 } from "../Admin/pages";
 
 /* Interfaces */
@@ -33,6 +35,16 @@ const routesAdmin: IRoute[] = [
     path: `${adminPath.CATEGORY_DETAIL}/:id`,
     layout: AdminLayout,
     component: CategoryDetail,
+  },
+  {
+    path: adminPath.PRODUCTS,
+    layout: AdminLayout,
+    component: ProductAdmin,
+  },
+  {
+    path: `${adminPath.PRODUCT_DETAIL}/:id`,
+    layout: AdminLayout,
+    component: ProductDetail,
   },
 ];
 

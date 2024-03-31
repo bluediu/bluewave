@@ -3,6 +3,9 @@ import { ReactElement } from "react";
 /* Libs components */
 import { Modal, TransitionablePortal } from "semantic-ui-react";
 
+/* Hooks */
+import { useDeviceType } from "../../hooks";
+
 interface IProps {
   show: boolean;
   title: string | null;
@@ -15,6 +18,7 @@ import "./ModalBasic.scss";
 
 export const ModalBasic = (props: IProps) => {
   const { children, show, title, onClose, size = "tiny" } = props;
+  const isTabletOrMobile = useDeviceType();
 
   return (
     <>
@@ -47,7 +51,9 @@ export const ModalBasic = (props: IProps) => {
             }}
           >
             {title && <Modal.Header>{title}</Modal.Header>}
-            <Modal.Content>{children}</Modal.Content>
+            <Modal.Content scrolling={!isTabletOrMobile}>
+              {children}
+            </Modal.Content>
           </Modal>
         </TransitionablePortal>
       </div>

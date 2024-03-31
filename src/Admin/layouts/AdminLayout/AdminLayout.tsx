@@ -41,7 +41,11 @@ export const AdminLayout = ({ children }: IProps) => {
       </div>
 
       <div className="admin-layout__main-content">
-        <SideMenu visible={sidebarVisible} isTabletOrMobile={isTabletOrMobile}>
+        <SideMenu
+          visible={sidebarVisible}
+          isTabletOrMobile={isTabletOrMobile}
+          handleMenuVisible={setSidebarVisible}
+        >
           <div
             className={`admin-layout__main-content 
               ${sidebarVisible ? "pushed" : ""}

@@ -10,16 +10,16 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 /* Services */
 import { adminActions } from "../../services";
 
-export const useCategoryCreate = () => {
+export const useProductCreate = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationKey: ["categoryCreate"],
-    mutationFn: adminActions.products.createCategory,
+    mutationKey: ["productCreate"],
+    mutationFn: adminActions.products.createProduct,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["categories"] });
+      queryClient.invalidateQueries({ queryKey: ["products"] });
       // Show success message.
-      toast.success("Category successfully created.");
+      toast.success("Product successfully created.");
     },
     onError: (error) => {
       toast.error(<Errors error={error} />, { autoClose: false });

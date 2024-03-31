@@ -10,6 +10,8 @@ export type TChoice = {
 
 type TFieldType =
   | "text"
+  | "number"
+  | "textarea"
   | "password"
   | "email"
   | "select"
