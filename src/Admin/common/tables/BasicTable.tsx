@@ -5,7 +5,7 @@ import { Loader, Table } from "semantic-ui-react";
 
 interface IProps {
   isLoadingTable: boolean;
-  count?: number;
+  count: number | undefined;
   scope: string;
   children: ReactElement | ReactElement[];
 }
@@ -24,11 +24,9 @@ export const BasicTable = (props: IProps) => {
         />
       ) : (
         <>
-          {count && (
-            <div className="text-end">
-              <span className="text-secondary">{count} records</span>
-            </div>
-          )}
+          <div className="text-end">
+            <span className="text-secondary">{count ?? "---"} records</span>
+          </div>
           <Table className="standard-table table-hover" celled>
             {children}
           </Table>

@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { ICategory } from "../../interfaces";
+import { IProduct } from "../../interfaces";
 
 /* Services */
 import { adminActions } from "../../services";
@@ -11,20 +11,20 @@ interface IOutputProps {
   isLoading: boolean;
   isError: boolean;
   error: Error | null;
-  category?: ICategory;
+  product?: IProduct;
 }
 
-export const useCategory = (id: number): IOutputProps => {
+export const useProduct = (id: number): IOutputProps => {
   const {
     isLoading,
     isError,
     error,
-    data: category,
+    data: product,
   } = useQuery({
-    queryKey: ["category", id],
-    queryFn: () => adminActions.products.getCategory(id),
+    queryKey: ["product", id],
+    queryFn: () => adminActions.products.getProduct(id),
     refetchOnWindowFocus: false,
   });
 
-  return { isLoading, isError, error, category };
+  return { isLoading, isError, error, product };
 };

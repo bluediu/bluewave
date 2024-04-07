@@ -64,3 +64,17 @@ export const createFormData = <T>(data: T): FormData => {
 
   return formData;
 };
+
+/**
+ * Convert a cent value to a dolar value.
+ */
+export const convertCentToDolar = (value: number): string => {
+  return (value / 100).toFixed(2);
+};
+
+/**
+ * Convert a dolar value to a cent value.
+ */
+export const convertDolarToCent = (value: number): number => {
+  return Number((value * 100).toFixed(2));
+};

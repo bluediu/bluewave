@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* Libs */
 import * as Yup from "yup";
@@ -7,7 +8,7 @@ import { Formik } from "formik";
 import { Form, Segment } from "semantic-ui-react";
 
 /* Components */
-import { TextInput, SelectInput, FileInput } from ".";
+import { TextInput, TextAreaInput, SelectInput, FileInput } from ".";
 
 /* Interfaces */
 import { IField } from "../../Admin/interfaces";
@@ -41,7 +42,10 @@ export const DynamicForm = (props: IProps) => {
 
     if (!field.validations) continue;
 
-    let schema = Yup.string();
+    let schema: Yup.StringSchema | Yup.NumberSchema;
+
+    field.type === "number" ? (schema = Yup.number()) : (schema = Yup.string());
+
     for (const rule of field.validations) {
       if (rule.required) {
         schema = schema.required();
@@ -49,8 +53,12 @@ export const DynamicForm = (props: IProps) => {
       }
       if (rule.max_length) schema = schema.max(rule.max_length);
       if (rule.min_length) schema = schema.min(rule.min_length);
-      if (field.type === "email") schema = schema.email();
     }
+
+    // @ts-ignore
+    if (field.type === "email") schema = schema.email();
+    // @ts-ignore
+    if (field.type === "number") schema = schema.positive();
 
     toValidateFields[field.name] = schema;
   }
@@ -104,6 +112,18 @@ export const DynamicForm = (props: IProps) => {
               } else if (type === "file") {
                 return (
                   <FileInput
+                    key={name}
+                    type={type}
+                    name={name}
+                    label={label}
+                    disabled={disabled}
+                    helpText={help_text}
+                    required={markAsRequiredUI.includes(name)}
+                  />
+                );
+              } else if (type === "textarea") {
+                return (
+                  <TextAreaInput
                     key={name}
                     type={type}
                     name={name}

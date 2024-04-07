@@ -15,9 +15,11 @@ interface IProps {
   children: ReactElement | ReactElement[];
   visible: boolean;
   isTabletOrMobile: boolean;
+  handleMenuVisible: (value: boolean) => void;
 }
 
-export const SideMenu = ({ children, visible, isTabletOrMobile }: IProps) => {
+export const SideMenu = (props: IProps) => {
+  const { children, visible, isTabletOrMobile, handleMenuVisible } = props;
   const { pathname } = useLocation();
 
   return (
@@ -32,6 +34,7 @@ export const SideMenu = ({ children, visible, isTabletOrMobile }: IProps) => {
       >
         <SideMenuItems
           pathname={pathname}
+          handleMenuVisible={handleMenuVisible}
           isTabletOrMobile={isTabletOrMobile}
         />
       </Sidebar>

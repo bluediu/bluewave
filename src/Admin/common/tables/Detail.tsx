@@ -14,13 +14,24 @@ import { useDeviceType } from "../../../hooks";
 /* Utils */
 import { fn } from "../../utils";
 
+/* Statics */
+import NO_IMAGE from "/img/no-image.jpg";
+
+interface IDetailField {
+  label: string;
+  value: string;
+  relatedTo?: string;
+  linkTo?: string;
+}
+
 interface IProps {
   data: Record<string, any> | undefined;
   title: string;
   goBackUrl: string;
   showAuditTrail?: boolean;
   renderImage?: boolean;
-  fields: { label: string; value: string }[];
+  related?: string[];
+  fields: IDetailField[];
 }
 
 export const Detail = (props: IProps) => {
@@ -32,6 +43,7 @@ export const Detail = (props: IProps) => {
     showAuditTrail = true,
     renderImage = false,
     fields,
+    related,
   } = props;
 
   return (
@@ -41,9 +53,14 @@ export const Detail = (props: IProps) => {
 
         {renderImage && (
           <Image
-            src={`${import.meta.env.VITE_API_URL}${data?.image}`}
+            src={
+              data?.image
+                ? `${import.meta.env.VITE_API_URL}${data?.image}`
+                : NO_IMAGE
+            }
             rounded
             size="medium"
+            className="mb-4"
             centered={isTabletOrMobile}
           />
         )}
@@ -56,13 +73,35 @@ export const Detail = (props: IProps) => {
             className="table-borderless"
           >
             <Table.Body>
-              {fields.map((field) => (
-                <NormalRow
-                  key={field.value}
-                  label={field.label}
-                  value={data[field.value]}
-                />
-              ))}
+              {fields.map((field) => {
+                const isRelated = related?.includes(field.value);
+                const isLink = !!field.linkTo;
+
+                if (isRelated) {
+                  return isLink ? (
+                    <LinkRow
+                      key={field.value}
+                      label={field.label}
+                      value={data[field.value][field.relatedTo!]}
+                      link={`${field.linkTo!}/${data[field.value].id}`}
+                    />
+                  ) : (
+                    <NormalRow
+                      key={field.value}
+                      label={field.label}
+                      value={data[field.value][field.relatedTo!]}
+                    />
+                  );
+                } else {
+                  return (
+                    <NormalRow
+                      key={field.value}
+                      label={field.label}
+                      value={data[field.value]}
+                    />
+                  );
+                }
+              })}
 
               {showAuditTrail && (
                 <BasicTrail
@@ -103,9 +142,35 @@ export const NormalRow = (props: {
       <Table.Cell className="w-100">
         {typeof value === "boolean" ? (
           <IsActiveCell isActive={value} />
+        ) : typeof value === "number" ? (
+          fn.convertCentToDolar(value)
         ) : (
           value || "--------"
         )}
+      </Table.Cell>
+    </Table.Row>
+  );
+};
+
+export const LinkRow = (props: {
+  label: string;
+  value: string | number | boolean | undefined;
+  link: string;
+}) => {
+  const { label, value, link } = props;
+
+  return (
+    <Table.Row className="no-border-bottom ">
+      <Table.Cell className="text-secondary">{label}</Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell>
+        <Link to={link} target="_blank" rel="noopener noreferrer">
+          {value}
+        </Link>
       </Table.Cell>
     </Table.Row>
   );

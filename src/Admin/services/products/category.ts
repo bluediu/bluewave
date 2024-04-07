@@ -43,7 +43,7 @@ export const createCategory = async (
   );
 };
 
-export const updateUser = async (props: {
+export const updateCategory = async (props: {
   id: number;
   category: ICategoryUpdate;
 }): Promise<undefined> => {
