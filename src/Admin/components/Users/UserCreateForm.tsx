@@ -22,7 +22,7 @@ export const UserCreateForm = (props: IProps) => {
 
   const [pending, setPending] = useState(false);
 
-  // User create mutation
+  // Mutation
   const mutation = useUserCreate();
   const { isPending, isError, isSuccess } = mutation;
 

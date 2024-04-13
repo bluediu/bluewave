@@ -10,6 +10,8 @@ import {
   CategoryDetail,
   ProductAdmin,
   ProductDetail,
+  TableAdmin,
+  TableDetail,
 } from "../Admin/pages";
 
 /* Interfaces */
@@ -45,6 +47,16 @@ const routesAdmin: IRoute[] = [
     path: `${adminPath.PRODUCT_DETAIL}/:id`,
     layout: AdminLayout,
     component: ProductDetail,
+  },
+  {
+    path: adminPath.TABLES,
+    layout: AdminLayout,
+    component: TableAdmin,
+  },
+  {
+    path: `${adminPath.TABLE_DETAIL}/:id`,
+    layout: AdminLayout,
+    component: TableDetail,
   },
 ];
 

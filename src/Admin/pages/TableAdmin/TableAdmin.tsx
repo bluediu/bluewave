@@ -3,28 +3,25 @@ import { useState } from "react";
 /* Component */
 import { ModalBasic } from "../../../shared";
 import { CreateBtn, TableTitle } from "../../common";
-import {
-  TableProducts,
-  ProductCreateForm,
-  ProductUpdateForm,
-} from "../../components/Products";
+import { TableTables, TableUpdateForm } from "../../components/Tables";
 
 /* Hooks */
 import { useDynamicPageTitle } from "../../../hooks";
-import { useModal, useProducts } from "../../hooks";
+import { useTables, useModal } from "../../hooks";
 
 /* Services */
 import { adminActions } from "../../services";
 
 /* Interfaces */
-import { IProduct } from "../../interfaces";
+import { ITable } from "../../interfaces";
 
 /* Types */
 import { TFilter } from "../../types";
+import { TableCreateForm } from "../../components/Tables/TableCreateForm";
 
-export const ProductAdmin = () => {
-  const scope = "Products";
-  const cache = "Product";
+export const TableAdmin = () => {
+  const scope = "Tables";
+  const cache = "Table";
 
   useDynamicPageTitle(scope);
 
@@ -38,29 +35,29 @@ export const ProductAdmin = () => {
   } = useModal();
 
   const [filterBy, setFilterBy] = useState<TFilter>("actives");
-  const query = useProducts(filterBy);
+  const query = useTables(filterBy);
 
   const onFilterChange = (value: TFilter) => setFilterBy(value);
 
   const onCreate = (): void => {
     openModal(
-      "Create a new product",
-      <ProductCreateForm
+      "Create a new table",
+      <TableCreateForm
         cache={cache}
         onClose={closeModal}
-        getCreateForm={adminActions.forms.getCreateProductForm}
+        getCreateForm={adminActions.forms.getCreateTableForm}
       />,
     );
   };
 
-  const onUpdate = (product: IProduct): void => {
+  const onUpdate = (table: ITable): void => {
     openModal(
-      `Update category #${product.id}`,
-      <ProductUpdateForm
+      `Update table #${table.id}`,
+      <TableUpdateForm
         cache={cache}
-        id={product.id}
+        id={table.id}
         onClose={closeModal}
-        getUpdateForm={adminActions.forms.getUpdateProductForm}
+        getUpdateForm={adminActions.forms.getUpdateTableForm}
       />,
     );
   };
@@ -69,7 +66,7 @@ export const ProductAdmin = () => {
     <div>
       <TableTitle text={scope} />
       <CreateBtn onClick={onCreate} isLoading={query.isLoading} />
-      <TableProducts
+      <TableTables
         scope={scope}
         query={query}
         onFilterChange={onFilterChange}

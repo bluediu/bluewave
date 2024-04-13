@@ -28,12 +28,12 @@ interface IProps {
   scope: string;
   query: UseQueryResult<ICategory[], Error>;
   onFilterChange: (value: TFilter) => void;
-  onCategoryUpdate: (data: ICategory) => void;
+  onUpdate: (data: ICategory) => void;
 }
 
 export const TableCategories = (props: IProps) => {
-  const { scope, query, onFilterChange, onCategoryUpdate } = props;
-  const { isLoading, data: categories } = query;
+  const { scope, query, onFilterChange, onUpdate } = props;
+  const { isLoading, data } = query;
 
   return (
     <>
@@ -41,11 +41,7 @@ export const TableCategories = (props: IProps) => {
         onChange={onFilterChange}
         isLoading={query.isLoading}
       />
-      <BasicTable
-        isLoadingTable={isLoading}
-        count={categories?.length}
-        scope={scope}
-      >
+      <BasicTable isLoadingTable={isLoading} count={data?.length} scope={scope}>
         <Table.Header>
           <Table.Row>
             {headers.map((header) => (
@@ -54,7 +50,7 @@ export const TableCategories = (props: IProps) => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {categories?.map((category: ICategory) => (
+          {data?.map((category: ICategory) => (
             <Table.Row key={category.id}>
               <Table.Cell className="fit-to-content">
                 <Link to={`${CATEGORY_DETAIL}/${category.id}`}>
@@ -71,7 +67,7 @@ export const TableCategories = (props: IProps) => {
                   className="m-0"
                   size="small"
                   content="Edit"
-                  onClick={() => onCategoryUpdate(category)}
+                  onClick={() => onUpdate(category)}
                   basic
                   circular
                 />
@@ -79,7 +75,7 @@ export const TableCategories = (props: IProps) => {
             </Table.Row>
           ))}
 
-          <NoRecords data={categories} span={headers.length} />
+          <NoRecords data={data} span={headers.length} />
         </Table.Body>
       </BasicTable>
     </>

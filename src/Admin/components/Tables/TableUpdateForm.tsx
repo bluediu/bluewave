@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import { UpdateForm } from "../../common";
 
 /* Hooks */
-import { useProductUpdate, useUpdateForm } from "../../hooks";
+import { useTableUpdate, useUpdateForm } from "../../hooks";
 
 /* Interfaces */
-import { IProductUpdate, IForm } from "../../interfaces";
+import { ITableUpdate, IForm } from "../../interfaces";
 
 interface IProps {
   cache: string;
@@ -18,13 +18,13 @@ interface IProps {
   onClose: () => void;
 }
 
-export const ProductUpdateForm = (props: IProps) => {
+export const TableUpdateForm = (props: IProps) => {
   const { id, cache, getUpdateForm, onClose } = props;
 
   const [pending, setPending] = useState(false);
 
   // Mutation
-  const mutation = useProductUpdate(id);
+  const mutation = useTableUpdate(id);
   const { isPending, isError, isSuccess } = mutation;
 
   // Get form query
@@ -44,7 +44,7 @@ export const ProductUpdateForm = (props: IProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, isError]);
 
-  const handleSubmit = (data: IProductUpdate) => mutation.mutate(data);
+  const handleSubmit = (data: ITableUpdate) => mutation.mutate(data);
 
   return (
     <UpdateForm

@@ -38,7 +38,7 @@ export const UserAdmin = () => {
   // Get users query
   const query = useUsers(filterBy);
 
-  const onUserCreate = (): void => {
+  const onCreate = (): void => {
     openModal(
       "Create a new user",
       <UserCreateForm
@@ -50,7 +50,7 @@ export const UserAdmin = () => {
     );
   };
 
-  const onUserUpdate = (user: IUser): void => {
+  const onUpdate = (user: IUser): void => {
     openModal(
       `Update user #${user.id}`,
       <UserUpdateForm
@@ -65,12 +65,12 @@ export const UserAdmin = () => {
   return (
     <main>
       <TableTitle text={scope} />
-      <CreateBtn onClick={onUserCreate} isLoading={query.isLoading} />
+      <CreateBtn onClick={onCreate} isLoading={query.isLoading} />
       <TableUsers
         scope={scope}
         query={query}
         onFilterChange={onFilterChange}
-        onUserUpdate={onUserUpdate}
+        onUpdate={onUpdate}
       />
       <ModalBasic
         show={showModal}
