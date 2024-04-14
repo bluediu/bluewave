@@ -31,12 +31,12 @@ interface IProps {
   scope: string;
   query: UseQueryResult<IProduct[], Error>;
   onFilterChange: (value: TFilter) => void;
-  onProductUpdate: (data: IProduct) => void;
+  onUpdate: (data: IProduct) => void;
 }
 
 export const TableProducts = (props: IProps) => {
-  const { scope, query, onFilterChange, onProductUpdate } = props;
-  const { isLoading, data: products } = query;
+  const { scope, query, onFilterChange, onUpdate } = props;
+  const { isLoading, data } = query;
 
   return (
     <>
@@ -44,11 +44,7 @@ export const TableProducts = (props: IProps) => {
         onChange={onFilterChange}
         isLoading={query.isLoading}
       />
-      <BasicTable
-        isLoadingTable={isLoading}
-        count={products?.length}
-        scope={scope}
-      >
+      <BasicTable isLoadingTable={isLoading} count={data?.length} scope={scope}>
         <Table.Header>
           <Table.Row>
             {headers.map((header) => (
@@ -62,7 +58,7 @@ export const TableProducts = (props: IProps) => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {products?.map((product: IProduct) => (
+          {data?.map((product: IProduct) => (
             <Table.Row key={product.id}>
               <Table.Cell className="fit-to-content">
                 <Link to={`${PRODUCT_DETAIL}/${product.id}`}>
@@ -83,7 +79,7 @@ export const TableProducts = (props: IProps) => {
                   className="m-0"
                   size="small"
                   content="Edit"
-                  onClick={() => onProductUpdate(product)}
+                  onClick={() => onUpdate(product)}
                   basic
                   circular
                 />
@@ -91,7 +87,7 @@ export const TableProducts = (props: IProps) => {
             </Table.Row>
           ))}
 
-          <NoRecords data={products} span={headers.length} />
+          <NoRecords data={data} span={headers.length} />
         </Table.Body>
       </BasicTable>
     </>

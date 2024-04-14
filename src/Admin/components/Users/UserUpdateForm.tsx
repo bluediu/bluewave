@@ -23,7 +23,7 @@ export const UserUpdateForm = (props: IProps) => {
 
   const [pending, setPending] = useState(false);
 
-  // User update mutation
+  // Mutation
   const mutation = useUserUpdate(id);
   const { isPending, isError, isSuccess } = mutation;
 

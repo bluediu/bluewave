@@ -14,31 +14,24 @@ import {
 import { UseQueryResult } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IUser } from "../../interfaces";
+import { ITable } from "../../interfaces";
 
 /* Types */
 import { TFilter } from "../../types";
 
 /* Constants */
-import { USER_DETAIL } from "../../constants/paths";
+import { TABLE_DETAIL } from "../../constants/paths";
 
-const headers: string[] = [
-  "ID",
-  "Username",
-  "Full name",
-  "E-mail",
-  "Active",
-  "",
-];
+const headers: string[] = ["ID", "Code", "Active", ""];
 
 interface IProps {
   scope: string;
-  query: UseQueryResult<IUser[], Error>;
+  query: UseQueryResult<ITable[], Error>;
   onFilterChange: (value: TFilter) => void;
-  onUpdate: (data: IUser) => void;
+  onUpdate: (data: ITable) => void;
 }
 
-export const TableUsers = (props: IProps) => {
+export const TableTables = (props: IProps) => {
   const { scope, query, onFilterChange, onUpdate } = props;
   const { isLoading, data } = query;
 
@@ -57,20 +50,14 @@ export const TableUsers = (props: IProps) => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {data?.map((user: IUser) => (
-            <Table.Row key={user.id}>
+          {data?.map((table: ITable) => (
+            <Table.Row key={table.id}>
               <Table.Cell className="fit-to-content">
-                <Link to={`${USER_DETAIL}/${user.id}`}># {user.id}</Link>
+                <Link to={`${TABLE_DETAIL}/${table.id}`}># {table.id}</Link>
               </Table.Cell>
-              <Table.Cell>{user.username}</Table.Cell>
-              <Table.Cell>
-                {user?.first_name || user?.last_name
-                  ? `${user?.first_name} ${user?.last_name}`
-                  : "--------"}
-              </Table.Cell>
-              <Table.Cell>{user.email || "--------"}</Table.Cell>
+              <Table.Cell>{table.code}</Table.Cell>
               <Table.Cell className="status">
-                <IsActiveCell isActive={user.is_active} />
+                <IsActiveCell isActive={table.is_active} />
               </Table.Cell>
               <Table.Cell className="fit-to-content">
                 <Button
@@ -78,7 +65,7 @@ export const TableUsers = (props: IProps) => {
                   className="m-0"
                   size="small"
                   content="Edit"
-                  onClick={() => onUpdate(user)}
+                  onClick={() => onUpdate(table)}
                   basic
                   circular
                 />

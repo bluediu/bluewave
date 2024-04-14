@@ -23,7 +23,7 @@ export const CategoryUpdateForm = (props: IProps) => {
 
   const [pending, setPending] = useState(false);
 
-  // Category update mutation
+  // Mutation
   const mutation = useCategoryUpdate(id);
   const { isPending, isError, isSuccess } = mutation;
 

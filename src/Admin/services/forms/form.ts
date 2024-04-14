@@ -53,3 +53,14 @@ export const getUpdateProductForm = async (
   );
   return data;
 };
+
+/* Tables */
+export const getCreateTableForm = async (): Promise<IForm> => {
+  const { data } = await api.get<IForm>(`${FORMS}/table/create/`);
+  return data;
+};
+
+export const getUpdateTableForm = async (tableId: number): Promise<IForm> => {
+  const { data } = await api.get<IForm>(`${FORMS}/table/${tableId}/update/`);
+  return data;
+};

@@ -22,7 +22,7 @@ export const ProductCreateForm = (props: IProps) => {
 
   const [pending, setPending] = useState(false);
 
-  // Category create mutation
+  // Mutation
   const mutation = useProductCreate();
   const { isPending, isError, isSuccess } = mutation;
 

@@ -28,14 +28,21 @@ export const CategoryAdmin = () => {
 
   useDynamicPageTitle(scope);
 
-  const { showModal, modalContent, modalTitle, openModal, closeModal } =
-    useModal();
+  /* prettier-ignore */
+  const { 
+    showModal, 
+    modalContent, 
+    modalTitle,
+    openModal,
+    closeModal 
+  } = useModal();
+
   const [filterBy, setFilterBy] = useState<TFilter>("actives");
   const query = useCategories(filterBy);
 
   const onFilterChange = (value: TFilter) => setFilterBy(value);
 
-  const onCategoryCreate = (): void => {
+  const onCreate = (): void => {
     openModal(
       "Create a new category",
       <CategoryCreateForm
@@ -46,7 +53,7 @@ export const CategoryAdmin = () => {
     );
   };
 
-  const onCategoryUpdate = (category: ICategory): void => {
+  const onUpdate = (category: ICategory): void => {
     openModal(
       `Update category #${category.id}`,
       <CategoryUpdateForm
@@ -61,12 +68,12 @@ export const CategoryAdmin = () => {
   return (
     <div>
       <TableTitle text={scope} />
-      <CreateBtn onClick={onCategoryCreate} isLoading={query.isLoading} />
+      <CreateBtn onClick={onCreate} isLoading={query.isLoading} />
       <TableCategories
         scope={scope}
         query={query}
         onFilterChange={onFilterChange}
-        onCategoryUpdate={onCategoryUpdate}
+        onUpdate={onUpdate}
       />
       <ModalBasic
         show={showModal}
