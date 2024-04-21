@@ -1,3 +1,16 @@
-export const TableTitle = ({ text }: { text: string }) => {
-  return <h2 className="fw-bold text-primary-emphasis">{text}</h2>;
+import { IStylesProps } from "../../../interfaces";
+
+interface IProps extends IStylesProps {
+  text: string;
+}
+
+export const TableTitle = ({ text, className, style }: IProps) => {
+  return (
+    <h2
+      style={style}
+      className={`${"fw-bold text-primary-emphasis"} ${className ?? ""}`}
+    >
+      {text}
+    </h2>
+  );
 };

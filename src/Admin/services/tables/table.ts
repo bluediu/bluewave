@@ -2,7 +2,12 @@
 import { api } from "../../../api";
 
 /* interfaces */
-import { ITable, ITableCreate, ITableUpdate } from "../../interfaces";
+import {
+  ITable,
+  ITableOrderStatus,
+  ITableCreate,
+  ITableUpdate,
+} from "../../interfaces";
 
 /* types */
 import { TFilter } from "../../types";
@@ -23,6 +28,17 @@ export const getTable = async (id: number): Promise<ITable> => {
 export const listTables = async (filterBy: TFilter): Promise<ITable[]> => {
   const { data } = await api.get<ITable[]>(
     `${TABLES}/list/?filter_by=${filterBy}`,
+    fn.getSessionToken(),
+  );
+
+  return data;
+};
+
+export const listTableOrderStatuses = async (): Promise<
+  ITableOrderStatus[]
+> => {
+  const { data } = await api.get<ITableOrderStatus[]>(
+    `${TABLES}/list/order_statuses/`,
     fn.getSessionToken(),
   );
 

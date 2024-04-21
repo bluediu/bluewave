@@ -19,7 +19,7 @@ export const useTableUpdate = (id: number) => {
   const mutation = useMutation({
     mutationKey: ["tableUpdate", id],
     mutationFn: (table: ITableUpdate) =>
-      adminActions.transactions.updateTable({ id, table }),
+      adminActions.tables.updateTable({ id, table }),
     onSuccess: () => {
       // Change this is not working, how it should be do it.
       queryClient.invalidateQueries({

@@ -45,7 +45,7 @@ export const SelectInput = (props: IProps) => {
       />
       {helptext && (
         <div style={{ marginBottom: "1rem" }}>
-          <small className="help_text_color">{helptext}</small>
+          <small className="help-text-color">{helptext}</small>
         </div>
       )}
     </div>

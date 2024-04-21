@@ -15,7 +15,7 @@ export const useTableCreate = () => {
 
   const mutation = useMutation({
     mutationKey: ["tableCreate"],
-    mutationFn: adminActions.transactions.createTable,
+    mutationFn: adminActions.tables.createTable,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tables"] });
       // Show success message.

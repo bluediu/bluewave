@@ -1,4 +1,5 @@
 export const ADMIN = "/admin";
+export const ADMIN_TABLE_DETAIL = "/admin/orders/table";
 export const USERS = `${ADMIN}/users`;
 export const USER_DETAIL = `${USERS}/user`;
 export const CATEGORIES = `${ADMIN}/categories`;

@@ -22,7 +22,7 @@ export const useTable = (id: number): IOutputProps => {
     data: table,
   } = useQuery({
     queryKey: ["table", id],
-    queryFn: () => adminActions.transactions.getTable(id),
+    queryFn: () => adminActions.tables.getTable(id),
     refetchOnWindowFocus: false,
   });
 

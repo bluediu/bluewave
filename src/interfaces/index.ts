@@ -1,1 +1,2 @@
-export type { IRoute } from "./route";
+export type * from "./route";
+export type * from "./global";

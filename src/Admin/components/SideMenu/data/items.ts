@@ -1,5 +1,11 @@
 /* Constants */
-import { USERS, CATEGORIES, PRODUCTS, TABLES } from "../../../constants/paths";
+import {
+  USERS,
+  CATEGORIES,
+  PRODUCTS,
+  TABLES,
+  ADMIN,
+} from "../../../constants/paths";
 
 interface ISidebarItem {
   name: string;
@@ -9,19 +15,14 @@ interface ISidebarItem {
 
 export const sidebarItems: ISidebarItem[] = [
   {
-    name: "Orders",
-    icon: "clipboard list",
-    path: "#",
+    name: "Dashboard",
+    icon: "home",
+    path: ADMIN,
   },
   {
     name: "Tables",
     icon: "table",
     path: TABLES,
-  },
-  {
-    name: "Users",
-    icon: "users",
-    path: USERS,
   },
   {
     name: "Categories",
@@ -32,5 +33,15 @@ export const sidebarItems: ISidebarItem[] = [
     name: "Products",
     icon: "box",
     path: PRODUCTS,
+  },
+  {
+    name: "Users",
+    icon: "users",
+    path: USERS,
+  },
+  {
+    name: "Orders",
+    icon: "clipboard list",
+    path: "#",
   },
 ];

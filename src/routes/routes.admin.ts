@@ -3,7 +3,6 @@ import { AdminLayout } from "../Admin/layouts";
 
 /* Pages */
 import {
-  HomeAdmin,
   UserAdmin,
   UserDetail,
   CategoryAdmin,
@@ -12,6 +11,8 @@ import {
   ProductDetail,
   TableAdmin,
   TableDetail,
+  DashboardAdmin,
+  DashboardTableDetail,
 } from "../Admin/pages";
 
 /* Interfaces */
@@ -21,7 +22,12 @@ import { IRoute } from "../interfaces";
 import { adminPath } from "../Admin/constants";
 
 const routesAdmin: IRoute[] = [
-  { path: adminPath.ADMIN, layout: AdminLayout, component: HomeAdmin },
+  { path: adminPath.ADMIN, layout: AdminLayout, component: DashboardAdmin },
+  {
+    path: `${adminPath.ADMIN_TABLE_DETAIL}/:code`,
+    layout: AdminLayout,
+    component: DashboardTableDetail,
+  },
   { path: adminPath.USERS, layout: AdminLayout, component: UserAdmin },
   {
     path: `${adminPath.USER_DETAIL}/:id`,

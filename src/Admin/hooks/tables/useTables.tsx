@@ -15,7 +15,7 @@ export const useTables = (
 ): UseQueryResult<ITable[], Error> => {
   const query = useQuery({
     queryKey: ["tables", { filterBy }],
-    queryFn: () => adminActions.transactions.listTables(filterBy),
+    queryFn: () => adminActions.tables.listTables(filterBy),
     refetchOnWindowFocus: false,
   });
 
