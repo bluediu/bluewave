@@ -39,7 +39,7 @@ export const TextInput = ({ label, helpText, required, ...props }: IProps) => {
       />
       {helpText && (
         <div style={{ marginBottom: "1rem" }}>
-          <small className="help_text_color">{helpText}</small>
+          <small className="help-text-color">{helpText}</small>
         </div>
       )}
     </>

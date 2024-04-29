@@ -29,7 +29,7 @@ export interface IField {
   value: string;
 }
 
-export interface IValidation {
+interface IValidation {
   required: boolean;
   max_length: number;
   min_length: null;

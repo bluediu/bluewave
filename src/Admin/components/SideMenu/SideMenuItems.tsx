@@ -1,4 +1,4 @@
-import { CSSProperties, useContext } from "react";
+import { CSSProperties, useContext, useLayoutEffect, useRef } from "react";
 
 /* Libs */
 import { toast } from "react-toastify";
@@ -9,6 +9,9 @@ import { Divider, Header, Icon, SemanticICONS } from "semantic-ui-react";
 
 /* Context */
 import { AuthContext } from "../../context";
+
+/* Constants */
+import { ADMIN } from "../../constants/paths";
 
 /* Data */
 import { sidebarItems } from "./data";
@@ -22,6 +25,34 @@ interface IProps {
 export const SideMenuItems = (props: IProps) => {
   const { pathname, isTabletOrMobile, handleMenuVisible } = props;
   const { logoutAuthUser } = useContext(AuthContext);
+
+  const sidebarItemsRef = useRef<HTMLElement | null>(null);
+
+  /*
+   * Check if there are more than one active item in the sidebar.
+   * If there are more than one active item, the first active item
+   * will be removed.
+   */
+  useLayoutEffect(() => {
+    if (sidebarItemsRef.current) {
+      const { current: item } = sidebarItemsRef;
+
+      const checkActiveItemConstraint: boolean =
+        item.getElementsByClassName("active-item").length > 1;
+
+      if (pathname === ADMIN) {
+        item
+          .getElementsByClassName("sidebar-item")[0]
+          .classList.add("active-item");
+      }
+
+      if (checkActiveItemConstraint) {
+        item
+          .getElementsByClassName("sidebar-item")[0]
+          .classList.remove("active-item");
+      }
+    }
+  }, [pathname]);
 
   const handleLogout = () => {
     logoutAuthUser();
@@ -38,7 +69,7 @@ export const SideMenuItems = (props: IProps) => {
 
   return (
     <nav style={!isTabletOrMobile ? desktopStyles : {}}>
-      <section>
+      <section ref={sidebarItemsRef}>
         {sidebarItems.map((item, index) => (
           <Link to={item.path} key={index}>
             <aside
