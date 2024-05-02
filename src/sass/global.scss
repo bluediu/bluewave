@@ -58,15 +58,15 @@ $inactive: #f00;
 
 /* ====== Display ====== */
 .d-block {
-  display: block;
+  display: block !important;
 }
 
 .d-inline-block {
-  display: block;
+  display: block !important;
 }
 
 .d-inline {
-  display: inline;
+  display: inline !important;
 }
 
 /* ====== Widths ====== */

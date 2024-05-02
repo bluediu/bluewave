@@ -1,4 +1,5 @@
 type TStatus = "Pending" | "Delivered" | "Canceled";
+type TStatusKeys = "PENDING" | "DELIVERED" | "CANCELED";
 
 export interface IOrder {
   code: string;
@@ -8,6 +9,24 @@ export interface IOrder {
   table: Table;
   product: Product;
 }
+
+export interface IOrderState {
+  count_pending: number;
+  total_price: number;
+  count_delivered: number;
+}
+
+export interface IOrderRegister {
+  table: string;
+  product: number;
+  quantity?: number;
+}
+
+export interface IOrderUpdate {
+  status?: TStatusKeys;
+  quantity?: number;
+}
+
 export interface IProductOrder {
   code: string;
   status_label: TStatus;
@@ -18,6 +37,7 @@ export interface IProductOrder {
   is_close: boolean;
   quantity: number;
   max_qty: number;
+  min_qty: number;
   created_at: Date;
   updated_at: Date;
 }

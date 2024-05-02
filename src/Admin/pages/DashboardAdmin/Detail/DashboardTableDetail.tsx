@@ -1,31 +1,65 @@
 /* Components */
 import { Loader } from "semantic-ui-react";
+import { CreateBtn } from "../../../common";
+import { ModalBasic } from "../../../../shared";
 import { TableSubtitle } from "../../../common/tables";
-import { DetailBreadcrumb, DetailCard } from "./subcomponents";
+import { OrderRegisterForm } from "../../../components/Dashboard";
+import { DetailBreadcrumb, DetailCard, DetailState } from "./subcomponents";
 
 /* Hooks */
 import { useParams } from "react-router-dom";
-import { useProductsOrder } from "../../../hooks";
+import { useModal, useProductsOrder } from "../../../hooks";
 
 export const DashboardTableDetail = () => {
   const { code = "0" } = useParams();
-  const { data, isLoading } = useProductsOrder(code);
+
+  /* prettier-ignore */
+  const {
+    productOrderQuery: products,
+    orderStateQuery: orderState 
+  } = useProductsOrder(code);
+
+  /* prettier-ignore */
+  const { 
+      showModal, 
+      modalContent, 
+      modalTitle,
+      openModal,
+      closeModal 
+    } = useModal();
+
+  const onRegister = (): void => {
+    openModal(
+      `New order for table #${code}`,
+      <OrderRegisterForm code={code} onClose={closeModal} />,
+    );
+  };
 
   return (
     <main>
       <DetailBreadcrumb />
-
+      <CreateBtn onClick={onRegister} isLoading={false} />
       <TableSubtitle text={`Table #${code}`} />
+      <DetailState orderState={orderState} />
 
-      {isLoading ? (
+      {products.isLoading ? (
         <Loader size="large" content={`Loading...`} active inline="centered" />
       ) : (
-        data!.map((item) => <DetailCard item={item} key={item.code} />)
+        products.data!.map((item) => (
+          <DetailCard item={item} key={item.code} tableCode={code} />
+        ))
       )}
 
-      {!isLoading && !data?.length && (
+      {!products.isLoading && !products.data?.length && (
         <TableSubtitle text="No orders found" className="text-center" />
       )}
+
+      <ModalBasic
+        show={showModal}
+        onClose={closeModal}
+        title={modalTitle}
+        children={modalContent ?? <span>No content</span>}
+      />
     </main>
   );
 };
