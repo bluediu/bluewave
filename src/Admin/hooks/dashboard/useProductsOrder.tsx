@@ -2,20 +2,30 @@
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IProductOrder } from "../../interfaces";
+import { IProductOrder, IOrderState } from "../../interfaces";
 
 /* Services */
 import { adminActions } from "../../services";
 
-export const useProductsOrder = (
-  tableCode: string,
-): UseQueryResult<IProductOrder[], Error> => {
-  const query = useQuery({
+interface IOutputProps {
+  productOrderQuery: UseQueryResult<IProductOrder[], Error>;
+  orderStateQuery: UseQueryResult<IOrderState, Error>;
+}
+
+export const useProductsOrder = (tableCode: string): IOutputProps => {
+  const productOrderQuery = useQuery({
     queryKey: ["productsOrder", { tableCode }],
     queryFn: () =>
       adminActions.transactions.listProductsByTableOrder(tableCode),
     refetchOnWindowFocus: false,
   });
 
-  return query;
+  const orderStateQuery = useQuery({
+    queryKey: ["orderState", { tableCode }],
+    queryFn: () => adminActions.transactions.getOrderState(tableCode),
+    refetchOnWindowFocus: false,
+    enabled: !productOrderQuery.isLoading,
+  });
+
+  return { productOrderQuery, orderStateQuery };
 };

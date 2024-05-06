@@ -2,12 +2,26 @@
 import { api } from "../../../api";
 
 /* interfaces */
-import { IOrder, IProductOrder } from "../../interfaces";
+import {
+  IOrder,
+  IOrderRegister,
+  IOrderUpdate,
+  IProductOrder,
+  IOrderState,
+} from "../../interfaces";
 
 /* utils */
 import { fn } from "../../utils";
 
 const ORDERS = "/orders/order";
+
+export const getOrderState = async (code: string): Promise<IOrderState> => {
+  const { data } = await api.get<IOrderState>(
+    `${ORDERS}/table/${code}/state/`,
+    fn.getSessionToken(),
+  );
+  return data;
+};
 
 export const listOrders = async (id?: number): Promise<IOrder[]> => {
   const { data } = await api.get<IOrder[]>(
@@ -26,4 +40,23 @@ export const listProductsByTableOrder = async (
   );
 
   return data;
+};
+
+export const registerOrder = async (
+  order: IOrderRegister,
+): Promise<undefined> => {
+  await api.post<undefined>(`${ORDERS}/register/`, order, fn.getSessionToken());
+};
+
+export const updateOrder = async (props: {
+  code: string;
+  order: IOrderUpdate;
+}): Promise<undefined> => {
+  const { code, order } = props;
+
+  await api.put<undefined>(
+    `${ORDERS}/${code}/update/`,
+    order,
+    fn.getSessionToken(),
+  );
 };

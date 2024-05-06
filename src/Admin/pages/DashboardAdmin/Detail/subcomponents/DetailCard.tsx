@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 /* Libs */
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -15,12 +17,16 @@ import {
 
 /* Hooks */
 import { useDeviceType } from "../../../../../hooks";
+import { useOrderUpdate } from "../../../../hooks";
 
 /* Interfaces */
 import { IProductOrder } from "../../../../interfaces";
 
 /* Utils */
 import { convertCentToDolar } from "../../../../utils/functions";
+
+/* Types */
+import { EStatus } from "../../../../types";
 
 import "./DetailCard.scss";
 
@@ -33,8 +39,41 @@ const statusesColors: Record<string, SemanticCOLORS> = {
   canceled: "red",
 };
 
-export const DetailCard = ({ item }: { item: IProductOrder }) => {
+interface IProps {
+  item: IProductOrder;
+  tableCode: string;
+}
+
+export const DetailCard = ({ item, tableCode }: IProps) => {
   const isTabletOrMobile = useDeviceType();
+
+  const [quantity, setQuantity] = useState(item.quantity);
+
+  const mutation = useOrderUpdate({
+    orderCode: item.code,
+    toRefetchTable: tableCode,
+  });
+
+  useEffect(() => {
+    if (mutation.isError) setQuantity(item.quantity);
+  }, [item.quantity, mutation.isError]);
+
+  const handleDelivered = () => mutation.mutate({ status: EStatus.DELIVERED });
+
+  const handleCancel = () => mutation.mutate({ status: EStatus.CANCELED });
+
+  const handleQty = (value: number): void => {
+    const newValue = Math.min(
+      Math.max(quantity + value, item.min_qty),
+      item.max_qty,
+    );
+    // Change the quantity
+    mutation.mutate({ quantity: newValue });
+
+    setQuantity(newValue);
+  };
+
+  const isPending = mutation.isPending || item.status_label === "Canceled";
 
   return (
     <Card
@@ -96,9 +135,24 @@ export const DetailCard = ({ item }: { item: IProductOrder }) => {
         {/* className="mt-4 text-center" */}
         <Card.Meta className={`mt-4 ${isTabletOrMobile && "text-center"}`}>
           <span>Quantity: </span>
-          <Button circular size="mini" icon="plus" className="m-0" basic />
-          <span className="fw-bold mx-1">{item.quantity}</span>
-          <Button circular size="mini" icon="minus" basic />
+          <Button
+            circular
+            size="mini"
+            icon="plus"
+            className="m-0"
+            basic
+            onClick={() => handleQty(1)}
+            disabled={isPending || quantity === item.max_qty}
+          />
+          <span className="fw-bold mx-1">{quantity}</span>
+          <Button
+            circular
+            size="mini"
+            icon="minus"
+            basic
+            onClick={() => handleQty(-1)}
+            disabled={isPending || quantity === item.min_qty}
+          />
           <small>(Max. allowed {item.max_qty})</small>
         </Card.Meta>
       </Card.Content>
@@ -111,15 +165,16 @@ export const DetailCard = ({ item }: { item: IProductOrder }) => {
               <Button
                 color="blue"
                 type="button"
-                // disabled={isLoading}
-                // onClick={onCloseModal}
+                disabled={mutation.isPending}
+                onClick={handleDelivered}
               >
                 Mark as delivered
               </Button>
               <Button.Or />
               <Button
                 color="red"
-                // disabled={isLoading}
+                onClick={handleCancel}
+                disabled={mutation.isPending}
                 // type="submit"
               >
                 Cancel order

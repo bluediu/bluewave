@@ -64,3 +64,11 @@ export const getUpdateTableForm = async (tableId: number): Promise<IForm> => {
   const { data } = await api.get<IForm>(`${FORMS}/table/${tableId}/update/`);
   return data;
 };
+
+/* Tables */
+export const getRegisterOrderForm = async (code: string): Promise<IForm> => {
+  const { data } = await api.get<IForm>(
+    `${FORMS}/order/table/${code}/register/`,
+  );
+  return data;
+};
