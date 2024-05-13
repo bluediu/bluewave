@@ -1,34 +1,28 @@
 /* Libs */
 import { toast } from "react-toastify";
 
-/* Components  */
+/* Components */
 import { Errors } from "../../../shared";
 
 /* Hooks  */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-/* Interfaces */
-import { ICategoryUpdate } from "../../interfaces";
-
 /* Services */
 import { adminActions } from "../../services";
 
-export const useCategoryUpdate = (id: number) => {
+export const usePaymentRegister = (code: string) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationKey: ["categoryUpdate", id],
-    mutationFn: (category: ICategoryUpdate) =>
-      adminActions.products.updateCategory({ id, category }),
+    mutationKey: ["paymentRegister"],
+    mutationFn: adminActions.transactions.registerPayment,
     onSuccess: () => {
-      // Change this is not working, how it should be do it.
       queryClient.invalidateQueries({
-        queryKey: ["categories"],
-        refetchType: "all",
+        queryKey: ["payment", { tableCode: code }],
       });
 
       // Show success message.
-      toast.success("Category successfully updated.");
+      toast.success("Payment successfully registered.");
     },
     onError: (error) => {
       toast.error(<Errors error={error} />, { autoClose: false });

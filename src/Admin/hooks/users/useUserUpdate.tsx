@@ -16,7 +16,7 @@ import { adminActions } from "../../services";
 export const useUserUpdate = (id: number) => {
   const queryClient = useQueryClient();
 
-  const userUpdateMutation = useMutation({
+  const mutation = useMutation({
     mutationKey: ["userUpdate", id],
     mutationFn: (user: IUserUpdate) =>
       adminActions.users.updateUser({ id, user }),
@@ -30,5 +30,5 @@ export const useUserUpdate = (id: number) => {
     },
   });
 
-  return userUpdateMutation;
+  return mutation;
 };
