@@ -31,10 +31,7 @@ export const ProductCreateForm = (props: IProps) => {
 
   useEffect(() => setPending(isPending), [isPending]);
 
-  useEffect(() => {
-    if (isSuccess || isError) onClose();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess, isError]);
+  if (isSuccess || isError) onClose();
 
   const handleSubmit = (data: IProductCreate) => mutation.mutate(data);
 

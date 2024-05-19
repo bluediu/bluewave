@@ -7,7 +7,14 @@ import { toast } from "react-toastify";
 
 /* Components */
 import { Link } from "react-router-dom";
-import { Button, Checkbox, Icon, Label, Loader } from "semantic-ui-react";
+import {
+  Button,
+  Checkbox,
+  Icon,
+  Label,
+  Loader,
+  Popup,
+} from "semantic-ui-react";
 import TableIcon from "./icons/table.svg?react";
 
 /* Hooks */
@@ -34,6 +41,8 @@ export const ListTables = () => {
     // Refresh every 5 seconds if autoReload is true
     refetchInterval: autoReload ? 5000 : false,
     refetchOnWindowFocus: false,
+    // Disable cache collector, refetch always.
+    gcTime: 0,
   });
 
   const handleToggleAutoReload = () => setAutoReload(!autoReload);
@@ -83,10 +92,30 @@ export const ListTables = () => {
                 </Label>
               )}
 
+              {table.pending_payment && (
+                <Label circular color="orange">
+                  Bill
+                </Label>
+              )}
+
+              {table.all_orders_canceled && (
+                <Popup
+                  trigger={
+                    <Label circular color="red">
+                      <Icon name="ban" className="m-0" />
+                    </Label>
+                  }
+                  content="This table requires manual intervention."
+                  position="top center"
+                />
+              )}
+
               <TableIcon
                 className={classNames({
                   pending: table.orders_number > 0,
                   busy: table.all_orders_delivered,
+                  payment: table.pending_payment,
+                  // issue: table.all_orders_canceled,
                 })}
               />
               <p className="text-center">Table #{table.code}</p>

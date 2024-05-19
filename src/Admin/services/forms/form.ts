@@ -65,10 +65,16 @@ export const getUpdateTableForm = async (tableId: number): Promise<IForm> => {
   return data;
 };
 
-/* Tables */
+/* Orders */
 export const getRegisterOrderForm = async (code: string): Promise<IForm> => {
   const { data } = await api.get<IForm>(
     `${FORMS}/order/table/${code}/register/`,
   );
+  return data;
+};
+
+/* Payments */
+export const getRegisterPaymentForm = async (): Promise<IForm> => {
+  const { data } = await api.get<IForm>(`${FORMS}/order/register_payment/`);
   return data;
 };

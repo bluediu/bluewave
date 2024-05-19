@@ -7,28 +7,23 @@ import { Errors } from "../../../shared";
 /* Hooks  */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-/* Interfaces */
-import { ICategoryUpdate } from "../../interfaces";
-
 /* Services */
 import { adminActions } from "../../services";
 
-export const useCategoryUpdate = (id: number) => {
+export const useClosePayment = (tableCode: string) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationKey: ["categoryUpdate", id],
-    mutationFn: (category: ICategoryUpdate) =>
-      adminActions.products.updateCategory({ id, category }),
+    mutationKey: ["closePayment", { tableCode }],
+    mutationFn: () => adminActions.transactions.closePayment(tableCode),
     onSuccess: () => {
-      // Change this is not working, how it should be do it.
       queryClient.invalidateQueries({
-        queryKey: ["categories"],
+        queryKey: ["payment"],
         refetchType: "all",
       });
 
       // Show success message.
-      toast.success("Category successfully updated.");
+      toast.success("Table and orders closed.");
     },
     onError: (error) => {
       toast.error(<Errors error={error} />, { autoClose: false });

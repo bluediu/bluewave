@@ -66,8 +66,12 @@
       fill: #bb7900;
     }
 
-    &.pending-payment {
+    &.payment {
       fill: #008000;
+    }
+
+    &.issue {
+      fill: #c0392b;
     }
   }
 }

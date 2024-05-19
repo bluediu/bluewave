@@ -60,3 +60,13 @@ export const updateOrder = async (props: {
     fn.getSessionToken(),
   );
 };
+
+export const closeOrders = async (code: string): Promise<undefined> => {
+  const noData = {};
+  const { data } = await api.put<undefined>(
+    `${ORDERS}/table/${code}/close_bulk/`,
+    noData,
+    fn.getSessionToken(),
+  );
+  return data;
+};
