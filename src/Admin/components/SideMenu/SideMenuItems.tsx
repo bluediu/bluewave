@@ -24,7 +24,7 @@ interface IProps {
 
 export const SideMenuItems = (props: IProps) => {
   const { pathname, isTabletOrMobile, handleMenuVisible } = props;
-  const { logoutAuthUser } = useContext(AuthContext);
+  const { logoutAuthUser, isSuperuser } = useContext(AuthContext);
 
   const sidebarItemsRef = useRef<HTMLElement | null>(null);
 
@@ -91,22 +91,28 @@ export const SideMenuItems = (props: IProps) => {
             <small>Actions</small>
           </Header>
         </Divider>
-        <a
-          href={`${import.meta.env.VITE_API_URL}/admin/login/?next=/admin/`}
-          target="_blank"
-        >
-          <aside className="sidebar-item admin-active-item">
-            <Icon name="shield" className="ml-2" />
-
-            <span className="ml-1">Advanced Admin</span>
-          </aside>
-        </a>
-        <a href={`${import.meta.env.VITE_API_URL}/api/specs`} target="_blank">
-          <aside className="sidebar-item">
-            <Icon name="code" className="ml-2" />
-            <span className="ml-1">API Specs</span>
-          </aside>
-        </a>
+        {isSuperuser && (
+          <>
+            <a
+              href={`${import.meta.env.VITE_API_URL}/admin/login/?next=/admin/`}
+              target="_blank"
+            >
+              <aside className="sidebar-item admin-active-item">
+                <Icon name="shield" className="ml-2" />
+                <span className="ml-1">Super Admin</span>
+              </aside>
+            </a>
+            <a
+              href={`${import.meta.env.VITE_API_URL}/api/specs`}
+              target="_blank"
+            >
+              <aside className="sidebar-item">
+                <Icon name="code" className="ml-2" />
+                <span className="ml-1">API Specs</span>
+              </aside>
+            </a>
+          </>
+        )}
         <aside className="sidebar-item" onClick={handleLogout}>
           <Icon name="sign-out" className="ml-2" />
           <span className="ml-1">Log Out</span>

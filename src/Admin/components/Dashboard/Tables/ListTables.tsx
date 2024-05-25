@@ -115,7 +115,6 @@ export const ListTables = () => {
                   pending: table.orders_number > 0,
                   busy: table.all_orders_delivered,
                   payment: table.pending_payment,
-                  // issue: table.all_orders_canceled,
                 })}
               />
               <p className="text-center">Table #{table.code}</p>
