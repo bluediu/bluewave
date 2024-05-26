@@ -6,7 +6,7 @@ interface ISessionTokenResponse {
   };
 }
 
-type TJwtPayload = JwtPayload & { user_id: number };
+type TJwtPayload = JwtPayload & { user_id: number; superuser: boolean };
 
 /**
  * Return a jwt payload as object.

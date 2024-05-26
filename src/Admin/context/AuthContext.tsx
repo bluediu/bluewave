@@ -9,15 +9,22 @@ import { fn } from "../utils";
 /* Constants */
 import { TOKEN } from "../constants";
 
+interface IAuthProps {
+  userAuthId: number;
+  superuser: boolean;
+}
+
 interface IAuthContextType {
   isAuthenticated: boolean;
+  isSuperuser: boolean;
   userId: number;
-  handleAuthUser: ({ userAuthId }: { userAuthId: number }) => void;
+  handleAuthUser: ({ userAuthId }: IAuthProps) => void;
   logoutAuthUser: () => void;
 }
 
 export const AuthContext = createContext<IAuthContextType>({
   isAuthenticated: false,
+  isSuperuser: false,
   userId: 0,
   handleAuthUser() {},
   logoutAuthUser() {},
@@ -28,6 +35,7 @@ export const AuthProvider: TProviderChildren = ({ children }) => {
   const token: string | null = localStorage.getItem(TOKEN);
 
   const [isAuthenticated, setAuthenticated] = useState<boolean>(!!token);
+  const [isSuperuser, setIsSuperuser] = useState(false);
   const [userId, setUserId] = useState<number>(0);
 
   useEffect(() => {
@@ -40,7 +48,10 @@ export const AuthProvider: TProviderChildren = ({ children }) => {
           logoutAuthUser();
           toast.error("Session Expired: Please log in again.");
         } else {
-          handleAuthUser({ userAuthId: decodedToken.user_id });
+          handleAuthUser({
+            userAuthId: decodedToken.user_id,
+            superuser: decodedToken.superuser,
+          });
         }
       }
     } catch (error) {
@@ -50,9 +61,10 @@ export const AuthProvider: TProviderChildren = ({ children }) => {
     }
   }, [token]);
 
-  const handleAuthUser = async ({ userAuthId }: { userAuthId: number }) => {
+  const handleAuthUser = async ({ userAuthId, superuser }: IAuthProps) => {
     setUserId(userAuthId);
     setAuthenticated(true);
+    setIsSuperuser(superuser);
   };
 
   const logoutAuthUser = () => {
@@ -64,6 +76,7 @@ export const AuthProvider: TProviderChildren = ({ children }) => {
 
   const value: IAuthContextType = {
     isAuthenticated,
+    isSuperuser,
     userId,
     handleAuthUser,
     logoutAuthUser,

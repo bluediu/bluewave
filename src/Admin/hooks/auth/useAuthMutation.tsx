@@ -26,7 +26,7 @@ export const useAuthMutation = () => {
       // Save user token on login.
       localStorage.setItem(TOKEN, data.access);
       // Save user auth info in context API.
-      handleAuthUser({ userAuthId: data.user_id });
+      handleAuthUser({ userAuthId: data.user_id, superuser: data.superuser });
       // Show authentication message.
       toast.success("Login successful.");
     },

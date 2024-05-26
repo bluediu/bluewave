@@ -7,4 +7,5 @@ export interface IAuthLoginResponse {
   refresh: string;
   access: string;
   user_id: number;
+  superuser: boolean;
 }
