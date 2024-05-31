@@ -2,7 +2,12 @@
 import { api } from "../../../api";
 
 /* interfaces */
-import { ICategory, ICategoryUpdate, ICategoryCreate } from "../../interfaces";
+import {
+  ICategory,
+  ICategoryUpdate,
+  ICategoryCreate,
+  ICategoryProduct,
+} from "../../interfaces";
 
 /* types */
 import { TFilter } from "../../types";
@@ -15,6 +20,16 @@ const CATEGORIES = "/products/category";
 export const getCategory = async (id: number): Promise<ICategory> => {
   const { data } = await api.get<ICategory>(
     `${CATEGORIES}/${id}/get/`,
+    fn.getSessionToken(),
+  );
+  return data;
+};
+
+export const getProductsByCategory = async (
+  id: number,
+): Promise<ICategoryProduct[]> => {
+  const { data } = await api.get<ICategoryProduct[]>(
+    `${CATEGORIES}/${id}/products/`,
     fn.getSessionToken(),
   );
   return data;
