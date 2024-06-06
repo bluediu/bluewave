@@ -23,7 +23,7 @@ import { useOrderUpdate } from "../../../../hooks";
 import { IProductOrder } from "../../../../interfaces";
 
 /* Utils */
-import { convertCentToDolar } from "../../../../utils/functions";
+import { convertCentToDolar } from "../../../../../utils/functions";
 
 /* Types */
 import { EStatus } from "../../../../types";
@@ -132,7 +132,6 @@ export const DetailCard = ({ item, tableCode }: IProps) => {
             }
           />
         </Card.Meta>
-        {/* className="mt-4 text-center" */}
         <Card.Meta className={`mt-4 ${isTabletOrMobile && "text-center"}`}>
           <span>Quantity: </span>
           <Button
@@ -175,7 +174,6 @@ export const DetailCard = ({ item, tableCode }: IProps) => {
                 color="red"
                 onClick={handleCancel}
                 disabled={mutation.isPending}
-                // type="submit"
               >
                 Cancel order
               </Button>

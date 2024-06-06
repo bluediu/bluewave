@@ -1,86 +1,76 @@
 import { createContext, useEffect, useState } from "react";
 
-/* Hooks */
+/* Libs */
 import { toast } from "react-toastify";
-
-/* Utils */
-import { fn } from "../../utils";
 
 /* Constants */
 import { TOKEN } from "../constants";
 
-interface IAuthProps {
-  userAuthId: number;
-  superuser: boolean;
-}
+/* Utils */
+import { fn } from "../../utils";
 
-interface IAuthContextType {
+interface IAuthTableContextType {
   isAuthenticated: boolean;
-  isSuperuser: boolean;
-  userId: number;
-  login: ({ userAuthId }: IAuthProps) => void;
+  code: string;
+  login: (code: string) => void;
   logout: () => void;
 }
 
-export const AuthContext = createContext<IAuthContextType>({
+export const AuthTableContext = createContext<IAuthTableContextType>({
   isAuthenticated: false,
-  isSuperuser: false,
-  userId: 0,
+  code: "",
   login() {},
   logout() {},
 });
 
 type TProviderChildren = React.FC<{ children: React.ReactNode }>;
-export const AuthProvider: TProviderChildren = ({ children }) => {
+export const AuthTableProvider: TProviderChildren = ({ children }) => {
   const token: string | null = localStorage.getItem(TOKEN);
 
   const [isAuthenticated, setAuthenticated] = useState<boolean>(!!token);
-  const [isSuperuser, setIsSuperuser] = useState(false);
-  const [userId, setUserId] = useState<number>(0);
+  const [code, setCode] = useState<string>("");
 
   useEffect(() => {
     try {
       if (token) {
-        const decodedToken = fn.decodeAdminToken(token);
+        const decodedToken = fn.decodeClientToken(token);
         const expirationTime: number = decodedToken.exp! * 1000;
 
         if (Date.now() >= expirationTime) {
           logout();
           toast.error("Session Expired: Please log in again.");
         } else {
-          login({
-            userAuthId: decodedToken.user_id,
-            superuser: decodedToken.superuser,
-          });
+          login(decodedToken.code);
         }
       }
     } catch (error) {
       console.error("Error decoding token:", error);
-      // Treat invalid token as expired, logout the user
+      // Treat invalid token as expired & logout.
       logout();
     }
   }, [token]);
 
-  const login = async ({ userAuthId, superuser }: IAuthProps) => {
-    setUserId(userAuthId);
+  const login = async (code: string) => {
     setAuthenticated(true);
-    setIsSuperuser(superuser);
+    setCode(code);
   };
 
   const logout = () => {
-    setUserId(0);
+    setCode("");
     setAuthenticated(false);
-
     localStorage.removeItem(TOKEN);
   };
 
-  const value: IAuthContextType = {
+  const value: IAuthTableContextType = {
     isAuthenticated,
-    isSuperuser,
-    userId,
+    code,
     login,
     logout,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthTableContext.Provider value={value}>
+      {children}
+    </AuthTableContext.Provider>
+  );
 };

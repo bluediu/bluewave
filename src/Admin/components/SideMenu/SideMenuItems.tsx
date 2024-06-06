@@ -24,7 +24,7 @@ interface IProps {
 
 export const SideMenuItems = (props: IProps) => {
   const { pathname, isTabletOrMobile, handleMenuVisible } = props;
-  const { logoutAuthUser, isSuperuser } = useContext(AuthContext);
+  const { logout, isSuperuser } = useContext(AuthContext);
 
   const sidebarItemsRef = useRef<HTMLElement | null>(null);
 
@@ -55,7 +55,7 @@ export const SideMenuItems = (props: IProps) => {
   }, [pathname]);
 
   const handleLogout = () => {
-    logoutAuthUser();
+    logout();
     toast.success("Logout successful");
   };
 

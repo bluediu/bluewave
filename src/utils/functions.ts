@@ -1,28 +1,42 @@
 import { JwtPayload, jwtDecode } from "jwt-decode";
-import { TOKEN } from "../constants";
+import { TOKEN as TADMIN } from "../Admin/constants";
+import { TOKEN as TCLIENT } from "../Client/constants";
+
 interface ISessionTokenResponse {
   headers: {
     Authorization: string;
   };
 }
 
-type TJwtPayload = JwtPayload & { user_id: number; superuser: boolean };
+type TJwtAdminPayload = JwtPayload & { user_id: number; superuser: boolean };
+type TJwtClientPayload = JwtPayload & { code: string };
 
 /**
- * Return a jwt payload as object.
- *
- * NOTE: Call this function only when an existing LS token is present.
+ * Return an admin jwt payload as object.
  */
-export const decodeToken = (token: string): TJwtPayload => jwtDecode(token);
+export const decodeAdminToken = (token: string): TJwtAdminPayload =>
+  jwtDecode(token);
+
+/**
+ * Return a client jwt payload as object.
+ */
+export const decodeClientToken = (token: string): TJwtClientPayload =>
+  jwtDecode(token);
 
 /**
  * Return a HTTP header authorization token.
  */
-export const getSessionToken = (): ISessionTokenResponse => ({
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem(TOKEN) ?? "INVALID_TOKEN"}`,
-  },
-});
+export const getSessionToken = (
+  scope: "admin" | "client" = "admin",
+): ISessionTokenResponse => {
+  const token = scope === "admin" ? TADMIN : TCLIENT;
+
+  return {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem(token) ?? "INVALID_TOKEN"}`,
+    },
+  };
+};
 
 /**
  * Asynchronously delays execution for a specified number of seconds.

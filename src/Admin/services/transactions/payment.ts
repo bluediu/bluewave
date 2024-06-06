@@ -5,7 +5,7 @@ import { api } from "../../../api";
 import { IPayment, IRegisterPayment } from "../../interfaces";
 
 /* utils */
-import { fn } from "../../utils";
+import { fn } from "../../../utils";
 
 const PAYMENTS = "/payments/payment";
 

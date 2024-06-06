@@ -8,25 +8,25 @@ import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 
 /* Context */
-import { AuthContext } from "../../context";
+import { AuthTableContext } from "../../context";
 
 /* Services */
-import { adminActions } from "../../services";
+import { clientActions } from "../../services";
 
 /* Constants */
 import { TOKEN } from "../../constants";
 
-export const useAuthMutation = () => {
-  const { login } = useContext(AuthContext);
+export const useAuthTableMutation = () => {
+  const { login } = useContext(AuthTableContext);
 
   const mutate = useMutation({
-    mutationKey: ["authLogin"],
-    mutationFn: adminActions.users.login,
+    mutationKey: ["authTableLogin"],
+    mutationFn: clientActions.auth.login,
     onSuccess: (data) => {
-      // Save user token on login.
+      // Save table token on login.
       localStorage.setItem(TOKEN, data.access);
-      // Save user auth info in context API.
-      login({ userAuthId: data.user_id, superuser: data.superuser });
+      // Save table auth info in context API.
+      login(data.code);
       // Show authentication message.
       toast.success("Login successful.");
     },

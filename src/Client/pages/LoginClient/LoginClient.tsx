@@ -1,12 +1,12 @@
 /* Components */
-import { LoginForm } from "../../components/LoginForm";
+import { LoginTableForm } from "../../components/Login";
 
-export const LoginAdmin = () => {
+export const LoginClient = () => {
   return (
     <section className="login-app">
       <div className="login-app__content">
         <h1 className="app-title-color fw-bold">Blue Wave</h1>
-        <LoginForm />
+        <LoginTableForm />
       </div>
     </section>
   );

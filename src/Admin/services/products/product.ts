@@ -8,7 +8,7 @@ import { IProduct, IProductCreate, IProductUpdate } from "../../interfaces";
 import { TFilter } from "../../types";
 
 /* utils */
-import { fn } from "../../utils";
+import { fn } from "../../../utils";
 
 const PRODUCTS = "/products/product";
 

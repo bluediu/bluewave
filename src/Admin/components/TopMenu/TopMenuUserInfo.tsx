@@ -17,13 +17,13 @@ interface IProps {
 }
 
 export const TopMenuUserInfo = ({ userId }: IProps) => {
-  const { logoutAuthUser } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
 
   const { isLoading, isError, user } = useUser(userId);
 
   if (isError) {
     toast.error("Something was wrong, please try again.");
-    logoutAuthUser();
+    logout();
     return;
   }
 
