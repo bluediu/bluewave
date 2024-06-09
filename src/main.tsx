@@ -11,6 +11,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "semantic-ui-css/semantic.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./sass/global.scss";
+import "./sass/components.scss";
 
 const queryClient = new QueryClient();
 

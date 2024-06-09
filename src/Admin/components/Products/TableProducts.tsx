@@ -23,7 +23,7 @@ import { TFilter } from "../../types";
 import { PRODUCT_DETAIL } from "../../constants/paths";
 
 /* utils */
-import { fn } from "../../utils";
+import { fn } from "../../../utils";
 
 const headers: string[] = ["ID", "Name", "Category", "Active", "Price", ""];
 

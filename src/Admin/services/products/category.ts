@@ -13,7 +13,7 @@ import {
 import { TFilter } from "../../types";
 
 /* utils */
-import { fn } from "../../utils";
+import { fn } from "../../../utils";
 
 const CATEGORIES = "/products/category";
 

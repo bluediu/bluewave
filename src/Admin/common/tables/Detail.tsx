@@ -12,7 +12,7 @@ import { IsActiveCell } from "./IsActiveCell";
 import { useDeviceType } from "../../../hooks";
 
 /* Utils */
-import { fn } from "../../utils";
+import { fn } from "../../../utils";
 
 /* Statics */
 import NO_IMAGE from "/img/no-image.jpg";

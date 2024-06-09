@@ -11,7 +11,7 @@ import {
 } from "../../interfaces";
 
 /* utils */
-import { fn } from "../../utils";
+import { fn } from "../../../utils";
 
 const ORDERS = "/orders/order";
 
