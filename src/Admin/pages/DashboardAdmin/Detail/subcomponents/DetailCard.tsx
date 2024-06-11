@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
+/* Components */
 import {
   Button,
   Card,
@@ -23,7 +24,7 @@ import { useOrderUpdate } from "../../../../hooks";
 import { IProductOrder } from "../../../../interfaces";
 
 /* Utils */
-import { convertCentToDolar } from "../../../../../utils/functions";
+import { convertCentToDolar } from "../../../../../utils";
 
 /* Types */
 import { EStatus } from "../../../../types";

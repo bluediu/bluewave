@@ -1,1 +1,1 @@
-export { AuthTableProvider, AuthTableContext } from "./AuthTableContext";
+export * from "./AuthTableContext";

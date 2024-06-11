@@ -17,6 +17,7 @@ export interface ICategoryUpdate extends ICategoryCreate {
 export interface ICategoryProduct {
   id: number;
   name: string;
+  description: string;
   price: number;
   is_active: boolean;
   image: string;

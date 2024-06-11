@@ -21,8 +21,15 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+.title-color-gradient {
+  background: linear-gradient(135deg, #92abbe, #2980b9);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .cursor-pointer {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 /* ====== Tables ====== */
@@ -42,6 +49,12 @@ $inactive: #f00;
       }
     }
   }
+}
+
+.fit-image-size {
+  width: 10.5rem !important;
+  height: 10.5rem !important;
+  object-fit: cover !important;
 }
 
 .active-color {

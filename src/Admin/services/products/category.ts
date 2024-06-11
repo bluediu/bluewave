@@ -11,6 +11,7 @@ import {
 
 /* types */
 import { TFilter } from "../../types";
+import { TScope } from "../../../types";
 
 /* utils */
 import { fn } from "../../../utils";
@@ -27,20 +28,22 @@ export const getCategory = async (id: number): Promise<ICategory> => {
 
 export const getProductsByCategory = async (
   id: number,
+  scope: TScope = "admin",
 ): Promise<ICategoryProduct[]> => {
   const { data } = await api.get<ICategoryProduct[]>(
     `${CATEGORIES}/${id}/products/`,
-    fn.getSessionToken(),
+    fn.getSessionToken(scope),
   );
   return data;
 };
 
 export const listCategories = async (
   filterBy: TFilter,
+  scope: TScope = "admin",
 ): Promise<ICategory[]> => {
   const { data } = await api.get<ICategory[]>(
     `${CATEGORIES}/list/?filter_by=${filterBy}`,
-    fn.getSessionToken(),
+    fn.getSessionToken(scope),
   );
 
   return data;

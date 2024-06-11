@@ -1,0 +1,22 @@
+.card-layout {
+  cursor: pointer;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  transition:
+    transform 0.2s,
+    box-shadow 0;
+
+  background: rgba(255, 255, 255, 0.2) !important;
+
+  &__fit-image > img {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: cover !important;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
+  }
+}
