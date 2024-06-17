@@ -1,0 +1,31 @@
+.category-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__text {
+    flex: 1; /* Ensures the text item takes up remaining space */
+    text-align: left;
+  }
+
+  &__button {
+    flex-shrink: 0; /* Prevent button from shrinking */
+
+    /* Button styling */
+    background-image: linear-gradient(
+      to right,
+      #ece9e6 0%,
+      #ffffff 51%,
+      #ece9e6 100%
+    ) !important;
+    transition: 0.5s;
+    background-size: 200% auto !important;
+    border: 1px solid #ccc !important;
+    box-shadow: 0 0 20px #eee !important;
+
+    &:hover {
+      background-position: right center !important; /* change the direction of the change here */
+      text-decoration: none !important;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+/* ====== Menus ====== */
+.top-menu {
+  &-one {
+    display: flex;
+    justify-content: center;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: none !important;
+
+    &__items {
+      padding: 1rem !important;
+    }
+
+    &__title-size {
+      font-size: 1.7rem !important;
+    }
+  }
+
+  &-two {
+    margin-bottom: 0 !important;
+    background-color: #f9f9f9 !important;
+  }
+}

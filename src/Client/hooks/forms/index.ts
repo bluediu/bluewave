@@ -1,1 +1,1 @@
-export { useAuthTableForm } from "./useAuthTableForm";
+export * from "./useAuthTableForm";

@@ -7,13 +7,23 @@ import { ICategoryProduct } from "../../interfaces";
 /* Services */
 import { adminActions } from "../../services";
 
+import { TScope } from "../../../types";
+
+interface IProps {
+  enabled: boolean;
+  categoryId: number;
+  scope?: TScope;
+}
+
 export const useCategoryProducts = (
-  enabled: boolean = true,
-  categoryId: number,
+  props: IProps,
 ): UseQueryResult<ICategoryProduct[], Error> => {
+  const { enabled, categoryId, scope = "admin" } = props;
+
   const query = useQuery({
     queryKey: ["products", { categoryId }],
-    queryFn: () => adminActions.products.getProductsByCategory(+categoryId),
+    queryFn: () =>
+      adminActions.products.getProductsByCategory(+categoryId, scope),
     enabled,
   });
 

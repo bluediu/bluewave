@@ -1,1 +1,1 @@
-export { useAuthTableMutation } from "./useAuthTableMutation";
+export * from "./useAuthTableMutation";

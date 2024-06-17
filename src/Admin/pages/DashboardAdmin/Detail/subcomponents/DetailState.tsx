@@ -7,7 +7,7 @@ import { Placeholder, Statistic } from "semantic-ui-react";
 import { IOrderState } from "../../../../interfaces";
 
 /* Utils */
-import { convertCentToDolar } from "../../../../../utils/functions";
+import { convertCentToDolar } from "../../../../../utils";
 
 interface IProps {
   orderState: UseQueryResult<IOrderState, Error>;

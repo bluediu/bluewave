@@ -20,7 +20,10 @@ export const CategoryDetail = () => {
   const [hasFetched, setHasFetched] = useState(false);
   const [showContent, setShowContent] = useState(false);
 
-  const products = useCategoryProducts(enabled, +id);
+  const products = useCategoryProducts({
+    enabled: enabled,
+    categoryId: +id,
+  });
 
   const fields = [
     { label: "Name", value: "name" },

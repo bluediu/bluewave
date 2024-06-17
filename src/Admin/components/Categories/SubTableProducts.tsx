@@ -15,7 +15,7 @@ import { ICategoryProduct } from "../../interfaces";
 import { PRODUCT_DETAIL } from "../../constants/paths";
 
 /* Utils */
-import { convertCentToDolar } from "../../../utils/functions";
+import { convertCentToDolar } from "../../../utils";
 
 const headers: string[] = ["ID", "Name", "Category", "Active", "Price"];
 

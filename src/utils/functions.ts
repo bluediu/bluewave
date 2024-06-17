@@ -92,3 +92,21 @@ export const convertCentToDolar = (value: number): string => {
 export const convertDolarToCent = (value: number): number => {
   return Number((value * 100).toFixed(2));
 };
+
+/**
+ * Return a url with the params replaced.
+ */
+export const generateUrl = (
+  template: string,
+  params: Record<string, string | number>,
+): string => {
+  let url = template;
+
+  for (const key in params) {
+    if (params.hasOwnProperty(key)) {
+      url = url.replace(`:${key}`, String(params[key]));
+    }
+  }
+
+  return url;
+};

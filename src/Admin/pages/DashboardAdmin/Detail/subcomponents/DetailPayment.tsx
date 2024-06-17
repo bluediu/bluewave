@@ -14,7 +14,7 @@ import { IPayment } from "../../../../interfaces";
 import { ADMIN } from "../../../../constants/paths";
 
 /* Utils */
-import { convertCentToDolar } from "../../../../../utils/functions";
+import { convertCentToDolar } from "../../../../../utils";
 
 interface IProps {
   data: IPayment;
