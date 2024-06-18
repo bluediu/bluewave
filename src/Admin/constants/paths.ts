@@ -1,10 +1,10 @@
 export const ADMIN = "/admin";
-export const ADMIN_TABLE_DETAIL = "/admin/orders/table";
+export const ADMIN_TABLE_DETAIL = "/admin/orders/table/:code";
 export const USERS = `${ADMIN}/users`;
-export const USER_DETAIL = `${USERS}/user`;
+export const USER_DETAIL = `${USERS}/user/:id`;
 export const CATEGORIES = `${ADMIN}/categories`;
-export const CATEGORY_DETAIL = `${CATEGORIES}/category`;
+export const CATEGORY_DETAIL = `${CATEGORIES}/category/:id`;
 export const PRODUCTS = `${ADMIN}/products`;
-export const PRODUCT_DETAIL = `${PRODUCTS}/product`;
+export const PRODUCT_DETAIL = `${PRODUCTS}/product/:id`;
 export const TABLES = `${ADMIN}/tables`;
-export const TABLE_DETAIL = `${TABLES}/table`;
+export const TABLE_DETAIL = `${TABLES}/table/:id`;

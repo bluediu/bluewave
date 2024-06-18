@@ -23,8 +23,11 @@ import { useQuery } from "@tanstack/react-query";
 /* Services */
 import { adminActions } from "../../../services";
 
+/* Utils */
+import { generateUrl } from "../../../../utils";
+
 /* Constants */
-import { ADMIN_TABLE_DETAIL } from "../../../constants/paths";
+import { ADMIN_TABLE_DETAIL } from "../../../constants";
 
 import "./ListTables.scss";
 
@@ -82,7 +85,7 @@ export const ListTables = () => {
         <article className="tables-list-admin">
           {data?.map((table) => (
             <Link
-              to={`${ADMIN_TABLE_DETAIL}/${table.code}`}
+              to={generateUrl(ADMIN_TABLE_DETAIL, { code: table.code })}
               className="table-item mr-5"
               key={table.id}
             >

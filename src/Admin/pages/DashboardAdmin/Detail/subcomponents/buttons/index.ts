@@ -1,2 +1,2 @@
-export { OrderActionButtons } from "./OrderActionButtons";
-export { ViewBillBtn } from "./ViewBillBtn";
+export * from "./OrderActionButtons";
+export * from "./ViewBillBtn";

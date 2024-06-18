@@ -14,7 +14,7 @@ import { ICategoryProduct } from "../../../../Admin/interfaces";
 import { fn } from "../../../../utils";
 
 /* Constants */
-import { PRODUCT_DETAIL } from "../../../constants/paths";
+import { PRODUCT_DETAIL } from "../../../constants";
 
 import "./ProductCard.scss";
 

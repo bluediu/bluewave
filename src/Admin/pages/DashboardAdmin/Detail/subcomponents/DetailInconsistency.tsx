@@ -11,7 +11,7 @@ import { useCloseOrders } from "../../../../hooks";
 import { IProductOrder } from "../../../../interfaces";
 
 /* Constants */
-import { ADMIN } from "../../../../constants/paths";
+import { ADMIN } from "../../../../constants";
 
 interface IProps {
   orders: UseQueryResult<IProductOrder[], Error>;

@@ -1,3 +1,3 @@
-export { TableUsers } from "./TableUsers";
-export { UserCreateForm } from "./UserCreateForm";
-export { UserUpdateForm } from "./UserUpdateForm";
+export * from "./TableUsers";
+export * from "./UserCreateForm";
+export * from "./UserUpdateForm";

@@ -1,1 +1,1 @@
-export { DashboardTableDetail } from "./DashboardTableDetail";
+export * from "./DashboardTableDetail";

@@ -8,4 +8,4 @@ export * from "./management";
 export * from "./dashboard";
 export * from "./payments";
 
-export { useModal } from "./useModal";
+export * from "./useModal";

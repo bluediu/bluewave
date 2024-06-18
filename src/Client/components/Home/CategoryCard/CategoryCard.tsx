@@ -12,7 +12,7 @@ import { ICategory } from "../../../../Admin/interfaces";
 import { generateUrl } from "../../../../utils";
 
 /* Constants */
-import { PRODUCTS } from "../../../constants/paths";
+import { PRODUCTS } from "../../../constants";
 
 import "./CategoryCard.scss";
 

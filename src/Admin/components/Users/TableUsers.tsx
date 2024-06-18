@@ -19,8 +19,11 @@ import { IUser } from "../../interfaces";
 /* Types */
 import { TFilter } from "../../types";
 
+/* Utils */
+import { generateUrl } from "../../../utils";
+
 /* Constants */
-import { USER_DETAIL } from "../../constants/paths";
+import { USER_DETAIL } from "../../constants";
 
 const headers: string[] = [
   "ID",
@@ -60,7 +63,9 @@ export const TableUsers = (props: IProps) => {
           {data?.map((user: IUser) => (
             <Table.Row key={user.id}>
               <Table.Cell className="fit-to-content">
-                <Link to={`${USER_DETAIL}/${user.id}`}># {user.id}</Link>
+                <Link to={generateUrl(USER_DETAIL, { id: user.id })}>
+                  # {user.id}
+                </Link>
               </Table.Cell>
               <Table.Cell>{user.username}</Table.Cell>
               <Table.Cell>

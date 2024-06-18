@@ -1,3 +1,3 @@
-export { usePayment } from "./usePayment";
-export { useClosePayment } from "./useClosePayment";
-export { usePaymentRegister } from "./usePaymentRegister";
+export * from "./usePayment";
+export * from "./useClosePayment";
+export * from "./usePaymentRegister";

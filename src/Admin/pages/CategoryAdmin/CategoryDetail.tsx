@@ -10,7 +10,7 @@ import { Detail, TableSubtitle } from "../../common";
 import { SubTableProducts } from "../../components/Categories";
 
 /* Constants */
-import { CATEGORIES } from "../../constants/paths";
+import { CATEGORIES } from "../../constants";
 
 export const CategoryDetail = () => {
   const { id = "0" } = useParams();

@@ -1,1 +1,1 @@
-export { TopMenu } from "./TopMenu";
+export * from "./TopMenu";

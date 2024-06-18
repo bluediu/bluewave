@@ -1,2 +1,2 @@
-export { UserAdmin } from "./UserAdmin";
-export { UserDetail } from "./UserDetail";
+export * from "./UserAdmin";
+export * from "./UserDetail";

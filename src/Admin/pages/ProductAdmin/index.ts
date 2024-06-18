@@ -1,2 +1,2 @@
-export { ProductAdmin } from "./ProductAdmin";
-export { ProductDetail } from "./ProductDetail";
+export * from "./ProductAdmin";
+export * from "./ProductDetail";

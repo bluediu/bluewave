@@ -19,8 +19,11 @@ import { ICategory } from "../../interfaces";
 /* Types */
 import { TFilter } from "../../types";
 
+/* Utils */
+import { generateUrl } from "../../../utils";
+
 /* Constants */
-import { CATEGORY_DETAIL } from "../../constants/paths";
+import { CATEGORY_DETAIL } from "../../constants";
 
 const headers: string[] = ["ID", "Name", "Active", ""];
 
@@ -53,7 +56,7 @@ export const TableCategories = (props: IProps) => {
           {data?.map((category: ICategory) => (
             <Table.Row key={category.id}>
               <Table.Cell className="fit-to-content">
-                <Link to={`${CATEGORY_DETAIL}/${category.id}`}>
+                <Link to={generateUrl(CATEGORY_DETAIL, { id: category.id })}>
                   # {category.id}
                 </Link>
               </Table.Cell>

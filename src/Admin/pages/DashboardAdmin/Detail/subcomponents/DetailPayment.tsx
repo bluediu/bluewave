@@ -11,7 +11,7 @@ import { useClosePayment } from "../../../../hooks";
 import { IPayment } from "../../../../interfaces";
 
 /* Constants */
-import { ADMIN } from "../../../../constants/paths";
+import { ADMIN } from "../../../../constants";
 
 /* Utils */
 import { convertCentToDolar } from "../../../../../utils";

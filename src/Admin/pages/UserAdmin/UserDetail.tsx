@@ -6,7 +6,7 @@ import { useUser } from "../../hooks";
 import { Detail } from "../../common";
 
 /* Constants */
-import { USERS } from "../../constants/paths";
+import { USERS } from "../../constants";
 
 export const UserDetail = () => {
   const { id = "0" } = useParams();

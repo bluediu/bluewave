@@ -1,3 +1,3 @@
-export { TableTables } from "./TableTables";
-export { TableCreateForm } from "./TableCreateForm";
-export { TableUpdateForm } from "./TableUpdateForm";
+export * from "./TableTables";
+export * from "./TableCreateForm";
+export * from "./TableUpdateForm";

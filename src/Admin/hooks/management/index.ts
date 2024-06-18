@@ -1,1 +1,1 @@
-export { useFilter } from "./useFilter";
+export * from "./useFilter";

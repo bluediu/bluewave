@@ -126,7 +126,7 @@ export const Detail = (props: IProps) => {
   );
 };
 
-export const NormalRow = (props: {
+const NormalRow = (props: {
   label: string;
   value: string | number | boolean | undefined;
 }) => {
@@ -152,7 +152,7 @@ export const NormalRow = (props: {
   );
 };
 
-export const LinkRow = (props: {
+const LinkRow = (props: {
   label: string;
   value: string | number | boolean | undefined;
   link: string;
@@ -176,7 +176,7 @@ export const LinkRow = (props: {
   );
 };
 
-export const BasicTrail = (props: {
+const BasicTrail = (props: {
   created: string;
   updated: string;
   isTabletOrMobile: boolean;

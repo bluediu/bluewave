@@ -6,7 +6,7 @@ import { useProduct } from "../../hooks";
 import { Detail } from "../../common";
 
 /* Constants */
-import { CATEGORY_DETAIL, PRODUCTS } from "../../constants/paths";
+import { CATEGORY_DETAIL, PRODUCTS } from "../../constants";
 
 export const ProductDetail = () => {
   const { id = "0" } = useParams();
