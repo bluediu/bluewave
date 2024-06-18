@@ -1,7 +1,7 @@
-export { DetailBreadcrumb } from "./DetailBreadcrumb";
-export { DetailState } from "./DetailState";
-export { DetailPayment } from "./DetailPayment";
-export { PaymentRegisterForm } from "./PaymentRegisterForm";
-export { DetailProducts } from "./DetailProducts";
-export { DetailInconsistency } from "./DetailInconsistency";
+export * from "./DetailBreadcrumb";
+export * from "./DetailState";
+export * from "./DetailPayment";
+export * from "./PaymentRegisterForm";
+export * from "./DetailProducts";
+export * from "./DetailInconsistency";
 export * from "./buttons";

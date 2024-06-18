@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Breadcrumb } from "semantic-ui-react";
 
 /* Constant */
-import { ADMIN } from "../../../../constants/paths";
+import { ADMIN } from "../../../../constants";
 
 export const DetailBreadcrumb = () => {
   return (

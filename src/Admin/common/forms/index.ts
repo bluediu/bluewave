@@ -1,2 +1,2 @@
-export { CreateForm } from "./CreateForm";
-export { UpdateForm } from "./UpdateForm";
+export * from "./CreateForm";
+export * from "./UpdateForm";

@@ -6,7 +6,7 @@ import { useTable } from "../../hooks";
 import { Detail } from "../../common";
 
 /* Constants */
-import { TABLES } from "../../constants/paths";
+import { TABLES } from "../../constants";
 
 export const TableDetail = () => {
   const { id = "0" } = useParams();

@@ -1,4 +1,4 @@
-export { useTables } from "./useTables";
-export { useTable } from "./useTable";
-export { useTableCreate } from "./useTableCreate";
-export { useTableUpdate } from "./useTableUpdate";
+export * from "./useTables";
+export * from "./useTable";
+export * from "./useTableCreate";
+export * from "./useTableUpdate";

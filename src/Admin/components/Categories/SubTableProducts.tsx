@@ -12,10 +12,10 @@ import { UseQueryResult } from "@tanstack/react-query";
 import { ICategoryProduct } from "../../interfaces";
 
 /* Constants */
-import { PRODUCT_DETAIL } from "../../constants/paths";
+import { PRODUCT_DETAIL } from "../../constants";
 
 /* Utils */
-import { convertCentToDolar } from "../../../utils";
+import { fn } from "../../../utils";
 
 const headers: string[] = ["ID", "Name", "Category", "Active", "Price"];
 
@@ -42,7 +42,7 @@ export const SubTableProducts = (props: IProps) => {
           {data?.map((product: ICategoryProduct) => (
             <Table.Row key={product.id}>
               <Table.Cell className="fit-to-content">
-                <Link to={`${PRODUCT_DETAIL}/${product.id}`}>
+                <Link to={fn.generateUrl(PRODUCT_DETAIL, { id: product.id })}>
                   # {product.id}
                 </Link>
               </Table.Cell>
@@ -51,7 +51,7 @@ export const SubTableProducts = (props: IProps) => {
               <Table.Cell className="status">
                 <IsActiveCell isActive={product.is_active} />
               </Table.Cell>
-              <Table.Cell>${convertCentToDolar(product.price)}</Table.Cell>
+              <Table.Cell>${fn.convertCentToDolar(product.price)}</Table.Cell>
             </Table.Row>
           ))}
 

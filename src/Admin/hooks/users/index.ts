@@ -1,4 +1,4 @@
-export { useUser } from "./useUser";
-export { useUsers } from "./useUsers";
-export { useUserCreate } from "./useUserCreate";
-export { useUserUpdate } from "./useUserUpdate";
+export * from "./useUser";
+export * from "./useUsers";
+export * from "./useUserCreate";
+export * from "./useUserUpdate";

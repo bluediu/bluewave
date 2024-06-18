@@ -1,4 +1,4 @@
-export { useProducts } from "./useProducts";
-export { useProduct } from "./useProduct";
-export { useProductCreate } from "./useProductCreate";
-export { useProductUpdate } from "./useProductUpdate";
+export * from "./useProducts";
+export * from "./useProduct";
+export * from "./useProductCreate";
+export * from "./useProductUpdate";

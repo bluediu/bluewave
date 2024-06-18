@@ -1,4 +1,4 @@
-export { TableCategories } from "./TableCategories";
-export { CategoryCreateForm } from "./CategoryCreateForm";
-export { CategoryUpdateForm } from "./CategoryUpdateForm";
-export { SubTableProducts } from "./SubTableProducts";
+export * from "./TableCategories";
+export * from "./CategoryCreateForm";
+export * from "./CategoryUpdateForm";
+export * from "./SubTableProducts";

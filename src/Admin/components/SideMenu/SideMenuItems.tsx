@@ -11,7 +11,7 @@ import { Divider, Header, Icon, SemanticICONS } from "semantic-ui-react";
 import { AuthContext } from "../../context";
 
 /* Constants */
-import { ADMIN } from "../../constants/paths";
+import { ADMIN } from "../../constants";
 
 /* Data */
 import { sidebarItems } from "./data";

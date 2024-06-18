@@ -1,1 +1,1 @@
-export { OrderRegisterForm } from "./OrderRegisterForm";
+export * from "./OrderRegisterForm";

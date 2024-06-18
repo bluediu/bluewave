@@ -24,13 +24,13 @@ import { adminPath } from "../Admin/constants";
 const routesAdmin: IRoute[] = [
   { path: adminPath.ADMIN, layout: AdminLayout, component: DashboardAdmin },
   {
-    path: `${adminPath.ADMIN_TABLE_DETAIL}/:code`,
+    path: adminPath.ADMIN_TABLE_DETAIL,
     layout: AdminLayout,
     component: DashboardTableDetail,
   },
   { path: adminPath.USERS, layout: AdminLayout, component: UserAdmin },
   {
-    path: `${adminPath.USER_DETAIL}/:id`,
+    path: adminPath.USER_DETAIL,
     layout: AdminLayout,
     component: UserDetail,
   },
@@ -40,7 +40,7 @@ const routesAdmin: IRoute[] = [
     component: CategoryAdmin,
   },
   {
-    path: `${adminPath.CATEGORY_DETAIL}/:id`,
+    path: adminPath.CATEGORY_DETAIL,
     layout: AdminLayout,
     component: CategoryDetail,
   },
@@ -50,7 +50,7 @@ const routesAdmin: IRoute[] = [
     component: ProductAdmin,
   },
   {
-    path: `${adminPath.PRODUCT_DETAIL}/:id`,
+    path: adminPath.PRODUCT_DETAIL,
     layout: AdminLayout,
     component: ProductDetail,
   },
@@ -60,7 +60,7 @@ const routesAdmin: IRoute[] = [
     component: TableAdmin,
   },
   {
-    path: `${adminPath.TABLE_DETAIL}/:id`,
+    path: adminPath.TABLE_DETAIL,
     layout: AdminLayout,
     component: TableDetail,
   },

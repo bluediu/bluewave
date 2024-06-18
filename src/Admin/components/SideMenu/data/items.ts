@@ -1,11 +1,5 @@
 /* Constants */
-import {
-  USERS,
-  CATEGORIES,
-  PRODUCTS,
-  TABLES,
-  ADMIN,
-} from "../../../constants/paths";
+import { USERS, CATEGORIES, PRODUCTS, TABLES, ADMIN } from "../../../constants";
 
 interface ISidebarItem {
   name: string;

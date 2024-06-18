@@ -1,1 +1,1 @@
-export { LoginAdmin } from "./LoginAdmin";
+export * from "./LoginAdmin";

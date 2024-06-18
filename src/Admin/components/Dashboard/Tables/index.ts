@@ -1,2 +1,2 @@
-export { ListTables } from "./ListTables";
-export { TableLegends } from "./TableLegends";
+export * from "./ListTables";
+export * from "./TableLegends";

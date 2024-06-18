@@ -6,7 +6,11 @@ import { useContext } from "react";
 import { AuthTableContext } from "../../context";
 
 /* Components */
-import { Icon, Menu } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { Icon, Label, Menu } from "semantic-ui-react";
+
+/* Constants */
+import { clientPath } from "../../constants";
 
 import "./Menus.scss";
 
@@ -29,12 +33,20 @@ export const Menus = () => {
       </Menu>
 
       <Menu pointing secondary className="top-menu-two">
-        <Menu.Item active className="cursor-pointer">
+        <Menu.Item
+          as={Link}
+          to={clientPath.CLIENT}
+          active
+          className="cursor-pointer"
+        >
           <Icon name="list layout" />
           Menu
         </Menu.Item>
         <Menu.Item className="cursor-pointer">
           <Icon name="cart arrow down" />
+          <Label color="teal" floating>
+            +1
+          </Label>
           Cart
         </Menu.Item>
         <Menu.Item className="cursor-pointer">

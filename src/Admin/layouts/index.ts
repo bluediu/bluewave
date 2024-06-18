@@ -1,1 +1,1 @@
-export { AdminLayout } from "./AdminLayout";
+export * from "./AdminLayout";

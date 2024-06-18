@@ -20,7 +20,7 @@ import { IProduct } from "../../interfaces";
 import { TFilter } from "../../types";
 
 /* Constants */
-import { PRODUCT_DETAIL } from "../../constants/paths";
+import { PRODUCT_DETAIL } from "../../constants";
 
 /* utils */
 import { fn } from "../../../utils";
@@ -61,7 +61,7 @@ export const TableProducts = (props: IProps) => {
           {data?.map((product: IProduct) => (
             <Table.Row key={product.id}>
               <Table.Cell className="fit-to-content">
-                <Link to={`${PRODUCT_DETAIL}/${product.id}`}>
+                <Link to={fn.generateUrl(PRODUCT_DETAIL, { id: product.id })}>
                   # {product.id}
                 </Link>
               </Table.Cell>

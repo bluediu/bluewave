@@ -1,2 +1,2 @@
-export { TableAdmin } from "./TableAdmin";
-export { TableDetail } from "./TableDetail";
+export * from "./TableAdmin";
+export * from "./TableDetail";

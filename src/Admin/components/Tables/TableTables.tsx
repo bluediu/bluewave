@@ -19,8 +19,11 @@ import { ITable } from "../../interfaces";
 /* Types */
 import { TFilter } from "../../types";
 
+/* Utils */
+import { generateUrl } from "../../../utils";
+
 /* Constants */
-import { TABLE_DETAIL } from "../../constants/paths";
+import { TABLE_DETAIL } from "../../constants";
 
 const headers: string[] = ["ID", "Code", "Active", ""];
 
@@ -53,7 +56,9 @@ export const TableTables = (props: IProps) => {
           {data?.map((table: ITable) => (
             <Table.Row key={table.id}>
               <Table.Cell className="fit-to-content">
-                <Link to={`${TABLE_DETAIL}/${table.id}`}># {table.id}</Link>
+                <Link to={generateUrl(TABLE_DETAIL, { id: table.id })}>
+                  # {table.id}
+                </Link>
               </Table.Cell>
               <Table.Cell>{table.code}</Table.Cell>
               <Table.Cell className="status">
