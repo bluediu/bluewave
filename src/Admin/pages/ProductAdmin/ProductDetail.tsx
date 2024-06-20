@@ -10,7 +10,7 @@ import { CATEGORY_DETAIL, PRODUCTS } from "../../constants";
 
 export const ProductDetail = () => {
   const { id = "0" } = useParams();
-  const { product } = useProduct(+id);
+  const { product } = useProduct({ id: +id });
 
   const fields = [
     { label: "Name", value: "name" },

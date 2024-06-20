@@ -4,8 +4,16 @@ import { useQuery } from "@tanstack/react-query";
 /* Interfaces */
 import { IProduct } from "../../interfaces";
 
+/* Types */
+import { TScope } from "../../../types";
+
 /* Services */
 import { adminActions } from "../../services";
+
+interface InputProps {
+  id: number;
+  scope?: TScope;
+}
 
 interface IOutputProps {
   isLoading: boolean;
@@ -14,7 +22,9 @@ interface IOutputProps {
   product?: IProduct;
 }
 
-export const useProduct = (id: number): IOutputProps => {
+export const useProduct = (props: InputProps): IOutputProps => {
+  const { id, scope = "admin" } = props;
+
   const {
     isLoading,
     isError,
@@ -22,7 +32,7 @@ export const useProduct = (id: number): IOutputProps => {
     data: product,
   } = useQuery({
     queryKey: ["product", id],
-    queryFn: () => adminActions.products.getProduct(id),
+    queryFn: () => adminActions.products.getProduct(id, scope),
     refetchOnWindowFocus: false,
   });
 

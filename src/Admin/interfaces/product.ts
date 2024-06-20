@@ -8,6 +8,8 @@ export interface IProduct {
   is_active: boolean;
   image: string;
   category: ICategory;
+  max_qty: number;
+  min_qty: number;
 }
 
 export interface IProductCreate {
