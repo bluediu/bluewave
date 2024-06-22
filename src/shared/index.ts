@@ -1,4 +1,5 @@
 export * from "./Form";
 export * from "./ModalBasic";
-export { Errors } from "./Errors";
-export { ModalConfirm } from "./ModalConfirm";
+export * from "./Errors";
+export * from "./ModalConfirm";
+export * from "./ItemsList";

@@ -6,16 +6,20 @@ import { IProduct, IProductCreate, IProductUpdate } from "../../interfaces";
 
 /* types */
 import { TFilter } from "../../types";
+import { TScope } from "../../../types";
 
 /* utils */
 import { fn } from "../../../utils";
 
 const PRODUCTS = "/products/product";
 
-export const getProduct = async (id: number): Promise<IProduct> => {
+export const getProduct = async (
+  id: number,
+  scope: TScope = "admin",
+): Promise<IProduct> => {
   const { data } = await api.get<IProduct>(
     `${PRODUCTS}/${id}/get/`,
-    fn.getSessionToken(),
+    fn.getSessionToken(scope),
   );
   return data;
 };
