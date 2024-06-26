@@ -1,0 +1,33 @@
+.product-in-cart {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  transition:
+    transform 0.2s,
+    box-shadow 0;
+  background: rgba(255, 255, 255, 0.5) !important;
+
+  &__remove_btn {
+    background-image: linear-gradient(
+      to right,
+      #d31027 0%,
+      #ea384d 51%,
+      #d31027 100%
+    ) !important;
+    background-size: 200% auto !important;
+    color: white !important;
+    box-shadow: 0 0 20px #eee !important;
+
+    &:hover {
+      background-position: right center !important; /* change the direction of the change here */
+      color: #fff !important;
+      text-decoration: none !important;
+    }
+  }
+}
+
+.cart-remove-btn {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #d31027;
+}

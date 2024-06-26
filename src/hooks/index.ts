@@ -1,3 +1,4 @@
-export { useDynamicPageTitle } from "./useDynamicPageTitle";
-export { useDeviceType } from "./useDeviceType";
-export { useConfirmModal } from "./useConfirmModal";
+export * from "./useDynamicPageTitle";
+export * from "./useDeviceType";
+export * from "./useConfirmModal";
+export * from "./useQtySelector";

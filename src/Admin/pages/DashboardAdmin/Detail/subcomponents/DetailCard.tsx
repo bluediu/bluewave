@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 /* Libs */
 import dayjs from "dayjs";
@@ -10,24 +10,29 @@ import {
   Card,
   CardContent,
   Icon,
-  Image,
   Label,
   Popup,
   SemanticCOLORS,
 } from "semantic-ui-react";
+import {
+  CardRoundedImg,
+  CardCategoryInfo,
+  QuantitySelector,
+  CardInfoHeader,
+} from "../../../../../shared";
 
 /* Hooks */
-import { useDeviceType } from "../../../../../hooks";
+import { useDeviceType, useQtySelector } from "../../../../../hooks";
 import { useOrderUpdate } from "../../../../hooks";
 
 /* Interfaces */
 import { IProductOrder } from "../../../../interfaces";
 
-/* Utils */
-import { convertCentToDolar } from "../../../../../utils";
-
 /* Types */
 import { EStatus } from "../../../../types";
+
+/* Constants */
+import { PRODUCT_DETAIL } from "../../../../constants";
 
 import "./DetailCard.scss";
 
@@ -48,7 +53,11 @@ interface IProps {
 export const DetailCard = ({ item, tableCode }: IProps) => {
   const isTabletOrMobile = useDeviceType();
 
-  const [quantity, setQuantity] = useState(item.quantity);
+  const { quantity, reset, handleQty } = useQtySelector({
+    initialQty: item.quantity,
+    maxQty: item.max_qty,
+    minQty: item.min_qty,
+  });
 
   const mutation = useOrderUpdate({
     orderCode: item.code,
@@ -56,22 +65,17 @@ export const DetailCard = ({ item, tableCode }: IProps) => {
   });
 
   useEffect(() => {
-    if (mutation.isError) setQuantity(item.quantity);
-  }, [item.quantity, mutation.isError]);
+    if (mutation.isError) reset();
+  }, [item.quantity, mutation.isError, reset]);
 
   const handleDelivered = () => mutation.mutate({ status: EStatus.DELIVERED });
 
   const handleCancel = () => mutation.mutate({ status: EStatus.CANCELED });
 
-  const handleQty = (value: number): void => {
-    const newValue = Math.min(
-      Math.max(quantity + value, item.min_qty),
-      item.max_qty,
-    );
+  const handleOrderQty = (value: number): void => {
+    const newValue = handleQty(value);
     // Change the quantity
     mutation.mutate({ quantity: newValue });
-
-    setQuantity(newValue);
   };
 
   const isPending = mutation.isPending || item.status_label === "Canceled";
@@ -83,15 +87,10 @@ export const DetailCard = ({ item, tableCode }: IProps) => {
       className="table-detail-card"
     >
       <Card.Content>
-        <Image
-          className="fit-image-size"
-          floated="left"
-          bordered
-          circular
-          size="small"
-          src={`${import.meta.env.VITE_API_URL}/${item?.product_image}`}
-        />
+        {/* Image */}
+        <CardRoundedImg image={item.product_image} />
 
+        {/* Statuses */}
         <Card.Meta className="w-100 d-flex justify-content-between">
           <Popup
             key={item.code}
@@ -109,18 +108,16 @@ export const DetailCard = ({ item, tableCode }: IProps) => {
           </span>
         </Card.Meta>
 
-        <Card.Header className="mt-3 mb-4">
-          {item.product_name}
-          <Label as="a" className="ml-5" tag size="tiny">
-            <Icon name="dollar" />
-            {convertCentToDolar(item.product_price)} USD
-          </Label>
-        </Card.Header>
+        {/* Product Info */}
+        <CardInfoHeader
+          targetId={item.product_id}
+          toUrl={PRODUCT_DETAIL}
+          name={item.product_name}
+          price={item.product_price}
+        />
+        <CardCategoryInfo category={item.product_category} />
 
-        <Card.Meta>
-          <Label horizontal>Category: {item.product_category}</Label>
-        </Card.Meta>
-
+        {/* Order date */}
         <Card.Meta className="mt-4">
           <Popup
             key={item.created_at.toString()}
@@ -133,34 +130,22 @@ export const DetailCard = ({ item, tableCode }: IProps) => {
             }
           />
         </Card.Meta>
-        <Card.Meta className={`mt-4 ${isTabletOrMobile && "text-center"}`}>
-          <span>Quantity: </span>
-          <Button
-            circular
-            size="mini"
-            icon="plus"
-            className="m-0"
-            basic
-            onClick={() => handleQty(1)}
-            disabled={isPending || quantity === item.max_qty}
-          />
-          <span className="fw-bold mx-1">{quantity}</span>
-          <Button
-            circular
-            size="mini"
-            icon="minus"
-            basic
-            onClick={() => handleQty(-1)}
-            disabled={isPending || quantity === item.min_qty}
-          />
-          <small>(Max. allowed {item.max_qty})</small>
-        </Card.Meta>
+
+        {/* Quantity handling */}
+        <QuantitySelector
+          targetId={item.code}
+          maxQty={item.max_qty}
+          minQty={item.min_qty}
+          quantity={quantity}
+          handleQty={handleOrderQty}
+          disabled={isPending}
+        />
       </Card.Content>
 
+      {/* Actions */}
       {item.status_label === "Pending" && (
         <CardContent extra>
           <div className="text-end">
-            {/* fluid */}
             <Button.Group fluid={isTabletOrMobile}>
               <Button
                 color="blue"

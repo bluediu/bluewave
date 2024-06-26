@@ -22,4 +22,6 @@ export interface ICategoryProduct {
   is_active: boolean;
   image: string;
   category_name: string;
+  max_qty: number;
+  min_qty: number;
 }
