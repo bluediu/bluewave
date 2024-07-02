@@ -2,7 +2,8 @@
 import { CardLayout } from "../../../layouts";
 
 /* Components */
-import { Button, Card, Label } from "semantic-ui-react";
+import { CartBtn } from "../../Cart";
+import { Card, Label } from "semantic-ui-react";
 
 /* Hooks */
 import { useNavigate } from "react-router-dom";
@@ -15,8 +16,6 @@ import { fn } from "../../../../utils";
 
 /* Constants */
 import { PRODUCT_DETAIL } from "../../../constants";
-
-import "./ProductCard.scss";
 
 export const ProductCard = ({ product }: { product: ICategoryProduct }) => {
   const navigate = useNavigate();
@@ -52,16 +51,7 @@ export const ProductCard = ({ product }: { product: ICategoryProduct }) => {
               $ {fn.convertCentToDolar(product.price)}
             </span>
           </h2>
-
-          <Button
-            circular
-            className="add-to-cart-btn m-0"
-            onClick={() => {
-              console.log("CLICK ME");
-            }}
-          >
-            Add to cart
-          </Button>
+          <CartBtn product={{ ...product, productQty: 1 }} />
         </section>
       </Card.Content>
     </CardLayout>

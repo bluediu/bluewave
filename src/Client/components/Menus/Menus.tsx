@@ -3,10 +3,10 @@ import { toast } from "react-toastify";
 
 /* Context */
 import { useContext } from "react";
-import { AuthTableContext } from "../../context";
+import { AuthTableContext, CartContext } from "../../context";
 
 /* Components */
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Icon, Label, Menu } from "semantic-ui-react";
 
 /* Constants */
@@ -15,12 +15,26 @@ import { clientPath } from "../../constants";
 import "./Menus.scss";
 
 export const Menus = () => {
+  const { pathname } = useLocation();
+
+  const { count } = useContext(CartContext);
   const { logout } = useContext(AuthTableContext);
 
   const handleLogout = () => {
     logout();
     toast.success("Logout successful");
   };
+
+  const getBasePath = (path: string) => {
+    const parts = path.split("/");
+    return `/${parts[1]}/${parts[2] ? parts[2].split(":")[0] : ""}`;
+  };
+
+  const basePath = getBasePath(pathname);
+
+  const isMenuActive =
+    basePath === getBasePath(clientPath.CLIENT) ||
+    pathname.startsWith(basePath);
 
   return (
     <section>
@@ -36,16 +50,21 @@ export const Menus = () => {
         <Menu.Item
           as={Link}
           to={clientPath.CLIENT}
-          active
+          active={isMenuActive}
           className="cursor-pointer"
         >
           <Icon name="list layout" />
           Menu
         </Menu.Item>
-        <Menu.Item className="cursor-pointer">
+        <Menu.Item
+          className="cursor-pointer"
+          as={Link}
+          to={clientPath.CART}
+          active={pathname.startsWith(clientPath.CART)}
+        >
           <Icon name="cart arrow down" />
           <Label color="teal" floating>
-            +1
+            {count ? `+${count}` : "0"}
           </Label>
           Cart
         </Menu.Item>

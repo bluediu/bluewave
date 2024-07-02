@@ -30,6 +30,7 @@ export interface IOrderUpdate {
 export interface IProductOrder {
   code: string;
   status_label: TStatus;
+  product_id: number;
   product_name: string;
   product_image: string;
   product_category: string;

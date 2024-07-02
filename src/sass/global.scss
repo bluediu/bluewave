@@ -32,6 +32,10 @@ body {
   cursor: pointer !important;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 /* ====== Tables ====== */
 $active: #008000;
 $inactive: #f00;
@@ -130,6 +134,14 @@ $inactive: #f00;
 /* ====== flexbox ====== */
 .d-flex {
   display: flex !important;
+}
+
+.flex-wrap {
+  flex-wrap: wrap !important;
+}
+
+.flex-column-reverse {
+  flex-direction: column-reverse !important;
 }
 
 .justify-content-center {

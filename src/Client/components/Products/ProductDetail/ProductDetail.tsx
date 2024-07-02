@@ -1,5 +1,8 @@
 /* Components */
-import { Button, Card, Image, Label, Popup } from "semantic-ui-react";
+import { CartBtn } from "../../Cart";
+import { useQtySelector } from "../../../../hooks";
+import { QuantitySelector } from "../../../../shared";
+import { Card, Image, Label } from "semantic-ui-react";
 
 /* Module: Interfaces */
 import { IProduct } from "../../../../Admin/interfaces";
@@ -10,6 +13,17 @@ import { convertCentToDolar } from "../../../../utils";
 import "./ProductDetail.scss";
 
 export const ProductDetail = ({ product }: { product: IProduct }) => {
+  const { quantity, handleQty } = useQtySelector({
+    minQty: product.min_qty,
+    maxQty: product.max_qty,
+  });
+
+  const productInCart = {
+    ...product,
+    category_name: product.category.name,
+    productQty: quantity,
+  };
+
   return (
     <Card centered className="product-detail__card">
       <Image
@@ -37,37 +51,18 @@ export const ProductDetail = ({ product }: { product: IProduct }) => {
               $ {convertCentToDolar(product.price)}
             </span>
           </h1>
-          <Card.Meta className="mt-4">
-            <span>Quantity: </span>
-            <Popup
-              key={product.name}
-              content={`Max. allowed ${product.max_qty}`}
-              trigger={
-                <Button
-                  circular
-                  size="mini"
-                  icon="plus"
-                  basic
-                  className="mr-1"
-                  // onClick={() => handleQty(1)}
-                  // disabled={isPending || quantity === item.max_qty}
-                />
-              }
-            />
-            <span className="fw-bold mx-1">2</span>
-            <Button circular size="mini" icon="minus" basic className="ml-1" />
-          </Card.Meta>
+          <QuantitySelector
+            targetId={product.id}
+            maxQty={product.max_qty}
+            minQty={product.min_qty}
+            handleQty={handleQty}
+            quantity={quantity}
+            disabled={false}
+          />
         </section>
-        <Button
-          circular
-          fluid
-          className="add-to-cart-btn mt-4"
-          onClick={() => {
-            console.log("CLICK ME");
-          }}
-        >
-          Add to cart
-        </Button>
+        <section className="mt-4">
+          <CartBtn fluid={true} product={productInCart} />
+        </section>
       </Card.Content>
     </Card>
   );
