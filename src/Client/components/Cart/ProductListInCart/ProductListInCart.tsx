@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 /* Context */
-import { CartContext } from "../../../context";
+import { AuthTableContext, CartContext } from "../../../context";
 
 /* Components */
 import { CartList } from "../CartList";
@@ -9,6 +9,7 @@ import { Button, Divider } from "semantic-ui-react";
 
 /* Hooks */
 import { useDeviceType } from "../../../../hooks";
+import { useOrdersMutation } from "../../../hooks";
 
 /* Utils */
 import { convertCentToDolar } from "../../../../utils";
@@ -17,6 +18,10 @@ import "./ProductListInCart.scss";
 
 export const ProductListInCart = () => {
   const isTabletOrMobile = useDeviceType();
+
+  const { code } = useContext(AuthTableContext);
+
+  const mutate = useOrdersMutation();
 
   /* prettier-ignore */
   const { 
@@ -33,9 +38,17 @@ export const ProductListInCart = () => {
     0,
   );
 
+  const placeOrders = () => {
+    const orders = products.map((p) => ({
+      product: p.id,
+      quantity: p.productQty,
+    }));
+
+    mutate.mutate({ table: code, products: orders });
+  };
+
   return (
     <>
-      {/* https://miro.medium.com/v2/resize:fit:1400/1*kd1GaXdDTYu9nejd74_ptg.png */}
       <section className="text-end">
         <span className="cart-remove-btn" onClick={removeAllFromCart}>
           Remove all
@@ -57,6 +70,9 @@ export const ProductListInCart = () => {
               fluid
               size={!isTabletOrMobile ? "large" : "medium"}
               className="add-to-cart-btn m-0"
+              onClick={placeOrders}
+              disabled={!products.length}
+              loading={mutate.isPending}
             >
               Place orders
             </Button>

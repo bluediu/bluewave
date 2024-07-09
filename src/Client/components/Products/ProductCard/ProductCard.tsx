@@ -25,6 +25,9 @@ export const ProductCard = ({ product }: { product: ICategoryProduct }) => {
       ? product.description.slice(0, 70) + "..."
       : product.description;
 
+  const truncatedName =
+    product.name.length > 15 ? product.name.slice(0, 15) + "..." : product.name;
+
   const goToProductDetail = () => {
     const url = fn.generateUrl(PRODUCT_DETAIL, { id: product.id });
     navigate(url);
@@ -37,8 +40,11 @@ export const ProductCard = ({ product }: { product: ICategoryProduct }) => {
       onClick={goToProductDetail}
     >
       <Card.Content className="card-content">
-        <Card.Header className="card-content__text d-flex justify-content-between align-items-center mb-2">
-          {product.name}
+        <Card.Header
+          className="card-content__text d-flex justify-content-between align-items-center mb-2"
+          title={product.name}
+        >
+          {truncatedName}
           <Label horizontal size="medium" color="blue" title="Category">
             {product.category_name}
           </Label>

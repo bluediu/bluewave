@@ -18,7 +18,7 @@ interface IProps {
   tableCode: string;
 }
 
-export const DetailInconsistency = ({ orders, tableCode }: IProps) => {
+export const Inconsistency = ({ orders, tableCode }: IProps) => {
   const navigate = useNavigate();
 
   const { mutate, isSuccess, isError, isPending } = useCloseOrders(tableCode);

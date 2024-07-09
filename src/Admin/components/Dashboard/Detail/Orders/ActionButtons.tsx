@@ -1,6 +1,6 @@
 /* Components */
 import { Button } from "semantic-ui-react";
-import { CreateBtn } from "../../../../../common";
+import { CreateBtn } from "../../../../common";
 
 interface IProps {
   disabled: boolean;
@@ -9,7 +9,7 @@ interface IProps {
   onGenerateBill: () => void;
 }
 
-export const OrderActionButtons = (props: IProps) => {
+export const ActionButtons = (props: IProps) => {
   const { disabled, canGenerateBill, onRegister, onGenerateBill } = props;
 
   return (

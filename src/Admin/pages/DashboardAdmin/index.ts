@@ -1,2 +1,2 @@
-export { DashboardAdmin } from "./DashboardAdmin";
-export { DashboardTableDetail } from "./Detail";
+export * from "./DashboardAdmin";
+export * from "./DashboardDetail";

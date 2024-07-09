@@ -13,12 +13,18 @@ import {
 /* utils */
 import { fn } from "../../../utils";
 
+/* Types */
+import { TScope } from "../../../types";
+
 const ORDERS = "/orders/order";
 
-export const getOrderState = async (code: string): Promise<IOrderState> => {
+export const getOrderState = async (
+  code: string,
+  scope: TScope = "admin",
+): Promise<IOrderState> => {
   const { data } = await api.get<IOrderState>(
     `${ORDERS}/table/${code}/state/`,
-    fn.getSessionToken(),
+    fn.getSessionToken(scope),
   );
   return data;
 };
@@ -33,10 +39,11 @@ export const listOrders = async (id?: number): Promise<IOrder[]> => {
 
 export const listProductsByTableOrder = async (
   code: string,
+  scope: TScope = "admin",
 ): Promise<IProductOrder[]> => {
   const { data } = await api.get<IProductOrder[]>(
     `${ORDERS}/table/${code}/products/`,
-    fn.getSessionToken(),
+    fn.getSessionToken(scope),
   );
 
   return data;

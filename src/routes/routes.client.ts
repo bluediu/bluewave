@@ -5,6 +5,7 @@ import { ClientLayout } from "../Client/layouts";
 import {
   Home,
   CartClient,
+  OrdersClient,
   ProductsClient,
   ProductClientDetail,
 } from "../Client/pages";
@@ -32,6 +33,7 @@ const routesClient: IRoute[] = [
     component: ProductClientDetail,
   },
   { path: clientPath.CART, layout: ClientLayout, component: CartClient },
+  { path: clientPath.ORDERS, layout: ClientLayout, component: OrdersClient },
 ];
 
 export default routesClient;
