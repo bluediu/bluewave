@@ -20,7 +20,7 @@ interface IProps {
   data: IPayment;
 }
 
-export const DetailPayment = ({ data }: IProps) => {
+export const PaymentDetail = ({ data }: IProps) => {
   const navigate = useNavigate();
 
   const mutate = useClosePayment(data.table);

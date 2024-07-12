@@ -12,7 +12,7 @@ import {
   TableAdmin,
   TableDetail,
   DashboardAdmin,
-  DashboardTableDetail,
+  DashboardDetail,
 } from "../Admin/pages";
 
 /* Interfaces */
@@ -26,7 +26,7 @@ const routesAdmin: IRoute[] = [
   {
     path: adminPath.ADMIN_TABLE_DETAIL,
     layout: AdminLayout,
-    component: DashboardTableDetail,
+    component: DashboardDetail,
   },
   { path: adminPath.USERS, layout: AdminLayout, component: UserAdmin },
   {

@@ -19,22 +19,21 @@ import {
   CardCategoryInfo,
   QuantitySelector,
   CardInfoHeader,
-} from "../../../../../shared";
+} from "../../../../../../shared";
 
 /* Hooks */
-import { useDeviceType, useQtySelector } from "../../../../../hooks";
-import { useOrderUpdate } from "../../../../hooks";
+import { useOrderUpdate } from "../../../../../hooks";
+import { useDeviceType, useQtySelector } from "../../../../../../hooks";
 
 /* Interfaces */
-import { IProductOrder } from "../../../../interfaces";
+import { IProductOrder } from "../../../../../interfaces";
 
 /* Types */
-import { EStatus } from "../../../../types";
+import { EStatus } from "../../../../../types";
 
 /* Constants */
-import { PRODUCT_DETAIL } from "../../../../constants";
-
-import "./DetailCard.scss";
+import { PRODUCT_DETAIL as ADETAIL } from "../../../../../constants";
+import { PRODUCT_DETAIL as CDETAIL } from "../../../../../../Client/constants";
 
 // Load the relativeTime plugin
 dayjs.extend(relativeTime);
@@ -48,9 +47,10 @@ const statusesColors: Record<string, SemanticCOLORS> = {
 interface IProps {
   item: IProductOrder;
   tableCode: string;
+  renderForAdmin: boolean;
 }
 
-export const DetailCard = ({ item, tableCode }: IProps) => {
+export const OrderCard = ({ item, tableCode, renderForAdmin }: IProps) => {
   const isTabletOrMobile = useDeviceType();
 
   const { quantity, reset, handleQty } = useQtySelector({
@@ -111,7 +111,7 @@ export const DetailCard = ({ item, tableCode }: IProps) => {
         {/* Product Info */}
         <CardInfoHeader
           targetId={item.product_id}
-          toUrl={PRODUCT_DETAIL}
+          toUrl={renderForAdmin ? ADETAIL : CDETAIL}
           name={item.product_name}
           price={item.product_price}
         />
@@ -129,21 +129,29 @@ export const DetailCard = ({ item, tableCode }: IProps) => {
               </Label>
             }
           />
+
+          {!renderForAdmin && (
+            <Label circular color="grey">
+              Quantity: {item.quantity}
+            </Label>
+          )}
         </Card.Meta>
 
         {/* Quantity handling */}
-        <QuantitySelector
-          targetId={item.code}
-          maxQty={item.max_qty}
-          minQty={item.min_qty}
-          quantity={quantity}
-          handleQty={handleOrderQty}
-          disabled={isPending}
-        />
+        {renderForAdmin && (
+          <QuantitySelector
+            targetId={item.code}
+            maxQty={item.max_qty}
+            minQty={item.min_qty}
+            quantity={quantity}
+            handleQty={handleOrderQty}
+            disabled={isPending}
+          />
+        )}
       </Card.Content>
 
       {/* Actions */}
-      {item.status_label === "Pending" && (
+      {renderForAdmin && item.status_label === "Pending" && (
         <CardContent extra>
           <div className="text-end">
             <Button.Group fluid={isTabletOrMobile}>

@@ -5,7 +5,7 @@ export interface IOrder {
   code: string;
   status: TStatus;
   issued_at: Date;
-  is_close: boolean;
+  is_closed: boolean;
   table: Table;
   product: Product;
 }

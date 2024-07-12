@@ -15,7 +15,7 @@ export const CartList = (props: IProps) => {
   const { products, toRemove, toUpdate } = props;
 
   return (
-    <Fade cascade>
+    <Fade>
       {products.map((product) => (
         <CartCard
           key={product.id}

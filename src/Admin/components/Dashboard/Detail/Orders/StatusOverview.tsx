@@ -13,7 +13,7 @@ interface IProps {
   orderState: UseQueryResult<IOrderState, Error>;
 }
 
-export const DetailState = ({ orderState }: IProps) => {
+export const StatusOverview = ({ orderState }: IProps) => {
   const isLoading = orderState.isPending;
 
   return (

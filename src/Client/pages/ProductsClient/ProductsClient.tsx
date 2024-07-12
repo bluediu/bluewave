@@ -16,6 +16,7 @@ import "./ProductsClient.scss";
 export const ProductsClient = () => {
   const { category = "" } = useParams();
 
+  // TODO: Only show actives products.
   const { isLoading, data } = useCategoryProducts({
     enabled: true,
     categoryId: +category,

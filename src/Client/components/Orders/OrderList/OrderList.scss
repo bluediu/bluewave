@@ -1,0 +1,27 @@
+.request-bill {
+  background-image: linear-gradient(
+    to right,
+    #77a1d3 0%,
+    #79cbca 51%,
+    #77a1d3 100%
+  ) !important;
+
+  background-image: linear-gradient(
+    to right,
+    #4776e6 0%,
+    #8e54e9 51%,
+    #4776e6 100%
+  ) !important;
+
+  transition: 0.5s;
+  background-size: 200% auto !important;
+  color: white !important;
+  box-shadow: 0 0 20px #eee !important;
+  display: block !important;
+
+  &:hover {
+    background-position: right center !important; /* change the direction of the change here */
+    color: #fff !important;
+    text-decoration: none !important;
+  }
+}

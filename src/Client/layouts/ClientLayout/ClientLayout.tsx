@@ -1,7 +1,14 @@
 import { ReactElement, useContext } from "react";
 
 /* Components */
-import { Container } from "semantic-ui-react";
+import {
+  Container,
+  Divider,
+  Grid,
+  Header,
+  List,
+  Segment,
+} from "semantic-ui-react";
 import { Menus } from "../../components/Menus";
 
 /* Context */
@@ -25,10 +32,10 @@ export const ClientLayout = ({ children }: IProps) => {
     <>
       <Menus />
       <main className="main">
-        <div className="wave wave1"></div>
+        {/* <div className="wave wave1"></div>
         <div className="wave wave2"></div>
         <div className="wave wave3"></div>
-        <div className="wave wave4"></div>
+        <div className="wave wave4"></div> */}
         <Container>
           <small className="text-secondary">Table #{code}</small>
           <section className="main-content">{children}</section>

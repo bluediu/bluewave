@@ -7,5 +7,6 @@ export * from "./tables";
 export * from "./management";
 export * from "./dashboard";
 export * from "./payments";
+export * from "./orders";
 
 export * from "./useModal";

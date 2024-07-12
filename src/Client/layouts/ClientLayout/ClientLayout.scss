@@ -1,14 +1,25 @@
 /* ====== Main tag styles ====== */
 .main-content {
   position: relative !important;
-  z-index: 1001 !important;
+  // z-index: 1001 !important;
 }
-
+// .footer {
+//   position: fixed !important;
+//   bottom: 0 !important;
+//   width: 100% !important;
+//   z-index: 1002 !important;
+// }
+// TODO: CLEAN FILE
 .main {
   position: relative;
   width: 100%;
-  height: calc(100vh - 112.94px);
+
+  // height: calc(100vh - 112.94px);
+  // height: 100vh;
+  min-height: calc(100vh - 112.94px);
+  background: linear-gradient(to right, #d7e1ec 0%, #ffffff 100%);
   background: linear-gradient(60deg, #d7e1ec 0%, #ffffff 100%);
+  padding-bottom: 1rem;
 }
 
 .main .wave {

@@ -13,12 +13,20 @@ import { Icon, Label, Menu } from "semantic-ui-react";
 import { clientPath } from "../../constants";
 
 import "./Menus.scss";
+import { useProductsOrder } from "../../../Admin/hooks";
 
 export const Menus = () => {
   const { pathname } = useLocation();
 
   const { count } = useContext(CartContext);
+  const { code } = useContext(AuthTableContext);
   const { logout } = useContext(AuthTableContext);
+
+  // TODO: Use another API, next issue.
+  const { productOrderQuery: products } = useProductsOrder({
+    tableCode: code,
+    scope: "client",
+  });
 
   const handleLogout = () => {
     logout();
@@ -68,8 +76,16 @@ export const Menus = () => {
           </Label>
           Cart
         </Menu.Item>
-        <Menu.Item className="cursor-pointer">
+        <Menu.Item
+          className="cursor-pointer"
+          as={Link}
+          to={clientPath.ORDERS}
+          active={pathname.startsWith(clientPath.ORDERS)}
+        >
           <Icon name="bell" />
+          <Label color="violet" floating>
+            {products.data?.length ? `+${products.data.length}` : "0"}
+          </Label>
           Orders
         </Menu.Item>
 

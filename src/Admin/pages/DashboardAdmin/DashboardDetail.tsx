@@ -2,38 +2,47 @@
 import { Button } from "semantic-ui-react";
 
 /* Components */
-import { ModalBasic } from "../../../../shared";
-import { ModalConfirm } from "../../../../shared";
-import { TableSubtitle } from "../../../common/tables";
-import { OrderRegisterForm } from "../../../components/Dashboard";
+import { ModalBasic } from "../../../shared";
+import { ModalConfirm } from "../../../shared";
+import { TableSubtitle } from "../../common/tables";
 
-/* Module components */
+/* Components */
 import {
-  DetailBreadcrumb,
-  DetailPayment,
-  DetailState,
-  PaymentRegisterForm,
-  ViewBillBtn,
-  OrderActionButtons,
-  DetailProducts,
-  DetailInconsistency,
-} from "./subcomponents";
+  // Common
+  Breadcrumbs,
+
+  // Form
+  OrderForm,
+  PaymentForm,
+
+  // Payments
+  PaymentDetail,
+  ViewBillButton,
+
+  // Orders
+  OrderList,
+  StatusOverview,
+  ActionButtons,
+  Inconsistency,
+} from "../../components/Dashboard";
 
 /* Hooks */
 import { useParams } from "react-router-dom";
-import { useConfirmModal } from "../../../../hooks";
-import { useModal, usePayment, useProductsOrder } from "../../../hooks";
+import { useConfirmModal } from "../../../hooks";
+import { useModal, usePayment, useProductsOrder } from "../../hooks";
 
-export const DashboardTableDetail = () => {
+export const DashboardDetail = () => {
   const { code = "0" } = useParams();
 
   const { payment, isLoading } = usePayment(code);
 
-  /* prettier-ignore */
-  const { 
+  const {
     productOrderQuery: products,
-    orderStateQuery: orderState
-  } = useProductsOrder(code);
+    orderStateQuery: orderState,
+    isLoadingData,
+    canGenerateBill,
+    existingProducts,
+  } = useProductsOrder({ tableCode: code });
 
   /* prettier-ignore */
   const { 
@@ -54,7 +63,7 @@ export const DashboardTableDetail = () => {
   const onRegister = (): void => {
     openModal(
       `New order for table #${code}`,
-      <OrderRegisterForm code={code} onClose={closeModal} />,
+      <OrderForm code={code} onClose={closeModal} />,
     );
   };
 
@@ -63,21 +72,17 @@ export const DashboardTableDetail = () => {
 
     openModal(
       "Register payment method",
-      <PaymentRegisterForm inTable={code} onClose={closeModal} />,
+      <PaymentForm inTable={code} onClose={closeModal} />,
     );
   };
 
   const onPaymentDetail = (): void => {
-    openModal("Bill detail", <DetailPayment data={payment!} />);
+    openModal("Bill detail", <PaymentDetail data={payment!} />);
   };
-
-  const isLoadingData = products.isLoading || orderState.isPending;
-  const existingProducts = !!products.data?.length;
-  const canGenerateBill = !orderState.data?.count_pending && existingProducts;
 
   return (
     <main>
-      <DetailBreadcrumb />
+      <Breadcrumbs />
       {isLoading ? (
         <div className="text-end my-3">
           <Button loading={true}>.......</Button>
@@ -86,9 +91,12 @@ export const DashboardTableDetail = () => {
       ) : (
         <>
           {payment ? (
-            <ViewBillBtn onClick={onPaymentDetail} disabled={isLoadingData} />
+            <ViewBillButton
+              onClick={onPaymentDetail}
+              disabled={isLoadingData}
+            />
           ) : (
-            <OrderActionButtons
+            <ActionButtons
               disabled={isLoadingData}
               canGenerateBill={canGenerateBill}
               onRegister={onRegister}
@@ -98,13 +106,13 @@ export const DashboardTableDetail = () => {
         </>
       )}
 
-      {existingProducts && (
-        <DetailInconsistency orders={products} tableCode={code} />
-      )}
+      {existingProducts && <Inconsistency orders={products} tableCode={code} />}
 
+      {/* Core */}
       <TableSubtitle text={`Table #${code}`} />
-      <DetailState orderState={orderState} />
-      <DetailProducts products={products} tableCode={code} />
+      <StatusOverview orderState={orderState} />
+      <OrderList products={products} tableCode={code} />
+
       <ModalBasic
         show={showModal}
         onClose={closeModal}

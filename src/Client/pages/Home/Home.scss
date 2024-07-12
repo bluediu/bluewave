@@ -1,0 +1,40 @@
+// .tcontainer {
+//   width: 100%;
+//   width: 820px;
+//   height: 340px;
+//   display: flex;
+//   gap: 10px;
+//   margin-inline: 50px;
+// }
+
+// .tcontainer > .title {
+//   margin-left: 10px;
+//   translate: 0 100%;
+//   opacity: 0;
+// }
+
+// .tcard {
+//   min-width: 70px;
+//   height: 100%;
+//   border-radius: 30px;
+//   display: flex;
+//   align-items: flex-end;
+//   flex-grow: 1;
+//   position: relative;
+//   transition: flex-grow 0.5s ease;
+// }
+
+// .tcard:hover {
+//   flex-grow: 7;
+// }
+
+// .tcard:hover .title {
+//   opacity: 1;
+//   translate: 0 0;
+// }
+.carousel .slide img {
+  display: block;
+  margin: 0 auto;
+  max-height: 500px; /* Ajusta esta altura según tus necesidades */
+  object-fit: cover;
+}

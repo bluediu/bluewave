@@ -2,22 +2,20 @@
 import { useEffect, useState } from "react";
 
 /* Components */
-import { CreateForm } from "../../../common";
+import { CreateForm } from "../../../../common";
 
 /* Hooks */
-import { useOrderRegister } from "../../../hooks";
+import { useOrderRegister, useOrderForm } from "../../../../hooks";
 
 /* Interfaces */
-import { IOrderRegister } from "../../../interfaces";
-import { useQuery } from "@tanstack/react-query";
-import { adminActions } from "../../../services";
+import { IOrderRegister } from "../../../../interfaces";
 
 interface IProps {
   code: string;
   onClose: () => void;
 }
 
-export const OrderRegisterForm = (props: IProps) => {
+export const OrderForm = (props: IProps) => {
   const { code, onClose } = props;
 
   const [pending, setPending] = useState(false);
@@ -26,13 +24,8 @@ export const OrderRegisterForm = (props: IProps) => {
   const mutation = useOrderRegister(code);
   const { isPending, isError, isSuccess } = mutation;
 
-  // Get form query
-  const registerForm = useQuery({
-    queryKey: ["orderRegisterForm", code],
-    queryFn: () => adminActions.forms.getRegisterOrderForm(code),
-    refetchOnWindowFocus: false,
-    staleTime: 86400000, // One day
-  });
+  // Get Form Query
+  const form = useOrderForm(code);
 
   useEffect(() => setPending(isPending), [isPending]);
 
@@ -46,7 +39,7 @@ export const OrderRegisterForm = (props: IProps) => {
   return (
     <CreateForm
       isPending={pending}
-      createForm={registerForm}
+      createForm={form}
       onCloseModal={onClose}
       onSubmit={handleSubmit}
     />

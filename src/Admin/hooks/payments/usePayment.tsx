@@ -24,7 +24,7 @@ export const usePayment = (tableCode: string): IOutputProps => {
     queryKey: ["payment", { tableCode }],
     queryFn: () => adminActions.transactions.getPayment(tableCode),
     refetchOnWindowFocus: false,
-    staleTime: 86400000,
+    refetchInterval: 5000,
   });
 
   return { isLoading, isError, error, payment };
