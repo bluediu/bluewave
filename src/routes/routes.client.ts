@@ -8,6 +8,7 @@ import {
   OrdersClient,
   ProductsClient,
   ProductClientDetail,
+  AllProductsClient,
 } from "../Client/pages";
 
 /* Interfaces */
@@ -26,6 +27,11 @@ const routesClient: IRoute[] = [
     path: clientPath.PRODUCTS,
     layout: ClientLayout,
     component: ProductsClient,
+  },
+  {
+    path: clientPath.ALL_PRODUCTS,
+    layout: ClientLayout,
+    component: AllProductsClient,
   },
   {
     path: clientPath.PRODUCT_DETAIL,

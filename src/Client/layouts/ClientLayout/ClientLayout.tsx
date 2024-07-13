@@ -1,21 +1,14 @@
 import { ReactElement, useContext } from "react";
 
-/* Components */
-import {
-  Container,
-  Divider,
-  Grid,
-  Header,
-  List,
-  Segment,
-} from "semantic-ui-react";
-import { Menus } from "../../components/Menus";
-
 /* Context */
-import { AuthTableContext } from "../../context";
+import { AuthTableContext, CartProvider } from "../../context";
 
 /* Pages */
 import { LoginClient } from "../../pages";
+
+/* Components */
+import { Container } from "semantic-ui-react";
+import { Menus } from "../../components/Menus";
 
 import "./ClientLayout.scss";
 
@@ -30,17 +23,15 @@ export const ClientLayout = ({ children }: IProps) => {
 
   return (
     <>
-      <Menus />
-      <main className="main">
-        {/* <div className="wave wave1"></div>
-        <div className="wave wave2"></div>
-        <div className="wave wave3"></div>
-        <div className="wave wave4"></div> */}
-        <Container>
-          <small className="text-secondary">Table #{code}</small>
-          <section className="main-content">{children}</section>
-        </Container>
-      </main>
+      <CartProvider>
+        <Menus />
+        <main className="main">
+          <Container>
+            <small className="text-secondary">Table #{code}</small>
+            <section>{children}</section>
+          </Container>
+        </main>
+      </CartProvider>
     </>
   );
 };

@@ -35,6 +35,10 @@ export const useOrdersMutation = () => {
         queryKey: ["productsOrder", { tableCode: code }],
       });
 
+      queryClient.invalidateQueries({
+        queryKey: ["orderCount", { tableCode: code }],
+      });
+
       removeAllFromCart();
       navigate(ORDERS);
       // Show success message.

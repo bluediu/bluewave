@@ -9,11 +9,13 @@ import { AuthTableContext, CartContext } from "../../context";
 import { Link, useLocation } from "react-router-dom";
 import { Icon, Label, Menu } from "semantic-ui-react";
 
+/* Hooks */
+import { useOrderCount } from "../../hooks";
+
 /* Constants */
 import { clientPath } from "../../constants";
 
 import "./Menus.scss";
-import { useProductsOrder } from "../../../Admin/hooks";
 
 export const Menus = () => {
   const { pathname } = useLocation();
@@ -22,11 +24,7 @@ export const Menus = () => {
   const { code } = useContext(AuthTableContext);
   const { logout } = useContext(AuthTableContext);
 
-  // TODO: Use another API, next issue.
-  const { productOrderQuery: products } = useProductsOrder({
-    tableCode: code,
-    scope: "client",
-  });
+  const { data } = useOrderCount(code);
 
   const handleLogout = () => {
     logout();
@@ -84,7 +82,7 @@ export const Menus = () => {
         >
           <Icon name="bell" />
           <Label color="violet" floating>
-            {products.data?.length ? `+${products.data.length}` : "0"}
+            {data?.count ? `+${data.count}` : 0}
           </Label>
           Orders
         </Menu.Item>

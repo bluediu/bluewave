@@ -24,10 +24,13 @@ export const getProduct = async (
   return data;
 };
 
-export const listProducts = async (filterBy: TFilter): Promise<IProduct[]> => {
+export const listProducts = async (
+  filterBy: TFilter,
+  scope: TScope = "admin",
+): Promise<IProduct[]> => {
   const { data } = await api.get<IProduct[]>(
     `${PRODUCTS}/list/?filter_by=${filterBy}`,
-    fn.getSessionToken(),
+    fn.getSessionToken(scope),
   );
 
   return data;

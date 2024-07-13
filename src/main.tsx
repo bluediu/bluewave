@@ -10,6 +10,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 /* Styles */
 import "semantic-ui-css/semantic.min.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./sass/global.scss";
 import "./sass/components.scss";
 

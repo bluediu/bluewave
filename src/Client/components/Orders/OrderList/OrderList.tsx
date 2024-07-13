@@ -1,5 +1,8 @@
 import { useContext } from "react";
 
+/* Context */
+import { AuthTableContext } from "../../../context";
+
 /* Components */
 import { PaymentDone } from "../PaymentDone";
 import { PaymentChoice, RequestBillButton } from "../Payment";
@@ -10,9 +13,6 @@ import {
   OrderList as AdminOrderList,
 } from "../../../../Admin/components/Dashboard";
 
-/* Hooks */
-import { AuthTableContext } from "../../../context";
-
 /* Module: Hooks */
 import {
   useModal,
@@ -21,6 +21,7 @@ import {
   useProductsOrder,
 } from "../../../../Admin/hooks";
 
+/* Hooks */
 import { useConfirmModal } from "../../../../hooks";
 
 import "./OrderList.scss";
