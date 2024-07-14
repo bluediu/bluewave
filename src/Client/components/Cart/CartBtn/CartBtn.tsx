@@ -1,5 +1,13 @@
+import { useContext } from "react";
+
+/* Context */
+import { AuthTableContext } from "../../../context";
+
 /* Components */
 import { Button } from "semantic-ui-react";
+
+/* Admin: Hooks */
+import { useProductsInOrder } from "../../../hooks";
 
 /* Hooks */
 import { useProductInCart } from "../../../hooks";
@@ -8,9 +16,6 @@ import { useProductInCart } from "../../../hooks";
 import { ICartProduct } from "../../../interfaces";
 
 import "./CartBtn.scss";
-import { useProductsOrder } from "../../../../Admin/hooks";
-import { useContext } from "react";
-import { AuthTableContext } from "../../../context";
 
 interface IProps {
   product: ICartProduct;
@@ -24,15 +29,9 @@ export const CartBtn = ({ product, fluid = false }: IProps) => {
 
   const { code } = useContext(AuthTableContext);
 
-  // TODO: Use another API, next issue.
-  const { productOrderQuery: products } = useProductsOrder({
-    tableCode: code,
-    scope: "client",
-  });
+  const products = useProductsInOrder(code);
 
-  const isProductInOrder =
-    products.data?.some((p) => Number(p.product_id) === Number(product.id)) ??
-    false;
+  const isProductInOrder = products?.includes(product.id);
 
   return (
     <Button

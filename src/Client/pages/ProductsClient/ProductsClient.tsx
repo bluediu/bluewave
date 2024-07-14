@@ -11,15 +11,13 @@ import { useParams } from "react-router-dom";
 /* Module: Hooks */
 import { useCategoryProducts } from "../../../Admin/hooks";
 
-import "./ProductsClient.scss";
-
 export const ProductsClient = () => {
   const { category = "" } = useParams();
 
-  // TODO: Only show actives products.
   const { isLoading, data } = useCategoryProducts({
     enabled: true,
     categoryId: +category,
+    filterBy: "actives",
     scope: "client",
   });
 

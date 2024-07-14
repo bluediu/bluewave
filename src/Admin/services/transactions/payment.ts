@@ -20,6 +20,8 @@ export const registerPayment = async (
 };
 
 export const getPayment = async (code: string): Promise<IPayment> => {
+  if (!code) return {} as IPayment;
+
   const { data } = await api.get<IPayment>(
     `${PAYMENTS}/table/${code}/get/`,
     fn.getSessionToken(),

@@ -10,7 +10,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 /* Services */
 import { adminActions } from "../../services";
 
-export const useOrderRegister = (code: string) => {
+export const useOrderRegister = (tableCode: string) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -18,11 +18,11 @@ export const useOrderRegister = (code: string) => {
     mutationFn: adminActions.transactions.registerOrder,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["productsOrder", { tableCode: code }],
+        queryKey: ["productsOrder", { tableCode }],
       });
 
       queryClient.invalidateQueries({
-        queryKey: ["orderState", { tableCode: code }],
+        queryKey: ["orderState", { tableCode }],
       });
 
       // Show success message.

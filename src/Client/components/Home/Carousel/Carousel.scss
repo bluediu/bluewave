@@ -1,0 +1,57 @@
+.carousel-desktop-width {
+  width: 40% !important;
+}
+
+.carousel {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  &__image {
+    object-fit: cover !important;
+    height: 335px !important;
+    width: 100% !important;
+  }
+
+  &__text {
+    background: linear-gradient(
+      to right,
+      #085078 0%,
+      #85d8ce 51%,
+      #085078 100%
+    ) !important;
+
+    background-clip: text !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &__shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.blob {
+  position: relative;
+  height: 22rem;
+  width: 22rem;
+
+  &__bg-image {
+    opacity: 0.3;
+    background-repeat: no-repeat;
+  }
+
+  &__info {
+    position: absolute;
+    top: 3.2rem;
+    left: 3.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__text {
+    margin-left: -3.5rem;
+  }
+}

@@ -41,6 +41,8 @@ export const listProductsByTableOrder = async (
   code: string,
   scope: TScope = "admin",
 ): Promise<IProductOrder[]> => {
+  if (!code) return {} as IProductOrder[];
+
   const { data } = await api.get<IProductOrder[]>(
     `${ORDERS}/table/${code}/products/`,
     fn.getSessionToken(scope),

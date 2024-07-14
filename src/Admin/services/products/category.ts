@@ -26,14 +26,22 @@ export const getCategory = async (id: number): Promise<ICategory> => {
   return data;
 };
 
+interface IProps {
+  id: number;
+  filterBy: TFilter;
+  scope: TScope;
+}
+
 export const getProductsByCategory = async (
-  id: number,
-  scope: TScope = "admin",
+  props: IProps,
 ): Promise<ICategoryProduct[]> => {
+  const { id, filterBy, scope = "admin" } = props;
+
   const { data } = await api.get<ICategoryProduct[]>(
-    `${CATEGORIES}/${id}/products/`,
+    `${CATEGORIES}/${id}/products/?filter_by=${filterBy}`,
     fn.getSessionToken(scope),
   );
+
   return data;
 };
 
