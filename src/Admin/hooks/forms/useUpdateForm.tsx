@@ -4,6 +4,9 @@ import { useQuery } from "@tanstack/react-query";
 /* Interfaces */
 import { IForm } from "../../interfaces";
 
+/* Constants */
+import { STALE_TIME } from "../../../constants";
+
 interface IProps {
   id: number;
   cache: string;
@@ -17,7 +20,7 @@ export const useUpdateForm = (props: IProps) => {
     queryKey: [`update${cache}Form`, id],
     queryFn: () => getUpdateForm(id),
     refetchOnWindowFocus: false,
-    staleTime: 86400000, // One day
+    staleTime: STALE_TIME,
   });
 
   return updateForm;

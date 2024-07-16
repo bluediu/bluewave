@@ -10,6 +10,9 @@ import { adminActions } from "../../services";
 /* Types */
 import { useQuery } from "@tanstack/react-query";
 
+/* Constants */
+import { STALE_TIME } from "../../../constants";
+
 interface IOutputProps {
   isLoading: boolean;
   isError: boolean;
@@ -27,7 +30,7 @@ export const useAuthForm = (): IOutputProps => {
     queryKey: ["authFormSchema"],
     queryFn: adminActions.forms.getAuthForm,
     refetchOnWindowFocus: false,
-    staleTime: 1000 * 60 * 5,
+    staleTime: STALE_TIME,
   });
 
   return { isLoading, isError, error, form };
