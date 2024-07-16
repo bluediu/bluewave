@@ -1,30 +1,32 @@
-# React + TypeScript + Vite
+# Blue Wave 🌊
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+BlueWave is a client application designed to enhance the restaurant experience. By leveraging modern web technologies, it aims to streamline order management for both customers and staff at BlueWave, a company dedicated to the restaurant sector.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- User-friendly interface for customers to browse and order dishes.
+- Real-time order management for restaurant staff.
+- Admin interface for staff.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Quick Start
 
-- Configure the top-level `parserOptions` property like this:
+To get the client application running:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+1. Clone the repository.
+2. Install the dependencies.
+3. Run the development server.
+
+```
+git clone <repository_url>
+cd BlueWave
+yarn install
+yarn dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+#### Visit http://localhost:5173 to view the application.
+
+### License
+
+This project is licensed under the MIT License.

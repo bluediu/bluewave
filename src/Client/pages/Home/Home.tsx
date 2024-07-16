@@ -4,7 +4,7 @@ import { CardGroupLayout } from "../../layouts";
 /* Components */
 import { PageTitle } from "../../common";
 import { Divider } from "semantic-ui-react";
-import { CategoryList, AllProductsCard, Carousel } from "../../components/Home";
+import { CategoryList, AllProducts, Carousel } from "../../components/Home";
 
 /* Module: Hooks */
 import { useCategories } from "../../../Admin/hooks";
@@ -20,7 +20,7 @@ export const Home = () => {
         <CategoryList isLoading={isLoading} data={data} />
       </CardGroupLayout>
       <Divider />
-      <AllProductsCard />
+      <AllProducts />
     </>
   );
 };
