@@ -95,7 +95,7 @@ export const DynamicForm = (props: IProps) => {
           noValidate
         >
           {fields?.map(
-            ({ type, name, label, disabled, help_text, choices }) => {
+            ({ type, name, label, disabled, help_text, date, choices }) => {
               if (type === "select") {
                 return (
                   <SelectInput
@@ -130,6 +130,20 @@ export const DynamicForm = (props: IProps) => {
                     label={label}
                     disabled={disabled}
                     helpText={help_text}
+                    required={markAsRequiredUI.includes(name)}
+                  />
+                );
+              } else if (type === "date") {
+                return (
+                  <TextInput
+                    key={name}
+                    type={type}
+                    name={name}
+                    label={label}
+                    disabled={disabled}
+                    helpText={help_text}
+                    max={date.max}
+                    min={date.min}
                     required={markAsRequiredUI.includes(name)}
                   />
                 );

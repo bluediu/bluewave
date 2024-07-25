@@ -8,3 +8,4 @@ export const PRODUCTS = `${ADMIN}/products`;
 export const PRODUCT_DETAIL = `${PRODUCTS}/product/:id`;
 export const TABLES = `${ADMIN}/tables`;
 export const TABLE_DETAIL = `${TABLES}/table/:id`;
+export const HISTORY = `${ADMIN}/history`;

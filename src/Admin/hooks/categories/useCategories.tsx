@@ -1,4 +1,5 @@
 /*  Hooks */
+import { useErrors } from "../../../hooks";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
@@ -20,6 +21,8 @@ export const useCategories = (
     queryFn: () => adminActions.products.listCategories(filterBy, scope),
     refetchOnWindowFocus: false,
   });
+
+  useErrors({ query });
 
   return query;
 };

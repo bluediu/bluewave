@@ -38,9 +38,12 @@ export const ProductAdmin = () => {
   } = useModal();
 
   const [filterBy, setFilterBy] = useState<TFilter>("actives");
-  const query = useProducts(filterBy);
+  const [category, setCategory] = useState<number>(0);
+
+  const query = useProducts({ filterBy, category });
 
   const onFilterChange = (value: TFilter) => setFilterBy(value);
+  const onCategoryChange = (value: number) => setCategory(value);
 
   const onCreate = (): void => {
     openModal(
@@ -73,6 +76,7 @@ export const ProductAdmin = () => {
         scope={scope}
         query={query}
         onFilterChange={onFilterChange}
+        onCategoryChange={onCategoryChange}
         onUpdate={onUpdate}
       />
       <ModalBasic

@@ -1,5 +1,12 @@
 /* Constants */
-import { USERS, CATEGORIES, PRODUCTS, TABLES, ADMIN } from "../../../constants";
+import {
+  USERS,
+  CATEGORIES,
+  PRODUCTS,
+  TABLES,
+  ADMIN,
+  HISTORY,
+} from "../../../constants";
 
 interface ISidebarItem {
   name: string;
@@ -32,6 +39,11 @@ export const sidebarItems: ISidebarItem[] = [
     name: "Users",
     icon: "users",
     path: USERS,
+  },
+  {
+    name: "History",
+    icon: "history",
+    path: HISTORY,
   },
   {
     name: "Orders",

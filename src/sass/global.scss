@@ -61,6 +61,12 @@ $inactive: #f00;
   object-fit: cover !important;
 }
 
+.fit-image-size-sm {
+  width: 6.5rem !important;
+  height: 6.5rem !important;
+  object-fit: cover !important;
+}
+
 .active-color {
   color: $active;
 }

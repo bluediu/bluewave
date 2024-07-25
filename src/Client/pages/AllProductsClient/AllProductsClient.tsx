@@ -9,7 +9,10 @@ import { Breadcrumbs, ProductList } from "../../components/Products";
 import { useProducts } from "../../../Admin/hooks";
 
 export const AllProductsClient = () => {
-  const { isLoading, data } = useProducts("actives", "client");
+  const { isLoading, data } = useProducts({
+    filterBy: "actives",
+    scope: "client",
+  });
 
   const products = data?.map((p) => ({
     id: p.id,

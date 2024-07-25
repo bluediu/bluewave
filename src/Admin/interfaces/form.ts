@@ -10,6 +10,7 @@ export type TChoice = {
 
 type TFieldType =
   | "text"
+  | "date"
   | "number"
   | "textarea"
   | "password"
@@ -17,6 +18,11 @@ type TFieldType =
   | "select"
   | "checkbox"
   | "file";
+
+interface IDate {
+  min: string;
+  max: string;
+}
 
 export interface IField {
   type: TFieldType;
@@ -27,6 +33,7 @@ export interface IField {
   validations: IValidation[];
   choices: TChoice[];
   value: string;
+  date: IDate;
 }
 
 interface IValidation {

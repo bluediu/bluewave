@@ -1,10 +1,15 @@
 /* Components */
 import { Image } from "semantic-ui-react";
 
-export const CardRoundedImg = ({ image }: { image: string }) => {
+interface IProps {
+  image: string;
+  small?: boolean;
+}
+
+export const CardRoundedImg = ({ image, small = false }: IProps) => {
   return (
     <Image
-      className="fit-image-size"
+      className={`${small ? " fit-image-size-sm" : "fit-image-size"}`}
       floated="left"
       bordered
       circular

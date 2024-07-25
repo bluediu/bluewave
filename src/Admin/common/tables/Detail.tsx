@@ -83,7 +83,7 @@ export const Detail = (props: IProps) => {
                       key={field.value}
                       label={field.label}
                       value={data[field.value][field.relatedTo!]}
-                      link={`${field.linkTo!}/${data[field.value].id}`}
+                      link={`${fn.generateUrl(field.linkTo!, { id: data[field.value].id })}`}
                     />
                   ) : (
                     <NormalRow
