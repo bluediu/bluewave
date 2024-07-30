@@ -3,9 +3,12 @@ import { ReactElement } from "react";
 /* Components */
 import { Modal, TransitionablePortal } from "semantic-ui-react";
 
+/* Types */
+import { TSize } from "../Admin/types";
+
 interface IProps {
   show: boolean;
-  size?: "tiny" | "small" | "large";
+  size?: TSize;
   onClose: () => void;
   children: ReactElement | ReactElement[];
 }

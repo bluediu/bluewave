@@ -9,6 +9,7 @@ import {
   TableStatusFilter,
   NoRecords,
 } from "../../common";
+import { ProductsFilter } from "./ProductsFilter";
 
 /* Hooks */
 import { UseQueryResult } from "@tanstack/react-query";
@@ -31,19 +32,23 @@ interface IProps {
   scope: string;
   query: UseQueryResult<IProduct[], Error>;
   onFilterChange: (value: TFilter) => void;
+  onCategoryChange: (id: number) => void;
   onUpdate: (data: IProduct) => void;
 }
 
 export const TableProducts = (props: IProps) => {
-  const { scope, query, onFilterChange, onUpdate } = props;
+  const { scope, query, onFilterChange, onCategoryChange, onUpdate } = props;
   const { isLoading, data } = query;
 
   return (
     <>
-      <TableStatusFilter
-        onChange={onFilterChange}
-        isLoading={query.isLoading}
-      />
+      <section className="d-flex">
+        <TableStatusFilter
+          onChange={onFilterChange}
+          isLoading={query.isLoading}
+        />
+        <ProductsFilter onChange={onCategoryChange} />
+      </section>
       <BasicTable isLoadingTable={isLoading} count={data?.length} scope={scope}>
         <Table.Header>
           <Table.Row>

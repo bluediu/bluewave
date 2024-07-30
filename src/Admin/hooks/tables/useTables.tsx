@@ -1,4 +1,5 @@
 /*  Hooks */
+import { useErrors } from "../../../hooks";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
@@ -18,6 +19,8 @@ export const useTables = (
     queryFn: () => adminActions.tables.listTables(filterBy),
     refetchOnWindowFocus: false,
   });
+
+  useErrors({ query });
 
   return query;
 };

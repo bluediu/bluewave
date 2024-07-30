@@ -37,9 +37,11 @@ export const SelectInput = (props: IProps) => {
         selection
         options={choices}
         error={!!meta.error}
+        search
         {...field}
         {...props}
         id={field.name}
+        name={field.name}
         value={field.value.toString()}
         onChange={handleChange}
       />

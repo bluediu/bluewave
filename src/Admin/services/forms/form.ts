@@ -45,6 +45,11 @@ export const getCreateProductForm = async (): Promise<IForm> => {
   return data;
 };
 
+export const getProductsFilterForm = async (): Promise<IForm> => {
+  const { data } = await api.get<IForm>(`${FORMS}/product/filter/`);
+  return data;
+};
+
 export const getUpdateProductForm = async (
   productId: number,
 ): Promise<IForm> => {
@@ -76,5 +81,11 @@ export const getRegisterOrderForm = async (code: string): Promise<IForm> => {
 /* Payments */
 export const getRegisterPaymentForm = async (): Promise<IForm> => {
   const { data } = await api.get<IForm>(`${FORMS}/order/register_payment/`);
+  return data;
+};
+
+/* Payments */
+export const getSearchHistoryForm = async (): Promise<IForm> => {
+  const { data } = await api.get<IForm>(`${FORMS}/order/search_payments/`);
   return data;
 };

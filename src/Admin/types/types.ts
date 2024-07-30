@@ -1,4 +1,5 @@
 export type TFilter = "all" | "actives" | "inactives";
+export type TSize = "tiny" | "small" | "large" | "fullscreen";
 
 export enum EStatus {
   PENDING = "PENDING",

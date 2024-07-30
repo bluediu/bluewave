@@ -2,10 +2,14 @@
 import { api } from "../../../api";
 
 /* interfaces */
-import { IProduct, IProductCreate, IProductUpdate } from "../../interfaces";
+import {
+  IProduct,
+  IProductCreate,
+  IProductFilterProps,
+  IProductUpdate,
+} from "../../interfaces";
 
 /* types */
-import { TFilter } from "../../types";
 import { TScope } from "../../../types";
 
 /* utils */
@@ -25,11 +29,17 @@ export const getProduct = async (
 };
 
 export const listProducts = async (
-  filterBy: TFilter,
-  scope: TScope = "admin",
+  props: IProductFilterProps,
 ): Promise<IProduct[]> => {
+  const { filterBy, category, scope = "admin" } = props;
+
+  const params = fn.generateUrlParams({
+    filter_by: filterBy,
+    category,
+  });
+
   const { data } = await api.get<IProduct[]>(
-    `${PRODUCTS}/list/?filter_by=${filterBy}`,
+    `${PRODUCTS}/list/${params}`,
     fn.getSessionToken(scope),
   );
 

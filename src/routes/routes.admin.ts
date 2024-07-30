@@ -13,6 +13,7 @@ import {
   TableDetail,
   DashboardAdmin,
   DashboardDetail,
+  HistoryAdmin,
 } from "../Admin/pages";
 
 /* Interfaces */
@@ -63,6 +64,11 @@ const routesAdmin: IRoute[] = [
     path: adminPath.TABLE_DETAIL,
     layout: AdminLayout,
     component: TableDetail,
+  },
+  {
+    path: adminPath.HISTORY,
+    layout: AdminLayout,
+    component: HistoryAdmin,
   },
 ];
 

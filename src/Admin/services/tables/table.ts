@@ -26,8 +26,10 @@ export const getTable = async (id: number): Promise<ITable> => {
 };
 
 export const listTables = async (filterBy: TFilter): Promise<ITable[]> => {
+  const params = fn.generateUrlParams({ filter_by: filterBy });
+
   const { data } = await api.get<ITable[]>(
-    `${TABLES}/list/?filter_by=${filterBy}`,
+    `${TABLES}/list/${params}`,
     fn.getSessionToken(),
   );
 

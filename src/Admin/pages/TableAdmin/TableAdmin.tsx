@@ -3,7 +3,11 @@ import { useState } from "react";
 /* Component */
 import { ModalBasic } from "../../../shared";
 import { CreateBtn, TableTitle } from "../../common";
-import { TableTables, TableUpdateForm } from "../../components/Tables";
+import {
+  TableTables,
+  TableCreateForm,
+  TableUpdateForm,
+} from "../../components/Tables";
 
 /* Hooks */
 import { useDynamicPageTitle } from "../../../hooks";
@@ -17,7 +21,6 @@ import { ITable } from "../../interfaces";
 
 /* Types */
 import { TFilter } from "../../types";
-import { TableCreateForm } from "../../components/Tables/TableCreateForm";
 
 export const TableAdmin = () => {
   const scope = "Tables";

@@ -12,10 +12,19 @@ interface IProps {
   name: string;
   required: boolean;
   type: string;
+  max?: string;
+  min?: string;
   [x: string]: any;
 }
 
-export const TextInput = ({ label, helpText, required, ...props }: IProps) => {
+export const TextInput = ({
+  label,
+  helpText,
+  required,
+  max,
+  min,
+  ...props
+}: IProps) => {
   const [field, meta] = useField(props);
 
   return (
@@ -35,6 +44,8 @@ export const TextInput = ({ label, helpText, required, ...props }: IProps) => {
         {...props}
         id={props.name}
         autoComplete="off"
+        max={max ?? null}
+        min={min ?? null}
         required={required}
       />
       {helpText && (

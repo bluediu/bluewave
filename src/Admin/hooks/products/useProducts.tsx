@@ -1,25 +1,26 @@
 /*  Hooks */
+import { useErrors } from "../../../hooks";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IProduct } from "../../interfaces";
+import { IProduct, IProductFilterProps } from "../../interfaces";
 
 /* Services */
 import { adminActions } from "../../services";
 
-/* Types */
-import { TFilter } from "../../types";
-import { TScope } from "../../../types";
-
 export const useProducts = (
-  filterBy: TFilter,
-  scope: TScope = "admin",
+  props: IProductFilterProps,
 ): UseQueryResult<IProduct[], Error> => {
+  const { filterBy, category, scope = "admin" } = props;
+
   const query = useQuery({
-    queryKey: ["products", { filterBy }],
-    queryFn: () => adminActions.products.listProducts(filterBy, scope),
+    queryKey: ["products", { filterBy, category }],
+    queryFn: () =>
+      adminActions.products.listProducts({ scope, filterBy, category }),
     refetchOnWindowFocus: false,
   });
+
+  useErrors({ query });
 
   return query;
 };

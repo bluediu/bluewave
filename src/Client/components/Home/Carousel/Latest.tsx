@@ -1,9 +1,16 @@
 /* Components that*/
+import { Link } from "react-router-dom";
 import { Image } from "semantic-ui-react";
 import { Carousel as RCarousel } from "react-responsive-carousel";
 
 /* Interfaces */
 import { ILatest } from "../../../interfaces";
+
+/* Constants */
+import { PRODUCT_DETAIL } from "../../../constants";
+
+/* Utils */
+import { generateUrl } from "../../../../utils";
 
 export const Latest = ({ products }: { products: ILatest[] }) => {
   return (
@@ -18,6 +25,8 @@ export const Latest = ({ products }: { products: ILatest[] }) => {
       {products!.map((product) => (
         <div key={product.id}>
           <Image
+            as={Link}
+            to={generateUrl(PRODUCT_DETAIL, { id: product.id })}
             className="m-0 carousel__image w-100"
             size="medium"
             rounded

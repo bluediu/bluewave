@@ -36,9 +36,10 @@ export const getProductsByCategory = async (
   props: IProps,
 ): Promise<ICategoryProduct[]> => {
   const { id, filterBy, scope = "admin" } = props;
+  const params = fn.generateUrlParams({ filter_by: filterBy });
 
   const { data } = await api.get<ICategoryProduct[]>(
-    `${CATEGORIES}/${id}/products/?filter_by=${filterBy}`,
+    `${CATEGORIES}/${id}/products/${params}`,
     fn.getSessionToken(scope),
   );
 
@@ -49,8 +50,10 @@ export const listCategories = async (
   filterBy: TFilter,
   scope: TScope = "admin",
 ): Promise<ICategory[]> => {
+  const params = fn.generateUrlParams({ filter_by: filterBy });
+
   const { data } = await api.get<ICategory[]>(
-    `${CATEGORIES}/list/?filter_by=${filterBy}`,
+    `${CATEGORIES}/list/${params}`,
     fn.getSessionToken(scope),
   );
 

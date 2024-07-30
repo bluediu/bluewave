@@ -24,8 +24,10 @@ export const getUser = async (id: number): Promise<IUser> => {
 };
 
 export const listUsers = async (filterBy: TFilter): Promise<IUser[]> => {
+  const params = fn.generateUrlParams({ filter_by: filterBy });
+
   const { data } = await api.get<IUser[]>(
-    `${USERS}/list/?filter_by=${filterBy}`,
+    `${USERS}/list/${params}`,
     fn.getSessionToken(),
   );
 

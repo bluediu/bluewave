@@ -1,4 +1,9 @@
+/* Interfaces */
 import { ICategory } from "./category";
+
+/* Types */
+import { TScope } from "../../types";
+import { TFilter } from "../types";
 
 export interface IProduct {
   id: number;
@@ -10,6 +15,12 @@ export interface IProduct {
   category: ICategory;
   max_qty: number;
   min_qty: number;
+}
+
+export interface IProductFilterProps {
+  filterBy: TFilter;
+  category?: number;
+  scope?: TScope;
 }
 
 export interface IProductCreate {

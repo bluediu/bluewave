@@ -1,4 +1,7 @@
+/* Libs */
 import { JwtPayload, jwtDecode } from "jwt-decode";
+
+/* Constants */
 import { TOKEN as TADMIN } from "../Admin/constants";
 import { TOKEN as TCLIENT } from "../Client/constants";
 
@@ -94,6 +97,14 @@ export const convertDolarToCent = (value: number): number => {
 };
 
 /**
+ * Capitalizes first letters of words in string.
+ */
+export const capitalize = (value: string): string => {
+  value = value.toLowerCase();
+  return value.charAt(0).toUpperCase() + value.slice(1);
+};
+
+/**
  * Return a url with the params replaced.
  */
 export const generateUrl = (
@@ -109,4 +120,21 @@ export const generateUrl = (
   }
 
   return url;
+};
+
+/**
+ * Generate a URL-encoded query string from an object of key-value pairs.
+ */
+export const generateUrlParams = (
+  items: Record<string, string | number | undefined>,
+): string => {
+  // Params management.
+  const params = new URLSearchParams();
+
+  for (const prop in items) {
+    const value = items[prop];
+    if (value) params.append(prop, value.toString());
+  }
+
+  return `?${params.toString()}`;
 };
