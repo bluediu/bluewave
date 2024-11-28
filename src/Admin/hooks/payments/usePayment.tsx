@@ -1,20 +1,13 @@
 /* Hooks */
 import { useQuery } from "@tanstack/react-query";
 
-/* Interfaces */
-import { IPayment } from "../../interfaces";
-
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
-interface IOutputProps {
-  isLoading: boolean;
-  isError: boolean;
-  error: Error | null;
-  payment?: IPayment;
-}
+/* Types */
+import { TScope } from "@/types";
 
-export const usePayment = (tableCode: string): IOutputProps => {
+export const usePayment = (tableCode: string, scope: TScope = "admin") => {
   const {
     isLoading,
     isError,
@@ -22,7 +15,7 @@ export const usePayment = (tableCode: string): IOutputProps => {
     data: payment,
   } = useQuery({
     queryKey: ["payment", { tableCode }],
-    queryFn: () => adminActions.transactions.getPayment(tableCode),
+    queryFn: () => adminActions.transactions.getPayment(tableCode, scope),
     refetchOnWindowFocus: false,
     refetchInterval: 5000,
   });

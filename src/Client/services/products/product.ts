@@ -1,11 +1,11 @@
 /* Api */
-import { api } from "../../../api";
+import { api } from "@/api";
 
 /* Interfaces */
-import { ILatest } from "../../interfaces";
+import { ILatest } from "@/Client/interfaces";
 
 /* Utils */
-import { fn } from "../../../utils";
+import { fn } from "@/utils";
 
 const PRODUCTS = "/products/product";
 

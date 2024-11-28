@@ -1,8 +1,8 @@
-export interface IAuthTableLogin {
+export interface ILoginRequest {
   code: string;
 }
 
-export interface IAuthTableLoginResponse {
+export interface ILoginResponse {
   access: string;
   code: string;
 }

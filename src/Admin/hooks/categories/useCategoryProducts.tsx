@@ -2,22 +2,23 @@
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { ICategoryProduct } from "../../interfaces";
+import { ICategoryProduct } from "@/Admin/interfaces";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 /* Module: Types */
-import { TFilter } from "../../types";
+import { TFilter } from "@/Admin/types";
 
 /* Types */
-import { TScope } from "../../../types";
+import { TScope } from "@/types";
 
 interface IProps {
   enabled: boolean;
   categoryId: number;
-  filterBy?: TFilter;
+
   scope?: TScope;
+  filterBy?: TFilter;
 }
 
 export const useCategoryProducts = (

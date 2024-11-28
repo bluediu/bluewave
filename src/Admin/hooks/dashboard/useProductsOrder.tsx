@@ -2,13 +2,13 @@
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IProductOrder, IOrderState } from "../../interfaces";
+import { IProductOrder, IOrderState } from "@/Admin/interfaces";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 /* Types */
-import { TScope } from "../../../types";
+import { TScope } from "@/types";
 
 interface InputProps {
   tableCode: string;
@@ -27,7 +27,7 @@ export const useProductsOrder = (props: InputProps): IOutputProps => {
   const { tableCode, scope = "admin" } = props;
 
   const productOrderQuery = useQuery({
-    queryKey: ["productsOrder", { tableCode }],
+    queryKey: ["products", "order", { tableCode }],
     queryFn: () =>
       adminActions.transactions.listProductsByTableOrder(tableCode, scope),
     refetchOnWindowFocus: false,
@@ -35,7 +35,7 @@ export const useProductsOrder = (props: InputProps): IOutputProps => {
   });
 
   const orderStateQuery = useQuery({
-    queryKey: ["orderState", { tableCode }],
+    queryKey: ["order", "state", { tableCode }],
     queryFn: () => adminActions.transactions.getOrderState(tableCode, scope),
     refetchOnWindowFocus: false,
     enabled: !productOrderQuery.isLoading,

@@ -1,14 +1,18 @@
 /* Components */
-import { CartBtn } from "../../Cart";
-import { useQtySelector } from "../../../../hooks";
-import { QuantitySelector } from "../../../../shared";
 import { Card, Image, Label } from "semantic-ui-react";
 
-/* Module: Interfaces */
-import { IProduct } from "../../../../Admin/interfaces";
+import { CartBtn } from "../../Cart";
+
+import { QuantitySelector } from "@/shared";
+
+/* Hooks */
+import { useQtySelector } from "@/hooks";
+
+/* Interfaces */
+import { IProduct } from "@/Admin/interfaces";
 
 /* Utils */
-import { convertCentToDolar } from "../../../../utils";
+import { convertCentToDolar } from "@/utils";
 
 import "./ProductDetail.scss";
 

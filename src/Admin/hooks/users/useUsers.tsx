@@ -2,13 +2,13 @@
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IUser } from "../../interfaces";
+import { IUser } from "@/Admin/interfaces";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 /* Types */
-import { TFilter } from "../../types";
+import { TFilter } from "@/Admin/types";
 
 export const useUsers = (filterBy: TFilter): UseQueryResult<IUser[], Error> => {
   const query = useQuery({

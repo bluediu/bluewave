@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 /* Types */
-import { TFilter } from "../../types";
+import { TFilter } from "@/Admin/types";
 
 export const useFilter = () => {
   const [filterBy, setFilterBy] = useState<TFilter>("actives");

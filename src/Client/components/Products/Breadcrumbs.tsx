@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Breadcrumb } from "semantic-ui-react";
 
 /* Constants */
-import { CLIENT } from "../../constants";
+import { CLIENT } from "@/Client/constants";
 
 export const Breadcrumbs = () => {
   return (

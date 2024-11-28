@@ -1,26 +1,22 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-
 /* Components */
-import { CreateForm } from "../../common";
+import { CreateForm } from "@/Admin/common";
 
 /* Hooks */
-import { useCreateForm, useProductCreate } from "../../hooks";
+import { useCreateForm, useProductCreate } from "@/Admin/hooks";
 
 /* Interfaces */
-import { IProductCreate, IForm } from "../../interfaces";
+import { IProductCreate, IForm } from "@/Admin/interfaces";
 
 interface IProps {
   cache: string;
   match?: string[];
-  getCreateForm: () => Promise<IForm>;
+
   onClose: () => void;
+  getCreateForm: () => Promise<IForm>;
 }
 
 export const ProductCreateForm = (props: IProps) => {
   const { cache, getCreateForm, onClose } = props;
-
-  const [pending, setPending] = useState(false);
 
   // Mutation
   const mutation = useProductCreate();
@@ -29,15 +25,13 @@ export const ProductCreateForm = (props: IProps) => {
   // Get form query
   const createForm = useCreateForm({ cache, getCreateForm });
 
-  useEffect(() => setPending(isPending), [isPending]);
+  const handleSubmit = (data: IProductCreate) => mutation.mutate(data);
 
   if (isSuccess || isError) onClose();
 
-  const handleSubmit = (data: IProductCreate) => mutation.mutate(data);
-
   return (
     <CreateForm
-      isPending={pending}
+      isPending={isPending}
       createForm={createForm}
       onCloseModal={onClose}
       onSubmit={handleSubmit}

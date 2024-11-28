@@ -2,19 +2,19 @@
 import { toast } from "react-toastify";
 
 /* Components */
-import { Errors } from "../../../shared";
+import { Errors } from "@/shared";
 
 /* Hooks  */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 export const useTableCreate = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationKey: ["tableCreate"],
+    mutationKey: ["table", "create"],
     mutationFn: adminActions.tables.createTable,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tables"] });

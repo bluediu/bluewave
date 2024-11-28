@@ -1,35 +1,25 @@
-/* Libs */
-import { toast } from "react-toastify";
-
-/* Context */
-import { useContext } from "react";
-import { AuthTableContext, CartContext } from "../../context";
-
 /* Components */
 import { Link, useLocation } from "react-router-dom";
 import { Icon, Label, Menu } from "semantic-ui-react";
 
 /* Hooks */
-import { useOrderCount } from "../../hooks";
+import { useOrderCount, useTableContext, useCartContext } from "@/Client/hooks";
 
 /* Constants */
-import { clientPath } from "../../constants";
+import { clientPath } from "@/Client/constants";
 
 import "./Menus.scss";
 
 export const Menus = () => {
   const { pathname } = useLocation();
 
-  const { count } = useContext(CartContext);
-  const { code } = useContext(AuthTableContext);
-  const { logout } = useContext(AuthTableContext);
+  // Context
+  const { count } = useCartContext();
 
-  const { data } = useOrderCount(code);
+  const { table, logout } = useTableContext();
 
-  const handleLogout = () => {
-    logout();
-    toast.success("Logout successful");
-  };
+  // Queries
+  const { data } = useOrderCount(table!.code);
 
   const getBasePath = (path: string) => {
     const parts = path.split("/");
@@ -88,10 +78,7 @@ export const Menus = () => {
         </Menu.Item>
 
         <Menu.Menu position="right">
-          <Menu.Item
-            className="text-secondary cursor-pointer"
-            onClick={handleLogout}
-          >
+          <Menu.Item className="text-secondary cursor-pointer" onClick={logout}>
             <Icon name="sign out" color="grey" />
             <span className="text-secondary">Exit</span>
           </Menu.Item>

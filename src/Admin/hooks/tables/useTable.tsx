@@ -2,10 +2,10 @@
 import { useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { ITable } from "../../interfaces";
+import { ITable } from "@/Admin/interfaces";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 interface IOutputProps {
   isLoading: boolean;

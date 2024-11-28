@@ -1,14 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-
 /* Components */
-import { CreateForm } from "../../../../common";
+import { CreateForm } from "@/Admin/common";
 
 /* Hooks */
-import { useOrderRegister, useOrderForm } from "../../../../hooks";
+import { useOrderRegister, useOrderForm } from "@/Admin/hooks";
 
 /* Interfaces */
-import { IOrderRegister } from "../../../../interfaces";
+import { IOrderRegister } from "@/Admin/interfaces";
 
 interface IProps {
   code: string;
@@ -18,8 +15,6 @@ interface IProps {
 export const OrderForm = (props: IProps) => {
   const { code, onClose } = props;
 
-  const [pending, setPending] = useState(false);
-
   // Mutation
   const mutation = useOrderRegister(code);
   const { isPending, isError, isSuccess } = mutation;
@@ -27,18 +22,16 @@ export const OrderForm = (props: IProps) => {
   // Get Form Query
   const form = useOrderForm(code);
 
-  useEffect(() => setPending(isPending), [isPending]);
-
-  if (isSuccess || isError) onClose();
-
   const handleSubmit = (data: IOrderRegister) => {
     data.table = code;
     mutation.mutate(data);
   };
 
+  if (isSuccess || isError) onClose();
+
   return (
     <CreateForm
-      isPending={pending}
+      isPending={isPending}
       createForm={form}
       onCloseModal={onClose}
       onSubmit={handleSubmit}

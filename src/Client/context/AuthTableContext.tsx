@@ -1,36 +1,42 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useLayoutEffect, useMemo, useState } from "react";
 
 /* Libs */
 import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
 /* Constants */
-import { TOKEN } from "../constants";
+import { TOKEN } from "@/Client/constants";
 
 /* Utils */
-import { fn } from "../../utils";
+import { fn } from "@/utils";
 
-interface IAuthTableContextType {
-  isAuthenticated: boolean;
+interface ITable {
   code: string;
-  login: (code: string) => void;
+}
+
+interface ITableContextType {
+  table: undefined | ITable;
+
+  login: (token: ITable) => void;
   logout: () => void;
 }
 
-export const AuthTableContext = createContext<IAuthTableContextType>({
-  isAuthenticated: false,
-  code: "",
+export const AuthTableContext = createContext<ITableContextType>({
+  table: undefined,
+
   login() {},
   logout() {},
 });
 
 type TProviderChildren = React.FC<{ children: React.ReactNode }>;
 export const AuthTableProvider: TProviderChildren = ({ children }) => {
+  const queryClient = useQueryClient();
+
   const token: string | null = localStorage.getItem(TOKEN);
 
-  const [isAuthenticated, setAuthenticated] = useState<boolean>(!!token);
-  const [code, setCode] = useState<string>("");
+  const [table, setTable] = useState<undefined | ITable>(undefined);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     try {
       if (token) {
         const decodedToken = fn.decodeClientToken(token);
@@ -40,7 +46,7 @@ export const AuthTableProvider: TProviderChildren = ({ children }) => {
           logout();
           toast.error("Session Expired: Please log in again.");
         } else {
-          login(decodedToken.code);
+          login(decodedToken);
         }
       }
     } catch (error) {
@@ -48,25 +54,30 @@ export const AuthTableProvider: TProviderChildren = ({ children }) => {
       // Treat invalid token as expired & logout.
       logout();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
-  const login = async (code: string) => {
-    setAuthenticated(true);
-    setCode(code);
-  };
+  const login = async (token: ITable) => setTable(token);
 
   const logout = () => {
-    setCode("");
-    setAuthenticated(false);
     localStorage.removeItem(TOKEN);
+
+    setTable(undefined);
+
+    // Clean all queries on logout action.
+    queryClient.clear();
   };
 
-  const value: IAuthTableContextType = {
-    isAuthenticated,
-    code,
-    login,
-    logout,
-  };
+  const value: ITableContextType = useMemo(
+    () => ({
+      table,
+
+      login,
+      logout,
+    }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [table],
+  );
 
   return (
     <AuthTableContext.Provider value={value}>

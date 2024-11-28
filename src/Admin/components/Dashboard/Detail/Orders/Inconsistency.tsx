@@ -5,13 +5,14 @@ import { Button, Card } from "semantic-ui-react";
 
 /* Hooks */
 import { useNavigate } from "react-router-dom";
-import { useCloseOrders } from "../../../../hooks";
+
+import { useCloseOrders } from "@/Admin/hooks";
 
 /* Interfaces */
-import { IProductOrder } from "../../../../interfaces";
+import { IProductOrder } from "@/Admin/interfaces";
 
 /* Constants */
-import { ADMIN } from "../../../../constants";
+import { ADMIN } from "@/Admin/constants";
 
 interface IProps {
   orders: UseQueryResult<IProductOrder[], Error>;

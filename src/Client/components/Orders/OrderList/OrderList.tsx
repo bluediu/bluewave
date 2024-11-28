@@ -1,36 +1,34 @@
-import { useContext } from "react";
-
-/* Context */
-import { AuthTableContext } from "../../../context";
-
 /* Components */
-import { PaymentDone } from "../PaymentDone";
-import { PaymentChoice, RequestBillButton } from "../Payment";
-import { ModalBasic, ModalConfirm } from "../../../../shared";
+import { ModalBasic, ModalConfirm } from "@/shared";
+
+import { PaymentChoice, RequestBillButton, PaymentDone } from "../Payment";
 
 import {
   StatusOverview,
   OrderList as AdminOrderList,
-} from "../../../../Admin/components/Dashboard";
+} from "@/Admin/components/Dashboard";
 
-/* Module: Hooks */
+/* Hooks */
 import {
   useModal,
   usePayment,
   usePaymentForm,
   useProductsOrder,
-} from "../../../../Admin/hooks";
+} from "@/Admin/hooks";
 
-/* Hooks */
-import { useConfirmModal } from "../../../../hooks";
+import { useConfirmModal } from "@/hooks";
+
+import { useTableContext } from "@/Client/hooks";
 
 import "./OrderList.scss";
 
 export const OrderList = () => {
-  const { code } = useContext(AuthTableContext);
+  const { table } = useTableContext();
+  const code = table!.code;
 
   /* == APIs == */
-  const { payment } = usePayment(code);
+  const { payment } = usePayment(code, "client");
+
   const {
     productOrderQuery: products,
     orderStateQuery: orderState,

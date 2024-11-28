@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
-
 /* Components */
-import { CreateForm } from "../../../../common";
+import { CreateForm } from "@/Admin/common";
 
 /* Hooks */
-import { usePaymentForm, usePaymentRegister } from "../../../../hooks";
+import { usePaymentForm, usePaymentRegister } from "@/Admin/hooks";
 
 /* Interfaces */
-import { IRegisterPayment } from "../../../../interfaces";
+import { IRegisterPayment } from "@/Admin/interfaces";
 
 interface IProps {
   inTable: string;
@@ -15,8 +13,6 @@ interface IProps {
 }
 
 export const PaymentForm = ({ inTable, onClose }: IProps) => {
-  const [pending, setPending] = useState(false);
-
   // Mutation
   const mutation = usePaymentRegister(inTable);
   const { isPending, isError, isSuccess } = mutation;
@@ -24,18 +20,16 @@ export const PaymentForm = ({ inTable, onClose }: IProps) => {
   // Get form query
   const form = usePaymentForm();
 
-  useEffect(() => setPending(isPending), [isPending]);
-
-  if (isSuccess || isError) onClose();
-
   const handleSubmit = (data: IRegisterPayment) => {
     mutation.mutate({ type: data.type.toUpperCase(), table: inTable });
   };
 
+  if (isSuccess || isError) onClose();
+
   return (
     <>
       <CreateForm
-        isPending={pending}
+        isPending={isPending}
         createForm={form}
         onCloseModal={onClose}
         onSubmit={handleSubmit}

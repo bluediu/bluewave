@@ -1,4 +1,4 @@
-import { IStylesProps } from "../../../interfaces";
+import { IStylesProps } from "@/interfaces";
 
 interface IProps extends IStylesProps {
   text: string;

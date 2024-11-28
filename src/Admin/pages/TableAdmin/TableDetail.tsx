@@ -1,12 +1,13 @@
 /* Hooks */
 import { useParams } from "react-router-dom";
-import { useTable } from "../../hooks";
+
+import { useTable } from "@/Admin/hooks";
 
 /* Components */
-import { Detail } from "../../common";
+import { Detail } from "@/Admin/common";
 
 /* Constants */
-import { TABLES } from "../../constants";
+import { TABLES } from "@/Admin/constants";
 
 export const TableDetail = () => {
   const { id = "0" } = useParams();

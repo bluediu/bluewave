@@ -1,9 +1,10 @@
 /* Components */
-import { CategoryCard } from "../CategoryCard";
-import { ItemList } from "../../../../shared";
+import { ItemList } from "@/shared";
 
-/* Module: Interfaces */
-import { ICategory } from "../../../../Admin/interfaces";
+import { CategoryCard } from "../CategoryCard";
+
+/* Interfaces */
+import { ICategory } from "@/Admin/interfaces";
 
 interface IProps {
   isLoading: boolean;

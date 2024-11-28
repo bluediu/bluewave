@@ -2,13 +2,13 @@
 import { useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IProduct } from "../../interfaces";
+import { IProduct } from "@/Admin/interfaces";
 
 /* Types */
-import { TScope } from "../../../types";
+import { TScope } from "@/types";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 interface InputProps {
   id: number;

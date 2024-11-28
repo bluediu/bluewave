@@ -1,5 +1,5 @@
 /* api*/
-import { api } from "../../../api";
+import { api } from "@/api";
 
 /* interfaces */
 import {
@@ -7,14 +7,15 @@ import {
   ICategoryUpdate,
   ICategoryCreate,
   ICategoryProduct,
-} from "../../interfaces";
+} from "@/Admin/interfaces";
 
 /* types */
-import { TFilter } from "../../types";
-import { TScope } from "../../../types";
+import { TScope } from "@/types";
+
+import { TFilter } from "@/Admin/types";
 
 /* utils */
-import { fn } from "../../../utils";
+import { fn } from "@/utils";
 
 const CATEGORIES = "/products/category";
 

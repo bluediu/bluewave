@@ -1,43 +1,36 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-
 /* Components */
-import { CreateForm } from "../../common";
+import { CreateForm } from "@/Admin/common";
 
 /* Hooks */
-import { useCreateForm, useUserCreate } from "../../hooks";
+import { useCreateForm, useUserCreate } from "@/Admin/hooks";
 
 /* Interfaces */
-import { IForm, IUserCreate } from "../../interfaces";
+import { IForm, IUserCreate } from "@/Admin/interfaces";
 
 interface IProps {
   cache: string;
   match?: string[];
-  getCreateForm: () => Promise<IForm>;
+
   onClose: () => void;
+  getCreateForm: () => Promise<IForm>;
 }
 
 export const UserCreateForm = (props: IProps) => {
   const { cache, getCreateForm, onClose } = props;
 
-  const [pending, setPending] = useState(false);
-
   // Mutation
   const mutation = useUserCreate();
-  const { isPending, isError, isSuccess } = mutation;
 
   // Get form query
   const createForm = useCreateForm({ cache, getCreateForm });
 
-  useEffect(() => setPending(isPending), [isPending]);
-
-  if (isSuccess || isError) onClose();
+  if (createForm.isSuccess || createForm.isError) onClose();
 
   const handleSubmit = (data: IUserCreate) => mutation.mutate(data);
 
   return (
     <CreateForm
-      isPending={pending}
+      isPending={createForm.isPending}
       createForm={createForm}
       onCloseModal={onClose}
       onSubmit={handleSubmit}

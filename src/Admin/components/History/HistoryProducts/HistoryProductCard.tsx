@@ -1,15 +1,16 @@
 /* Components */
 import { Card, Icon, Label } from "semantic-ui-react";
-import { CardRoundedImg } from "../../../../shared";
+
+import { CardRoundedImg } from "@/shared";
 
 /* Hooks */
-import { useDeviceType } from "../../../../hooks";
+import { useDeviceType } from "@/hooks";
 
 /* Interfaces */
-import { IOrderPayment } from "../../../interfaces";
+import { IOrderPayment } from "@/Admin/interfaces";
 
 /* Utils */
-import { fn } from "../../../../utils";
+import { fn } from "@/utils";
 
 export const HistoryProductCard = ({ product }: { product: IOrderPayment }) => {
   const isTabletOrMobile = useDeviceType();

@@ -2,16 +2,16 @@
 import { toast } from "react-toastify";
 
 /* Components  */
-import { Errors } from "../../../shared";
+import { Errors } from "@/shared";
 
 /* Hooks  */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IOrderUpdate } from "../../interfaces";
+import { IOrderUpdate } from "@/Admin/interfaces";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 interface IProps {
   orderCode: string;
@@ -22,7 +22,7 @@ export const useOrderUpdate = ({ orderCode, toRefetchTable }: IProps) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationKey: ["tableUpdate", orderCode],
+    mutationKey: ["table", "update", orderCode],
     mutationFn: (order: IOrderUpdate) =>
       adminActions.transactions.updateOrder({ code: orderCode, order }),
     onSuccess: () => {

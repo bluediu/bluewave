@@ -8,22 +8,22 @@ import {
   BasicTable,
   TableStatusFilter,
   NoRecords,
-} from "../../common";
+} from "@/Admin/common";
 
 /* Hooks */
 import { UseQueryResult } from "@tanstack/react-query";
 
 /* Interfaces */
-import { ICategory } from "../../interfaces";
+import { ICategory } from "@/Admin/interfaces";
 
 /* Types */
-import { TFilter } from "../../types";
+import { TFilter } from "@/Admin/types";
 
 /* Utils */
-import { generateUrl } from "../../../utils";
+import { generateUrl } from "@/utils";
 
 /* Constants */
-import { CATEGORY_DETAIL } from "../../constants";
+import { CATEGORY_DETAIL } from "@/Admin/constants";
 
 const headers: string[] = ["ID", "Name", "Active", ""];
 

@@ -10,3 +10,4 @@ export * from "./payments";
 export * from "./orders";
 
 export * from "./useModal";
+export * from "./useAuthContext";

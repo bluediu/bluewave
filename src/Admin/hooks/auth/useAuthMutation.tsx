@@ -1,32 +1,31 @@
-import { useContext } from "react";
-
 /* Components  */
-import { Errors } from "../../../shared";
+import { Errors } from "@/shared";
 
 /* Hooks  */
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 
-/* Context */
-import { AuthContext } from "../../context";
+import { useAuthContext } from "../useAuthContext";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 /* Constants */
-import { TOKEN } from "../../constants";
+import { TOKEN } from "@/Admin/constants";
 
 export const useAuthMutation = () => {
-  const { login } = useContext(AuthContext);
+  const { login } = useAuthContext();
 
   const mutate = useMutation({
-    mutationKey: ["authLogin"],
+    mutationKey: ["auth', 'login"],
     mutationFn: adminActions.users.login,
     onSuccess: (data) => {
       // Save user token on login.
       localStorage.setItem(TOKEN, data.access);
+
       // Save user auth info in context API.
-      login({ userAuthId: data.user_id, superuser: data.superuser });
+      login(data);
+
       // Show authentication message.
       toast.success("Login successful.");
     },

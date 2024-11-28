@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { Button, Card, Icon, Image } from "semantic-ui-react";
 
 /* Hooks */
-import { useDeviceType } from "../../../../hooks";
+import { useDeviceType } from "@/hooks";
 
 /* Constants */
-import { ALL_PRODUCTS } from "../../../constants";
+import { ALL_PRODUCTS } from "@/Client/constants";
 
 /* Statics */
 import ALL from "/img/all-product-img.jpg";

@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 import { Table } from "semantic-ui-react";
 
 /* Components */
-import { IsActiveCell, BasicTable, NoRecords } from "../../common";
+import { IsActiveCell, BasicTable, NoRecords } from "@/Admin/common";
 
 /* Hooks */
 import { UseQueryResult } from "@tanstack/react-query";
 
 /* Interfaces */
-import { ICategoryProduct } from "../../interfaces";
+import { ICategoryProduct } from "@/Admin/interfaces";
 
 /* Constants */
-import { PRODUCT_DETAIL } from "../../constants";
+import { PRODUCT_DETAIL } from "@/Admin/constants";
 
 /* Utils */
-import { fn } from "../../../utils";
+import { fn } from "@/utils";
 
 const headers: string[] = ["ID", "Name", "Category", "Active", "Price"];
 

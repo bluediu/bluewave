@@ -1,9 +1,10 @@
 /* Components*/
-import { CartCard } from "../CartCard";
 import { Fade } from "react-awesome-reveal";
 
+import { CartCard } from "../CartCard";
+
 /* Interfaces */
-import { ICartProduct } from "../../../interfaces";
+import { ICartProduct } from "@/Client/interfaces";
 
 interface IProps {
   products: ICartProduct[];

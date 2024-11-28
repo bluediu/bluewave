@@ -1,26 +1,29 @@
 import { useState } from "react";
 
 /* Component */
-import { ModalBasic } from "../../../shared";
-import { CreateBtn, TableTitle } from "../../common";
+import { ModalBasic } from "@/shared";
+
+import { CreateBtn, TableTitle } from "@/Admin/common";
+
 import {
   TableProducts,
   ProductCreateForm,
   ProductUpdateForm,
-} from "../../components/Products";
+} from "@/Admin/components/Products";
 
 /* Hooks */
-import { useDynamicPageTitle } from "../../../hooks";
-import { useModal, useProducts } from "../../hooks";
+import { useDynamicPageTitle } from "@/hooks";
+
+import { useModal, useProducts } from "@/Admin/hooks";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 /* Interfaces */
-import { IProduct } from "../../interfaces";
+import { IProduct } from "@/Admin/interfaces";
 
 /* Types */
-import { TFilter } from "../../types";
+import { TFilter } from "@/Admin/types";
 
 export const ProductAdmin = () => {
   const scope = "Products";

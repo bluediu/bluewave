@@ -1,35 +1,29 @@
-import { useContext } from "react";
-
 /* Libs */
 import { toast } from "react-toastify";
 
-/* Libs components */
+/* Components */
 import { Icon, Loader, Menu } from "semantic-ui-react";
 
-/* Context */
-import { AuthContext } from "../../context";
-
 /* Hooks */
-import { useUser } from "../../hooks";
+import { useAuthContext, useUser } from "@/Admin/hooks";
 
-interface IProps {
-  userId: number;
-}
+export const TopMenuInfo = () => {
+  const { auth, logout } = useAuthContext();
 
-export const TopMenuUserInfo = ({ userId }: IProps) => {
-  const { logout } = useContext(AuthContext);
-
-  const { isLoading, isError, user } = useUser(userId);
+  const { isLoading, isError, user } = useUser(auth!.user_id);
 
   if (isError) {
     toast.error("Something was wrong, please try again.");
+
     logout();
+
     return;
   }
 
   const renderName = (): string => {
     if (user?.first_name && user?.last_name)
       return `${user.first_name} ${user.last_name}`;
+
     return user!.username;
   };
 

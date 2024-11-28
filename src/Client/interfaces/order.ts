@@ -3,7 +3,7 @@ interface IProduct {
   quantity: number;
 }
 
-export interface IBulkOrderRegister {
+export interface IBulkOrderRequest {
   table: string;
   products: IProduct[];
 }

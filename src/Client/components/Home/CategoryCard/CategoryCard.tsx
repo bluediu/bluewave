@@ -1,18 +1,19 @@
 /* Layouts */
-import { CardLayout } from "../../../layouts";
+import { CardLayout } from "@/Client/layouts";
 
 /* Components */
 import { Link } from "react-router-dom";
+
 import { Button, Card, Icon } from "semantic-ui-react";
 
-/* Module: Interfaces */
-import { ICategory } from "../../../../Admin/interfaces";
+/* Interfaces */
+import { ICategory } from "@/Admin/interfaces";
 
 /* Utils */
-import { generateUrl } from "../../../../utils";
+import { generateUrl } from "@/utils";
 
 /* Constants */
-import { PRODUCTS } from "../../../constants";
+import { PRODUCTS } from "@/Client/constants";
 
 import "./CategoryCard.scss";
 

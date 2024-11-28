@@ -2,10 +2,10 @@
 import { Dropdown } from "semantic-ui-react";
 
 /* Hooks */
-import { useGetForm } from "../../hooks";
+import { useGetForm } from "@/Admin/hooks";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 interface IProps {
   onChange: (value: number) => void;

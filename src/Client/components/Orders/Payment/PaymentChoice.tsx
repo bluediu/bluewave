@@ -2,10 +2,10 @@
 import { Button, Icon } from "semantic-ui-react";
 
 /* Module: Interface */
-import { TChoice } from "../../../../Admin/interfaces";
+import { TChoice } from "@/Admin/interfaces";
 
 /* Module: Hooks */
-import { usePaymentRegister } from "../../../../Admin/hooks";
+import { usePaymentRegister } from "@/Admin/hooks";
 
 interface IProps {
   choices: TChoice[];

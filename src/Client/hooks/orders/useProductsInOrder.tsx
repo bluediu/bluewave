@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 /* Module: Services */
-import { adminActions } from "../../../Admin/services";
+import { adminActions } from "@/Admin/services";
 
 export const useProductsInOrder = (tableCode: string): number[] => {
   const productInOrders = useQuery({

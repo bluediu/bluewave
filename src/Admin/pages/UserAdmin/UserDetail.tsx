@@ -1,12 +1,12 @@
 /* Hooks */
 import { useParams } from "react-router-dom";
-import { useUser } from "../../hooks";
+import { useUser } from "@/Admin/hooks";
 
 /* Components */
-import { Detail } from "../../common";
+import { Detail } from "@/Admin/common";
 
 /* Constants */
-import { USERS } from "../../constants";
+import { USERS } from "@/Admin/constants";
 
 export const UserDetail = () => {
   const { id = "0" } = useParams();

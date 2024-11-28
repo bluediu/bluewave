@@ -1,14 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-
 /* Components */
-import { CreateForm } from "../../common";
+import { CreateForm } from "@/Admin/common";
 
 /* Hooks */
-import { useTableCreate, useCreateForm } from "../../hooks";
+import { useTableCreate, useCreateForm } from "@/Admin/hooks";
 
 /* Interfaces */
-import { ITableCreate, IForm } from "../../interfaces";
+import { ITableCreate, IForm } from "@/Admin/interfaces";
 
 interface IProps {
   cache: string;
@@ -20,8 +17,6 @@ interface IProps {
 export const TableCreateForm = (props: IProps) => {
   const { cache, getCreateForm, onClose } = props;
 
-  const [pending, setPending] = useState(false);
-
   // Mutation
   const mutation = useTableCreate();
   const { isPending, isError, isSuccess } = mutation;
@@ -29,15 +24,13 @@ export const TableCreateForm = (props: IProps) => {
   // Get form query
   const createForm = useCreateForm({ cache, getCreateForm });
 
-  useEffect(() => setPending(isPending), [isPending]);
+  const handleSubmit = (data: ITableCreate) => mutation.mutate(data);
 
   if (isSuccess || isError) onClose();
 
-  const handleSubmit = (data: ITableCreate) => mutation.mutate(data);
-
   return (
     <CreateForm
-      isPending={pending}
+      isPending={isPending}
       createForm={createForm}
       onCloseModal={onClose}
       onSubmit={handleSubmit}

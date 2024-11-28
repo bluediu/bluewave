@@ -2,22 +2,22 @@
 import { toast } from "react-toastify";
 
 /* Components  */
-import { Errors } from "../../../shared";
+import { Errors } from "@/shared";
 
 /* Hooks  */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IUserUpdate } from "../../interfaces";
+import { IUserUpdate } from "@/Admin/interfaces";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 export const useUserUpdate = (id: number) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationKey: ["userUpdate", id],
+    mutationKey: ["user", "update", id],
     mutationFn: (user: IUserUpdate) =>
       adminActions.users.updateUser({ id, user }),
     onSuccess: () => {

@@ -14,26 +14,28 @@ import {
   Popup,
   SemanticCOLORS,
 } from "semantic-ui-react";
+
 import {
   CardRoundedImg,
   CardCategoryInfo,
   QuantitySelector,
   CardInfoHeader,
-} from "../../../../../../shared";
+} from "@/shared";
 
 /* Hooks */
-import { useOrderUpdate } from "../../../../../hooks";
-import { useDeviceType, useQtySelector } from "../../../../../../hooks";
+import { useOrderUpdate } from "@/Admin/hooks";
+
+import { useDeviceType, useQtySelector } from "@/hooks";
 
 /* Interfaces */
-import { IProductOrder } from "../../../../../interfaces";
+import { IProductOrder } from "@/Admin/interfaces";
 
 /* Types */
-import { EStatus } from "../../../../../types";
+import { EStatus } from "@/Admin/types";
 
 /* Constants */
-import { PRODUCT_DETAIL as ADETAIL } from "../../../../../constants";
-import { PRODUCT_DETAIL as CDETAIL } from "../../../../../../Client/constants";
+import { PRODUCT_DETAIL as ADETAIL } from "@/Admin/constants";
+import { PRODUCT_DETAIL as CDETAIL } from "@/Client/constants";
 
 // Load the relativeTime plugin
 dayjs.extend(relativeTime);

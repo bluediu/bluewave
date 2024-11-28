@@ -1,17 +1,17 @@
 /* Hooks */
 import { DefaultError } from "@tanstack/query-core";
 
-/* Module: Interfaces */
-import { IForm } from "../../../Admin/interfaces";
+/* Interfaces */
+import { IForm } from "@/Admin/interfaces";
 
 /* Services */
-import { clientActions } from "../../services";
+import { clientActions } from "@/Client/services";
 
 /* Types */
 import { useQuery } from "@tanstack/react-query";
 
 /* Constants */
-import { STALE_TIME } from "../../../constants";
+import { STALE_TIME } from "@/constants";
 
 interface IOutputProps {
   isLoading: boolean;

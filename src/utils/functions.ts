@@ -1,6 +1,9 @@
 /* Libs */
 import { JwtPayload, jwtDecode } from "jwt-decode";
 
+/* Interfaces */
+import { IUserToken } from "@/Admin/interfaces";
+
 /* Constants */
 import { TOKEN as TADMIN } from "../Admin/constants";
 import { TOKEN as TCLIENT } from "../Client/constants";
@@ -11,7 +14,7 @@ interface ISessionTokenResponse {
   };
 }
 
-type TJwtAdminPayload = JwtPayload & { user_id: number; superuser: boolean };
+type TJwtAdminPayload = JwtPayload & IUserToken;
 type TJwtClientPayload = JwtPayload & { code: string };
 
 /**

@@ -2,19 +2,19 @@
 import { toast } from "react-toastify";
 
 /* Components */
-import { Errors } from "../../../shared";
+import { Errors } from "@/shared";
 
 /* Hooks  */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 export const useCategoryCreate = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationKey: ["categoryCreate"],
+    mutationKey: ["category", "create"],
     mutationFn: adminActions.products.createCategory,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["categories"] });

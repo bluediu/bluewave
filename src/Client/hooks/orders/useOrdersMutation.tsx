@@ -1,26 +1,29 @@
-import { useContext } from "react";
-
 /* Libs */
 import { toast } from "react-toastify";
 
 /* Components */
-import { Errors } from "../../../shared";
+import { Errors } from "@/shared";
 
 /* Hooks  */
 import { useNavigate } from "react-router-dom";
-import { AuthTableContext, CartContext } from "../../context";
+
+import { useCartContext } from "../useCartContext";
+import { useTableContext } from "../useTableContext";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 /* Services */
-import { clientActions } from "../../services";
+import { clientActions } from "@/Client/services";
 
 /* Constants */
-import { ORDERS } from "../../constants";
+import { ORDERS } from "@/Client/constants";
 
 export const useOrdersMutation = () => {
-  /* Contexts */
-  const { removeAllFromCart } = useContext(CartContext);
-  const { code } = useContext(AuthTableContext);
+  // Context
+  const { removeAllFromCart } = useCartContext();
+  const { table } = useTableContext();
+
+  const code = table!.code;
 
   const navigate = useNavigate();
 

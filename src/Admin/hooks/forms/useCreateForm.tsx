@@ -2,10 +2,10 @@
 import { useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IForm } from "../../interfaces";
+import { IForm } from "@/Admin/interfaces";
 
 /* Constants */
-import { STALE_TIME } from "../../../constants";
+import { STALE_TIME } from "@/constants";
 
 interface IProps {
   cache: string;

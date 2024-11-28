@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 /* Context */
-import { CartContext } from "../../context";
+import { CartContext } from "@/Client/context";
 
 interface IProps {
   productIdExists: number;

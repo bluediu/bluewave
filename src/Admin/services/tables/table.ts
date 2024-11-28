@@ -1,5 +1,5 @@
 /* api*/
-import { api } from "../../../api";
+import { api } from "@/api";
 
 /* interfaces */
 import {
@@ -7,13 +7,13 @@ import {
   ITableOrderStatus,
   ITableCreate,
   ITableUpdate,
-} from "../../interfaces";
+} from "@/Admin/interfaces";
 
 /* types */
-import { TFilter } from "../../types";
+import { TFilter } from "@/Admin/types";
 
 /* utils */
-import { fn } from "../../../utils";
+import { fn } from "@/utils";
 
 const TABLES = "/tables/table";
 

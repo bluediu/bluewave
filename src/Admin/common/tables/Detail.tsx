@@ -9,10 +9,10 @@ import { TableSubtitle } from "./TableSubtitle";
 import { IsActiveCell } from "./IsActiveCell";
 
 /* Interfaces */
-import { useDeviceType } from "../../../hooks";
+import { useDeviceType } from "@/hooks";
 
 /* Utils */
-import { fn } from "../../../utils";
+import { fn } from "@/utils";
 
 /* Statics */
 import NO_IMAGE from "/img/no-image.jpg";

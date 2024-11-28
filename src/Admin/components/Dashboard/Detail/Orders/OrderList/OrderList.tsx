@@ -1,14 +1,15 @@
 /* Components */
-import { OrderCard } from "../OrderCard";
 import { Fade } from "react-awesome-reveal";
-import { ItemList } from "../../../../../../shared";
-import { TableSubtitle } from "../../../../../common";
+
+import { ItemList } from "@/shared";
+import { OrderCard } from "../OrderCard";
+import { TableSubtitle } from "@/Admin/common";
 
 /* Hooks */
 import { UseQueryResult } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IProductOrder } from "../../../../../interfaces";
+import { IProductOrder } from "@/Admin/interfaces";
 
 interface IProps {
   products: UseQueryResult<IProductOrder[], Error>;

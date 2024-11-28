@@ -1,15 +1,15 @@
 /* Layouts */
-import { CardGroupLayout } from "../../layouts";
+import { CardGroupLayout } from "@/Client/layouts";
 
 /* Components */
-import { PageTitle } from "../../common";
-import { Breadcrumbs, ProductList } from "../../components/Products";
+import { PageTitle } from "@/Client/common";
+import { Breadcrumbs, ProductList } from "@/Client/components/Products";
 
 /* Hooks */
 import { useParams } from "react-router-dom";
 
 /* Module: Hooks */
-import { useCategoryProducts } from "../../../Admin/hooks";
+import { useCategoryProducts } from "@/Admin/hooks";
 
 export const ProductsClient = () => {
   const { category = "" } = useParams();

@@ -5,7 +5,7 @@ import { Fade } from "react-awesome-reveal";
 import { CardGroup } from "semantic-ui-react";
 
 /* Hooks */
-import { useDeviceType } from "../../../hooks";
+import { useDeviceType } from "@/hooks";
 
 interface IProps {
   children: ReactElement | ReactElement[];

@@ -1,13 +1,14 @@
 /* Layouts */
-import { CardGroupLayout } from "../../layouts";
+import { CardGroupLayout } from "@/Client/layouts";
 
 /* Components */
-import { PageTitle } from "../../common";
 import { Divider } from "semantic-ui-react";
-import { CategoryList, AllProducts, Carousel } from "../../components/Home";
+
+import { PageTitle } from "@/Client/common";
+import { CategoryList, AllProducts, Carousel } from "@/Client/components/Home";
 
 /* Module: Hooks */
-import { useCategories } from "../../../Admin/hooks";
+import { useCategories } from "@/Admin/hooks";
 
 export const Home = () => {
   const { isLoading, data } = useCategories("actives", "client");

@@ -1,16 +1,17 @@
 import { useState } from "react";
 
-/* Hooks */
-import { useParams } from "react-router-dom";
-import { useCategory, useCategoryProducts } from "../../hooks";
-
 /* Components */
 import { Button, Card } from "semantic-ui-react";
-import { Detail, TableSubtitle } from "../../common";
-import { SubTableProducts } from "../../components/Categories";
+
+import { Detail, TableSubtitle } from "@/Admin/common";
+import { SubTableProducts } from "@/Admin/components/Categories";
+
+/* Hooks */
+import { useParams } from "react-router-dom";
+import { useCategory, useCategoryProducts } from "@/Admin/hooks";
 
 /* Constants */
-import { CATEGORIES } from "../../constants";
+import { CATEGORIES } from "@/Admin/constants";
 
 export const CategoryDetail = () => {
   const { id = "0" } = useParams();

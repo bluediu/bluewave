@@ -2,13 +2,14 @@ import { ReactElement } from "react";
 
 /* Components */
 import { Modal } from "semantic-ui-react";
-import { ModalLayout } from "../../layouts";
+
+import { ModalLayout } from "@/layouts";
 
 /* Hooks */
-import { useDeviceType } from "../../hooks";
+import { useDeviceType } from "@/hooks";
 
 /* Types */
-import { TSize } from "../../Admin/types";
+import { TSize } from "@/Admin/types";
 
 import "./ModalBasic.scss";
 

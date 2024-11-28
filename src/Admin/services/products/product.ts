@@ -1,5 +1,5 @@
 /* api*/
-import { api } from "../../../api";
+import { api } from "@/api";
 
 /* interfaces */
 import {
@@ -7,13 +7,13 @@ import {
   IProductCreate,
   IProductFilterProps,
   IProductUpdate,
-} from "../../interfaces";
+} from "@/Admin/interfaces";
 
 /* types */
-import { TScope } from "../../../types";
+import { TScope } from "@/types";
 
 /* utils */
-import { fn } from "../../../utils";
+import { fn } from "@/utils";
 
 const PRODUCTS = "/products/product";
 

@@ -8,23 +8,24 @@ import {
   BasicTable,
   TableStatusFilter,
   NoRecords,
-} from "../../common";
+} from "@/Admin/common";
+
 import { ProductsFilter } from "./ProductsFilter";
 
 /* Hooks */
 import { UseQueryResult } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IProduct } from "../../interfaces";
+import { IProduct } from "@/Admin/interfaces";
 
 /* Types */
-import { TFilter } from "../../types";
+import { TFilter } from "@/Admin/types";
 
 /* Constants */
-import { PRODUCT_DETAIL } from "../../constants";
+import { PRODUCT_DETAIL } from "@/Admin/constants";
 
 /* utils */
-import { fn } from "../../../utils";
+import { fn } from "@/utils";
 
 const headers: string[] = ["ID", "Name", "Category", "Active", "Price", ""];
 

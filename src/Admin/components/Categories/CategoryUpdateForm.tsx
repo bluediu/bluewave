@@ -1,14 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-
 /* Components */
-import { UpdateForm } from "../../common";
+import { UpdateForm } from "@/Admin/common";
 
 /* Hooks */
-import { useCategoryUpdate, useUpdateForm } from "../../hooks";
+import { useCategoryUpdate, useUpdateForm } from "@/Admin/hooks";
 
 /* Interfaces */
-import { ICategoryUpdate, IForm } from "../../interfaces";
+import { ICategoryUpdate, IForm } from "@/Admin/interfaces";
 
 interface IProps {
   cache: string;
@@ -21,8 +18,6 @@ interface IProps {
 export const CategoryUpdateForm = (props: IProps) => {
   const { id, cache, getUpdateForm, onClose } = props;
 
-  const [pending, setPending] = useState(false);
-
   // Mutation
   const mutation = useCategoryUpdate(id);
   const { isPending, isError, isSuccess } = mutation;
@@ -34,21 +29,16 @@ export const CategoryUpdateForm = (props: IProps) => {
     getUpdateForm,
   });
 
-  useEffect(() => setPending(isPending), [isPending]);
-
-  useEffect(() => {
-    if (isSuccess || isError) {
-      onClose();
-      updateForm.refetch();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess, isError]);
-
   const handleSubmit = (data: ICategoryUpdate) => mutation.mutate(data);
+
+  if (isSuccess || isError) {
+    onClose();
+    updateForm.refetch();
+  }
 
   return (
     <UpdateForm
-      isPending={pending}
+      isPending={isPending}
       updateForm={updateForm}
       onCloseModal={onClose}
       onSubmit={handleSubmit}

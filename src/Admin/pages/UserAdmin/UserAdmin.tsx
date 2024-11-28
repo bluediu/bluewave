@@ -1,21 +1,24 @@
 /* Component */
-import { ModalBasic } from "../../../shared";
-import { CreateBtn, TableTitle } from "../../common";
+import { ModalBasic } from "@/shared";
+
+import { CreateBtn, TableTitle } from "@/Admin/common";
+
 import {
   TableUsers,
   UserCreateForm,
   UserUpdateForm,
-} from "../../components/Users";
+} from "@/Admin/components/Users";
 
 /* Hooks */
-import { useDynamicPageTitle } from "../../../hooks";
-import { useFilter, useModal, useUsers } from "../../hooks";
+import { useDynamicPageTitle } from "@/hooks";
+
+import { useFilter, useModal, useUsers } from "@/Admin/hooks";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 /* Interfaces */
-import { IUser } from "../../interfaces";
+import { IUser } from "@/Admin/interfaces";
 
 export const UserAdmin = () => {
   const scope = "Users";

@@ -2,7 +2,7 @@
 import { useCreateForm } from "./useCreateForm";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 export const usePaymentForm = () => {
   const form = useCreateForm({
