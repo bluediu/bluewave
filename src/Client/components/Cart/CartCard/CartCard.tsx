@@ -1,20 +1,21 @@
 /* Components */
 import { Card } from "semantic-ui-react";
+
 import {
   CardRoundedImg,
   CardCategoryInfo,
   CardInfoHeader,
   QuantitySelector,
-} from "../../../../shared";
+} from "@/shared";
 
 /* Hooks */
-import { useQtySelector } from "../../../../hooks";
+import { useQtySelector } from "@/hooks";
 
 /* Interfaces */
-import { ICartProduct } from "../../../interfaces";
+import { ICartProduct } from "@/Client/interfaces";
 
 /* Constants */
-import { PRODUCT_DETAIL } from "../../../constants";
+import { PRODUCT_DETAIL } from "@/Client/constants";
 
 interface IProps {
   product: ICartProduct;

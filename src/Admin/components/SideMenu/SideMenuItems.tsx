@@ -1,17 +1,18 @@
-import { CSSProperties, useContext, useLayoutEffect, useRef } from "react";
+import { CSSProperties, useLayoutEffect, useRef } from "react";
 
 /* Libs */
 import { toast } from "react-toastify";
 
-/* Libs components */
+/* Components */
 import { Link } from "react-router-dom";
+
 import { Divider, Header, Icon, SemanticICONS } from "semantic-ui-react";
 
 /* Context */
-import { AuthContext } from "../../context";
+import { useAuthContext } from "@/Admin/hooks";
 
 /* Constants */
-import { ADMIN } from "../../constants";
+import { ADMIN } from "@/Admin/constants";
 
 /* Data */
 import { sidebarItems } from "./data";
@@ -24,7 +25,7 @@ interface IProps {
 
 export const SideMenuItems = (props: IProps) => {
   const { pathname, isTabletOrMobile, handleMenuVisible } = props;
-  const { logout, isSuperuser } = useContext(AuthContext);
+  const { auth, logout } = useAuthContext();
 
   const sidebarItemsRef = useRef<HTMLElement | null>(null);
 
@@ -91,7 +92,7 @@ export const SideMenuItems = (props: IProps) => {
             <small>Actions</small>
           </Header>
         </Divider>
-        {isSuperuser && (
+        {auth!.superuser && (
           <>
             <a
               href={`${import.meta.env.VITE_API_URL}/admin/login/?next=/admin/`}

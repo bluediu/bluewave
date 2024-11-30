@@ -1,12 +1,12 @@
 /* Layouts */
-import { CardGroupLayout } from "../../layouts";
+import { CardGroupLayout } from "@/Client/layouts";
 
 /* Components */
-import { PageTitle } from "../../common";
-import { Breadcrumbs, ProductList } from "../../components/Products";
+import { PageTitle } from "@/Client/common";
+import { Breadcrumbs, ProductList } from "@/Client/components/Products";
 
-/* Module: Hooks */
-import { useProducts } from "../../../Admin/hooks";
+/* Hooks */
+import { useProducts } from "@/Admin/hooks";
 
 export const AllProductsClient = () => {
   const { isLoading, data } = useProducts({

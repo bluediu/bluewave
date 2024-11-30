@@ -3,10 +3,10 @@
 import { Button, ButtonGroup, ButtonOr } from "semantic-ui-react";
 
 /* Components */
-import { DynamicForm } from "../../../shared";
+import { DynamicForm } from "@/shared";
 
 /* Interfaces */
-import { IForm } from "../../interfaces";
+import { IForm } from "@/Admin/interfaces";
 
 /* Types */
 import { UseQueryResult } from "@tanstack/react-query";

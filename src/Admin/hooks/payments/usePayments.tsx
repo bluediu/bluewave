@@ -1,12 +1,12 @@
 /*  Hooks */
-import { useErrors } from "../../../hooks";
+import { useErrors } from "@/hooks";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IPayment, IPaymentSearch } from "../../interfaces";
+import { IPayment, IPaymentSearch } from "@/Admin/interfaces";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 export const usePayments = (
   enabled: boolean,

@@ -1,5 +1,5 @@
 /* Components */
-import { LoginForm } from "../../components/LoginForm";
+import { LoginForm } from "@/Admin/components/LoginForm";
 
 export const LoginAdmin = () => {
   return (

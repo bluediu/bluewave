@@ -1,21 +1,19 @@
 /* api*/
-import { api } from "../../../api";
+import { api } from "@/api";
 
 /* interfaces */
-import { IUser, IUserCreate, IUserUpdate } from "../../interfaces";
+import { IUser, IUserCreate, IUserUpdateRequest } from "@/Admin/interfaces";
 
 /* types */
-import { TFilter } from "../../types";
+import { TFilter } from "@/Admin/types";
 
 /* utils */
-import { fn } from "../../../utils";
+import { fn, sleep } from "@/utils";
 
 const USERS = "/users/user";
 
 /* ==== User ==== */
 export const getUser = async (id: number): Promise<IUser> => {
-  if (id === 0) return {} as IUser;
-
   const { data } = await api.get<IUser>(
     `${USERS}/${id}/get/`,
     fn.getSessionToken(),
@@ -38,12 +36,9 @@ export const createUser = async (user: IUserCreate): Promise<undefined> => {
   await api.post<undefined>(`${USERS}/create/`, user, fn.getSessionToken());
 };
 
-interface IUpdateProps {
-  id: number;
-  user: IUserUpdate;
-}
-
-export const updateUser = async (props: IUpdateProps): Promise<undefined> => {
+export const updateUser = async (
+  props: IUserUpdateRequest,
+): Promise<undefined> => {
   const { id, user } = props;
 
   await api.put<undefined>(

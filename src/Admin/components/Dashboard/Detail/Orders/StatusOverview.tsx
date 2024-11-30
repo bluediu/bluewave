@@ -4,10 +4,10 @@ import { UseQueryResult } from "@tanstack/react-query";
 import { Placeholder, Statistic } from "semantic-ui-react";
 
 /* Interfaces */
-import { IOrderState } from "../../../../interfaces";
+import { IOrderState } from "@/Admin/interfaces";
 
 /* Utils */
-import { convertCentToDolar } from "../../../../../utils";
+import { convertCentToDolar } from "@/utils";
 
 interface IProps {
   orderState: UseQueryResult<IOrderState, Error>;

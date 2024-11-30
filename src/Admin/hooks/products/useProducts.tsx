@@ -1,12 +1,12 @@
 /*  Hooks */
-import { useErrors } from "../../../hooks";
+import { useErrors } from "@/hooks";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IProduct, IProductFilterProps } from "../../interfaces";
+import { IProduct, IProductFilterProps } from "@/Admin/interfaces";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 export const useProducts = (
   props: IProductFilterProps,

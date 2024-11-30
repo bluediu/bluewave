@@ -2,19 +2,19 @@
 import { Button } from "semantic-ui-react";
 
 /* Components */
-import { DynamicForm } from "../../../shared";
+import { DynamicForm } from "@/shared";
 
 /* Hooks */
-import { useAuthTableForm, useAuthTableMutation } from "../../hooks";
+import { useAuthTableForm, useAuthTableMutation } from "@/Client/hooks";
 
 /* Interfaces */
-import { IAuthTableLogin } from "../../interfaces";
+import { ILoginRequest } from "@/Client/interfaces";
 
 export const LoginTableForm = () => {
   const { isLoading, form } = useAuthTableForm();
   const mutate = useAuthTableMutation();
 
-  const onLogin = (data: IAuthTableLogin) => mutate.mutate(data);
+  const onLogin = (data: ILoginRequest) => mutate.mutate(data);
 
   return (
     <DynamicForm

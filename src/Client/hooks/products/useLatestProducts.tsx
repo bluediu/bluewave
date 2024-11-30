@@ -2,13 +2,13 @@
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { ILatest } from "../../interfaces";
+import { ILatest } from "@/Client/interfaces";
 
 /* Services */
-import { clientActions } from "../../services";
+import { clientActions } from "@/Client/services";
 
 /* Constants */
-import { STALE_TIME } from "../../../constants";
+import { STALE_TIME } from "@/constants";
 
 export const useLatestProducts = (): UseQueryResult<ILatest[], Error> => {
   const query = useQuery({

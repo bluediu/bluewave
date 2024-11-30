@@ -2,19 +2,19 @@
 import { toast } from "react-toastify";
 
 /* Components  */
-import { Errors } from "../../../shared";
+import { Errors } from "@/shared";
 
 /* Hooks  */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 export const useClosePayment = (tableCode: string) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationKey: ["closePayment", { tableCode }],
+    mutationKey: ["close", "payment", { tableCode }],
     mutationFn: () => adminActions.transactions.closePayment(tableCode),
     onSuccess: () => {
       queryClient.invalidateQueries({

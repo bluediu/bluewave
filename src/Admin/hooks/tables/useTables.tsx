@@ -1,15 +1,15 @@
 /*  Hooks */
-import { useErrors } from "../../../hooks";
+import { useErrors } from "@/hooks";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 /* Interfaces */
-import { ITable } from "../../interfaces";
+import { ITable } from "@/Admin/interfaces";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 /* Types */
-import { TFilter } from "../../types";
+import { TFilter } from "@/Admin/types";
 
 export const useTables = (
   filterBy: TFilter,

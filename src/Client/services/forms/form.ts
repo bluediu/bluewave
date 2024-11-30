@@ -1,8 +1,8 @@
 /* api */
-import { api } from "../../../api";
+import { api } from "@/api";
 
 /* Module: interfaces */
-import { IForm } from "../../../Admin/interfaces";
+import { IForm } from "@/Admin/interfaces";
 
 const FORMS = "/forms";
 

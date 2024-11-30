@@ -1,5 +1,7 @@
-import { PageTitle } from "../../common";
-import { ProductListInCart } from "../../components/Cart/ProductListInCart";
+/* Components */
+import { PageTitle } from "@/Client/common";
+
+import { ProductListInCart } from "@/Client/components/Cart";
 
 export const CartClient = () => {
   return (

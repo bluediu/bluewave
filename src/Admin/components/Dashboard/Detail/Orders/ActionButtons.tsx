@@ -1,6 +1,7 @@
 /* Components */
 import { Button } from "semantic-ui-react";
-import { CreateBtn } from "../../../../common";
+
+import { CreateBtn } from "@/Admin/common";
 
 interface IProps {
   disabled: boolean;

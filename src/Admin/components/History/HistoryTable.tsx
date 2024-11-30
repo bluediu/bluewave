@@ -2,16 +2,16 @@
 import { Button, Icon, Table } from "semantic-ui-react";
 
 /* Components */
-import { BasicTable, NoRecords } from "../../common";
+import { BasicTable, NoRecords } from "@/Admin/common";
 
 /* Hooks */
 import { UseQueryResult } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IPayment } from "../../interfaces";
+import { IPayment } from "@/Admin/interfaces";
 
 /* Utils */
-import { fn } from "../../../utils";
+import { fn } from "@/utils";
 
 const headers: string[] = [
   "Code",

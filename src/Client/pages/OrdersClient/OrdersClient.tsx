@@ -1,5 +1,6 @@
-import { PageTitle } from "../../common";
-import { OrderList } from "../../components/Orders";
+/* Components */
+import { PageTitle } from "@/Client/common";
+import { OrderList } from "@/Client/components/Orders";
 
 export const OrdersClient = () => {
   return (

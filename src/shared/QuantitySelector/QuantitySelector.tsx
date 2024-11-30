@@ -3,7 +3,8 @@ import { Button, Card, Popup } from "semantic-ui-react";
 
 /* Hooks */
 import { useParams } from "react-router-dom";
-import { useProductInCart } from "../../Client/hooks";
+
+import { useProductInCart } from "@/Client/hooks";
 
 interface IProps {
   targetId: number | string;

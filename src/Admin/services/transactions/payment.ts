@@ -1,5 +1,5 @@
 /* api*/
-import { api } from "../../../api";
+import { api } from "@/api";
 
 /* interfaces */
 import {
@@ -7,10 +7,13 @@ import {
   IPayment,
   IPaymentSearch,
   IRegisterPayment,
-} from "../../interfaces";
+} from "@/Admin/interfaces";
 
 /* utils */
-import { fn } from "../../../utils";
+import { fn } from "@/utils";
+
+/* Types */
+import { TScope } from "@/types";
 
 const PAYMENTS = "/payments/payment";
 
@@ -24,13 +27,15 @@ export const registerPayment = async (
   );
 };
 
-export const getPayment = async (code: string): Promise<IPayment> => {
-  if (!code) return {} as IPayment;
-
+export const getPayment = async (
+  code: string,
+  scope: TScope = "admin",
+): Promise<IPayment> => {
   const { data } = await api.get<IPayment>(
     `${PAYMENTS}/table/${code}/get/`,
-    fn.getSessionToken(),
+    fn.getSessionToken(scope),
   );
+
   return data;
 };
 

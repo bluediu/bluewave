@@ -2,16 +2,15 @@
 import { Icon, Menu } from "semantic-ui-react";
 
 /* Components */
-import { TopMenuUserInfo } from "./TopMenuUserInfo";
+import { TopMenuInfo } from "./TopMenuInfo";
 
 import "./TopMenu.scss";
 
 interface IProps {
-  userId: number;
   toggleSidebar: () => void;
 }
 
-export const TopMenu = ({ userId, toggleSidebar }: IProps) => {
+export const TopMenu = ({ toggleSidebar }: IProps) => {
   return (
     <Menu fixed="top" className="top-menu-admin py-1">
       <Menu.Item className="top-admin__logo">
@@ -27,7 +26,7 @@ export const TopMenu = ({ userId, toggleSidebar }: IProps) => {
       </Menu.Item>
 
       <Menu.Menu position="right">
-        <TopMenuUserInfo userId={userId} />
+        <TopMenuInfo />
       </Menu.Menu>
     </Menu>
   );

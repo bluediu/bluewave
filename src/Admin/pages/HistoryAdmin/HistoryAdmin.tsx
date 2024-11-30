@@ -1,22 +1,24 @@
 import { useState } from "react";
 
 /* Components */
-import { ModalBasic } from "../../../shared";
-import { SearchBtn, TableTitle } from "../../common";
+import { ModalBasic } from "@/shared";
+
+import { SearchBtn, TableTitle } from "@/Admin/common";
+
 import {
   HistoryTable,
   HistoryGetForm,
   HistoryProducts,
-} from "../../components/History";
+} from "@/Admin/components/History";
 
 /* Hooks */
-import { useModal, usePayments } from "../../hooks";
+import { useModal, usePayments } from "@/Admin/hooks";
 
 /* Interfaces */
-import { IPaymentSearch } from "../../interfaces";
+import { IPaymentSearch } from "@/Admin/interfaces";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 export const HistoryAdmin = () => {
   const scope = "History";

@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 /* Services */
-import { clientActions } from "../../services";
+import { clientActions } from "@/Client/services";
 
 export const useOrderCount = (code: string) => {
   const query = useQuery({

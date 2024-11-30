@@ -5,16 +5,17 @@ import { Button, Table } from "semantic-ui-react";
 
 /* Hooks */
 import { useNavigate } from "react-router-dom";
-import { useClosePayment } from "../../../../hooks";
+
+import { useClosePayment } from "@/Admin/hooks";
 
 /* Interfaces */
-import { IPayment } from "../../../../interfaces";
+import { IPayment } from "@/Admin/interfaces";
 
 /* Constants */
-import { ADMIN } from "../../../../constants";
+import { ADMIN } from "@/Admin/constants";
 
 /* Utils */
-import { convertCentToDolar } from "../../../../../utils";
+import { convertCentToDolar } from "@/utils";
 
 interface IProps {
   data: IPayment;

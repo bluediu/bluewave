@@ -2,22 +2,22 @@
 import { toast } from "react-toastify";
 
 /* Components  */
-import { Errors } from "../../../shared";
+import { Errors } from "@/shared";
 
 /* Hooks  */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IProductUpdate } from "../../interfaces";
+import { IProductUpdate } from "@/Admin/interfaces";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 export const useProductUpdate = (id: number) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationKey: ["productUpdate", id],
+    mutationKey: ["product", "update", id],
     mutationFn: (product: IProductUpdate) =>
       adminActions.products.updateProduct({ id, product }),
     onSuccess: () => {

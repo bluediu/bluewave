@@ -1,5 +1,5 @@
 /* Layouts */
-import { ClientLayout } from "../Client/layouts";
+import { ClientLayout } from "@/Client/layouts";
 
 /* Pages */
 import {
@@ -9,13 +9,13 @@ import {
   ProductsClient,
   ProductClientDetail,
   AllProductsClient,
-} from "../Client/pages";
+} from "@/Client/pages";
 
 /* Interfaces */
-import { IRoute } from "../interfaces";
+import { IRoute } from "@/interfaces";
 
 /* Constants */
-import { clientPath } from "../Client/constants";
+import { clientPath } from "@/Client/constants";
 
 const routesClient: IRoute[] = [
   {

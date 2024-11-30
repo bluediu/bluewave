@@ -1,19 +1,17 @@
 /* Api */
-import { api } from "../../../api";
+import { api } from "@/api";
 
 /* Interfaces */
-import { IBulkOrderRegister, IOrderCount } from "../../interfaces";
+import { IBulkOrderRequest, IOrderCount } from "@/Client/interfaces";
 
 /* Utils */
-import { fn } from "../../../utils";
+import { fn } from "@/utils";
 
 const ORDERS = "/orders/order";
 
 export const getOrderCount = async (code: string): Promise<IOrderCount> => {
-  if (!code) return {} as IOrderCount;
-
   const { data } = await api.get<IOrderCount>(
-    `${ORDERS}/table/${code}/count/`,
+    `${ORDERS}/table/${code}/count`,
     fn.getSessionToken("client"),
   );
 
@@ -21,7 +19,7 @@ export const getOrderCount = async (code: string): Promise<IOrderCount> => {
 };
 
 export const registerBulkOrders = async (
-  orders: IBulkOrderRegister,
+  orders: IBulkOrderRequest,
 ): Promise<undefined> => {
   await api.post<undefined>(
     `${ORDERS}/register/bulk/`,

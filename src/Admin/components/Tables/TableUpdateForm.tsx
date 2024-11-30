@@ -1,14 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-
 /* Components */
-import { UpdateForm } from "../../common";
+import { UpdateForm } from "@/Admin/common";
 
 /* Hooks */
-import { useTableUpdate, useUpdateForm } from "../../hooks";
+import { useTableUpdate, useUpdateForm } from "@/Admin/hooks";
 
 /* Interfaces */
-import { ITableUpdate, IForm } from "../../interfaces";
+import { ITableUpdate, IForm } from "@/Admin/interfaces";
 
 interface IProps {
   cache: string;
@@ -21,8 +18,6 @@ interface IProps {
 export const TableUpdateForm = (props: IProps) => {
   const { id, cache, getUpdateForm, onClose } = props;
 
-  const [pending, setPending] = useState(false);
-
   // Mutation
   const mutation = useTableUpdate(id);
   const { isPending, isError, isSuccess } = mutation;
@@ -34,21 +29,16 @@ export const TableUpdateForm = (props: IProps) => {
     getUpdateForm,
   });
 
-  useEffect(() => setPending(isPending), [isPending]);
-
-  useEffect(() => {
-    if (isSuccess || isError) {
-      onClose();
-      updateForm.refetch();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess, isError]);
-
   const handleSubmit = (data: ITableUpdate) => mutation.mutate(data);
+
+  if (isSuccess || isError) {
+    onClose();
+    updateForm.refetch();
+  }
 
   return (
     <UpdateForm
-      isPending={pending}
+      isPending={isPending}
       updateForm={updateForm}
       onCloseModal={onClose}
       onSubmit={handleSubmit}

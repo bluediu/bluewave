@@ -1,5 +1,6 @@
 /* Libs components */
 import { Link } from "react-router-dom";
+
 import { Button, Table } from "semantic-ui-react";
 
 /* Components */
@@ -8,22 +9,22 @@ import {
   BasicTable,
   TableStatusFilter,
   NoRecords,
-} from "../../common";
+} from "@/Admin/common";
 
 /* Hooks */
 import { UseQueryResult } from "@tanstack/react-query";
 
 /* Interfaces */
-import { IUser } from "../../interfaces";
+import { IUser } from "@/Admin/interfaces";
 
 /* Types */
-import { TFilter } from "../../types";
+import { TFilter } from "@/Admin/types";
 
 /* Utils */
-import { generateUrl } from "../../../utils";
+import { generateUrl } from "@/utils";
 
 /* Constants */
-import { USER_DETAIL } from "../../constants";
+import { USER_DETAIL } from "@/Admin/constants";
 
 const headers: string[] = [
   "ID",

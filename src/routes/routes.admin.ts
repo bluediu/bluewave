@@ -14,13 +14,13 @@ import {
   DashboardAdmin,
   DashboardDetail,
   HistoryAdmin,
-} from "../Admin/pages";
+} from "@/Admin/pages";
 
 /* Interfaces */
-import { IRoute } from "../interfaces";
+import { IRoute } from "@/interfaces";
 
 /* Constants */
-import { adminPath } from "../Admin/constants";
+import { adminPath } from "@/Admin/constants";
 
 const routesAdmin: IRoute[] = [
   { path: adminPath.ADMIN, layout: AdminLayout, component: DashboardAdmin },

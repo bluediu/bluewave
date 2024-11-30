@@ -1,11 +1,11 @@
 /* Components */
-import { GetForm } from "../../common/forms";
+import { GetForm } from "@/Admin/common/forms";
 
 /* Hooks */
-import { useGetForm } from "../../hooks";
+import { useGetForm } from "@/Admin/hooks";
 
 /* Interfaces */
-import { IForm, IPaymentSearch } from "../../interfaces";
+import { IForm, IPaymentSearch } from "@/Admin/interfaces";
 
 interface IProps {
   cache: string;

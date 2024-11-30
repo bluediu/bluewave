@@ -21,3 +21,8 @@ export interface IUserCreate {
 }
 
 export type IUserUpdate = Omit<IUserCreate, "password" | "repeat_password">;
+
+export interface IUserUpdateRequest {
+  id: number;
+  user: IUserUpdate;
+}

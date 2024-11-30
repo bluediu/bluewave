@@ -1,25 +1,26 @@
 import { useContext } from "react";
 
 /* Context */
-import { AuthTableContext, CartContext } from "../../../context";
+import { CartContext } from "@/Client/context";
 
 /* Components */
 import { CartList } from "../CartList";
 import { Button, Divider } from "semantic-ui-react";
 
 /* Hooks */
-import { useDeviceType } from "../../../../hooks";
-import { useOrdersMutation } from "../../../hooks";
+import { useDeviceType } from "@/hooks";
+
+import { useOrdersMutation, useTableContext } from "@/Client/hooks";
 
 /* Utils */
-import { convertCentToDolar } from "../../../../utils";
+import { convertCentToDolar } from "@/utils";
 
 import "./ProductListInCart.scss";
 
 export const ProductListInCart = () => {
   const isTabletOrMobile = useDeviceType();
 
-  const { code } = useContext(AuthTableContext);
+  const { table } = useTableContext();
 
   const mutate = useOrdersMutation();
 
@@ -44,7 +45,7 @@ export const ProductListInCart = () => {
       quantity: p.productQty,
     }));
 
-    mutate.mutate({ table: code, products: orders });
+    mutate.mutate({ table: table!.code, products: orders });
   };
 
   return (

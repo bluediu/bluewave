@@ -4,13 +4,13 @@ import { Image } from "semantic-ui-react";
 import { Carousel as RCarousel } from "react-responsive-carousel";
 
 /* Interfaces */
-import { ILatest } from "../../../interfaces";
+import { ILatest } from "@/Client/interfaces";
 
 /* Constants */
-import { PRODUCT_DETAIL } from "../../../constants";
+import { PRODUCT_DETAIL } from "@/Client/constants";
 
 /* Utils */
-import { generateUrl } from "../../../../utils";
+import { generateUrl } from "@/utils";
 
 export const Latest = ({ products }: { products: ILatest[] }) => {
   return (

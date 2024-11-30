@@ -1,14 +1,18 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement } from "react";
 
 /* Context */
-import { AuthTableContext, CartProvider } from "../../context";
+import { CartProvider } from "@/Client/context";
 
 /* Pages */
-import { LoginClient } from "../../pages";
+import { LoginClient } from "@/Client/pages";
 
 /* Components */
 import { Container } from "semantic-ui-react";
-import { Menus } from "../../components/Menus";
+
+import { Menus } from "@/Client/components/Menus";
+
+/* Hooks */
+import { useTableContext } from "@/Client/hooks";
 
 import "./ClientLayout.scss";
 
@@ -17,9 +21,9 @@ interface IProps {
 }
 
 export const ClientLayout = ({ children }: IProps) => {
-  const { isAuthenticated, code } = useContext(AuthTableContext);
+  const { table } = useTableContext();
 
-  if (!isAuthenticated) return <LoginClient />;
+  if (table === undefined) return <LoginClient />;
 
   return (
     <>
@@ -27,7 +31,7 @@ export const ClientLayout = ({ children }: IProps) => {
         <Menus />
         <main className="main">
           <Container>
-            <small className="text-secondary">Table #{code}</small>
+            <small className="text-secondary">Table #{table.code}</small>
             <section>{children}</section>
           </Container>
         </main>

@@ -11,7 +11,7 @@ import { Form, Segment } from "semantic-ui-react";
 import { TextInput, TextAreaInput, SelectInput, FileInput } from ".";
 
 /* Interfaces */
-import { IField } from "../../Admin/interfaces";
+import { IField } from "@/Admin/interfaces";
 
 import "./forms.scss";
 

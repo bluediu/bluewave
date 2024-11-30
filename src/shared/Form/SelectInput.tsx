@@ -6,7 +6,7 @@ import { Dropdown } from "semantic-ui-react";
 import { useField } from "formik";
 
 /* Interfaces */
-import { TChoice } from "../../Admin/interfaces";
+import { TChoice } from "@/Admin/interfaces";
 
 interface IProps {
   choices: TChoice[];

@@ -1,22 +1,22 @@
-/* Libs components */
+/* Components */
+import { DynamicForm } from "@/shared";
+
 import { Button } from "semantic-ui-react";
 
-/* Components */
-import { DynamicForm } from "../../../shared";
-
 /* Hooks */
-import { useAuthMutation, useAuthForm } from "../../hooks";
+import { useAuthMutation, useAuthForm } from "@/Admin/hooks";
 
 /* Interfaces */
-import { IAuthLogin } from "../../interfaces";
+import { ILogin } from "@/Admin/interfaces";
 
 import "./LoginForm.scss";
 
 export const LoginForm = () => {
   const { isLoading, form } = useAuthForm();
+
   const mutate = useAuthMutation();
 
-  const onLogin = (data: IAuthLogin) => mutate.mutate(data);
+  const onLogin = (data: ILogin) => mutate.mutate(data);
 
   return (
     <DynamicForm

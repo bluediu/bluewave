@@ -1,5 +1,5 @@
 /* Layouts */
-import { CardLayout } from "../../../layouts";
+import { CardLayout } from "@/Client/layouts";
 
 /* Components */
 import { CartBtn } from "../../Cart";
@@ -9,13 +9,13 @@ import { Card, Label } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 
 /* Module: Interface */
-import { ICategoryProduct } from "../../../../Admin/interfaces";
+import { ICategoryProduct } from "@/Admin/interfaces";
 
 /* Utils */
-import { fn } from "../../../../utils";
+import { fn } from "@/utils";
 
 /* Constants */
-import { PRODUCT_DETAIL } from "../../../constants";
+import { PRODUCT_DETAIL } from "@/Client/constants";
 
 export const ProductCard = ({ product }: { product: ICategoryProduct }) => {
   const navigate = useNavigate();

@@ -4,8 +4,8 @@ import { Image, Loader } from "semantic-ui-react";
 import { Fade, JackInTheBox } from "react-awesome-reveal";
 
 /* Hooks */
-import { useDeviceType } from "../../../../hooks";
-import { useLatestProducts } from "../../../hooks";
+import { useDeviceType } from "@/hooks";
+import { useLatestProducts } from "@/Client/hooks";
 
 /* Statics */
 import BLOB from "/img/blob.svg";

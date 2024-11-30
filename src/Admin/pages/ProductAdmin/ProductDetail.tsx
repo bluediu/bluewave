@@ -1,12 +1,13 @@
 /* Hooks */
 import { useParams } from "react-router-dom";
-import { useProduct } from "../../hooks";
+
+import { useProduct } from "@/Admin/hooks";
 
 /* Components */
-import { Detail } from "../../common";
+import { Detail } from "@/Admin/common";
 
 /* Constants */
-import { CATEGORY_DETAIL, PRODUCTS } from "../../constants";
+import { CATEGORY_DETAIL, PRODUCTS } from "@/Admin/constants";
 
 export const ProductDetail = () => {
   const { id = "0" } = useParams();

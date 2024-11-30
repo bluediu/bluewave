@@ -3,7 +3,7 @@ import { Breadcrumb } from "semantic-ui-react";
 import { Link, useNavigate } from "react-router-dom";
 
 /* Constants */
-import { CLIENT } from "../../constants";
+import { CLIENT } from "@/Client/constants";
 
 export const DetailBreadcrumbs = () => {
   const navigate = useNavigate();

@@ -1,26 +1,29 @@
 import { useState } from "react";
 
 /* Component */
-import { ModalBasic } from "../../../shared";
-import { CreateBtn, TableTitle } from "../../common";
+import { ModalBasic } from "@/shared";
+
+import { CreateBtn, TableTitle } from "@/Admin/common";
+
 import {
   TableCategories,
   CategoryCreateForm,
   CategoryUpdateForm,
-} from "../../components/Categories";
+} from "@/Admin/components/Categories";
 
 /* Hooks */
-import { useDynamicPageTitle } from "../../../hooks";
-import { useCategories, useModal } from "../../hooks";
+import { useDynamicPageTitle } from "@/hooks";
+
+import { useCategories, useModal } from "@/Admin/hooks";
 
 /* Services */
-import { adminActions } from "../../services";
+import { adminActions } from "@/Admin/services";
 
 /* Interfaces */
-import { ICategory } from "../../interfaces";
+import { ICategory } from "@/Admin/interfaces";
 
 /* Types */
-import { TFilter } from "../../types";
+import { TFilter } from "@/Admin/types";
 
 export const CategoryAdmin = () => {
   const scope = "Categories";

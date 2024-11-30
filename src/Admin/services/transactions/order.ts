@@ -1,5 +1,5 @@
 /* api*/
-import { api } from "../../../api";
+import { api } from "@/api";
 
 /* interfaces */
 import {
@@ -8,13 +8,13 @@ import {
   IOrderUpdate,
   IProductOrder,
   IOrderState,
-} from "../../interfaces";
+} from "@/Admin/interfaces";
 
 /* utils */
-import { fn } from "../../../utils";
+import { fn } from "@/utils";
 
 /* Types */
-import { TScope } from "../../../types";
+import { TScope } from "@/types";
 
 const ORDERS = "/orders/order";
 
@@ -41,8 +41,6 @@ export const listProductsByTableOrder = async (
   code: string,
   scope: TScope = "admin",
 ): Promise<IProductOrder[]> => {
-  if (!code) return {} as IProductOrder[];
-
   const { data } = await api.get<IProductOrder[]>(
     `${ORDERS}/table/${code}/products/`,
     fn.getSessionToken(scope),

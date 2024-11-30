@@ -2,9 +2,9 @@
 import { Button } from "semantic-ui-react";
 
 /* Components */
-import { ModalBasic } from "../../../shared";
-import { ModalConfirm } from "../../../shared";
-import { TableSubtitle } from "../../common/tables";
+import { ModalBasic, ModalConfirm } from "@/shared";
+
+import { TableSubtitle } from "@/Admin/common";
 
 /* Components */
 import {
@@ -24,12 +24,14 @@ import {
   StatusOverview,
   ActionButtons,
   Inconsistency,
-} from "../../components/Dashboard";
+} from "@/Admin/components/Dashboard";
 
 /* Hooks */
 import { useParams } from "react-router-dom";
-import { useConfirmModal } from "../../../hooks";
-import { useModal, usePayment, useProductsOrder } from "../../hooks";
+
+import { useConfirmModal } from "@/hooks";
+
+import { useModal, usePayment, useProductsOrder } from "@/Admin/hooks";
 
 export const DashboardDetail = () => {
   const { code = "0" } = useParams();

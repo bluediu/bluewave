@@ -1,11 +1,13 @@
 /* Components */
-import { PageTitle } from "../../../common";
-import { ItemList } from "../../../../shared";
-import { DetailBreadcrumbs, ProductDetail } from "../../../components/Products";
+import { ItemList } from "@/shared";
+
+import { PageTitle } from "@/Client/common";
+import { DetailBreadcrumbs, ProductDetail } from "@/Client/components/Products";
 
 /* Hooks */
-import { useProduct } from "../../../../Admin/hooks";
 import { useParams } from "react-router-dom";
+
+import { useProduct } from "@/Admin/hooks";
 
 export const ProductClientDetail = () => {
   const { id = "0" } = useParams();

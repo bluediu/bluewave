@@ -1,9 +1,10 @@
 /* Components */
 import { Icon } from "semantic-ui-react";
+
 import { HistoryProductCard } from "./HistoryProductCard";
 
 /* Hooks */
-import { useOrdersPayment } from "../../../hooks";
+import { useOrdersPayment } from "@/Admin/hooks";
 
 interface IProps {
   code: string;

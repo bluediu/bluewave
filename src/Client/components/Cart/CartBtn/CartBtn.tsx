@@ -1,19 +1,15 @@
-import { useContext } from "react";
-
-/* Context */
-import { AuthTableContext } from "../../../context";
-
 /* Components */
 import { Button } from "semantic-ui-react";
 
-/* Admin: Hooks */
-import { useProductsInOrder } from "../../../hooks";
-
 /* Hooks */
-import { useProductInCart } from "../../../hooks";
+import {
+  useProductInCart,
+  useProductsInOrder,
+  useTableContext,
+} from "@/Client/hooks";
 
 /* Interfaces */
-import { ICartProduct } from "../../../interfaces";
+import { ICartProduct } from "@/Client/interfaces";
 
 import "./CartBtn.scss";
 
@@ -27,9 +23,9 @@ export const CartBtn = ({ product, fluid = false }: IProps) => {
     productIdExists: product.id,
   });
 
-  const { code } = useContext(AuthTableContext);
+  const { table } = useTableContext();
 
-  const products = useProductsInOrder(code);
+  const products = useProductsInOrder(table!.code);
 
   const isProductInOrder = products?.includes(product.id);
 

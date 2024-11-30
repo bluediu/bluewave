@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { CardHeader, Icon, Label } from "semantic-ui-react";
 
 /* Hooks */
-import { useDeviceType } from "../../hooks";
+import { useDeviceType } from "@/hooks";
 
 /* Utils */
-import { fn } from "../../utils";
+import { fn } from "@/utils";
 
 interface IProps {
   targetId: number;

@@ -2,7 +2,7 @@
 import { Select } from "semantic-ui-react";
 
 /* Types */
-import { TFilter } from "../../types";
+import { TFilter } from "@/Admin/types";
 
 const filterOptions = [
   { key: "ALL", value: "all", text: "All" },

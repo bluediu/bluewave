@@ -1,26 +1,22 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-
 /* Components */
-import { CreateForm } from "../../common";
+import { CreateForm } from "@/Admin/common";
 
 /* Hooks */
-import { useCategoryCreate, useCreateForm } from "../../hooks";
+import { useCategoryCreate, useCreateForm } from "@/Admin/hooks";
 
 /* Interfaces */
-import { ICategoryCreate, IForm } from "../../interfaces";
+import { ICategoryCreate, IForm } from "@/Admin/interfaces";
 
 interface IProps {
   cache: string;
   match?: string[];
-  getCreateForm: () => Promise<IForm>;
+
   onClose: () => void;
+  getCreateForm: () => Promise<IForm>;
 }
 
 export const CategoryCreateForm = (props: IProps) => {
   const { cache, getCreateForm, onClose } = props;
-
-  const [pending, setPending] = useState(false);
 
   // Mutation
   const mutation = useCategoryCreate();
@@ -29,15 +25,13 @@ export const CategoryCreateForm = (props: IProps) => {
   // Get form query
   const createForm = useCreateForm({ cache, getCreateForm });
 
-  useEffect(() => setPending(isPending), [isPending]);
+  const handleSubmit = (data: ICategoryCreate) => mutation.mutate(data);
 
   if (isSuccess || isError) onClose();
 
-  const handleSubmit = (data: ICategoryCreate) => mutation.mutate(data);
-
   return (
     <CreateForm
-      isPending={pending}
+      isPending={isPending}
       createForm={createForm}
       onCloseModal={onClose}
       onSubmit={handleSubmit}
